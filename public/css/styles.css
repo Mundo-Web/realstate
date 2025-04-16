@@ -1207,34 +1207,25 @@ border-radius: 1rem;
 }
 
 @font-face {
-font-family: "Homie_Bold";
-src: url("/fonts/Homie-Bold.woff") format("woff");
+font-family: "PlusJakartaSans_Bold";
+src: url("/fonts/PlusJakartaSans-Bold.woff") format("woff");
 }
 
 @font-face {
-font-family: "FixelText-Bold";
-src: url("/fonts/FixelText-Bold.woff2") format("woff2");
+font-family: "PlusJakartaSans_Medium";
+src: url("/fonts/PlusJakartaSans-Medium.woff") format("woff");
 }
 
 @font-face {
-font-family: "FixelText-Semibold";
-src: url("/fonts/FixelText-Semibold.woff2") format("woff2");
+font-family: "PlusJakartaSans_Regular";
+src: url("/fonts/PlusJakartaSans-Regular.woff") format("woff");
 }
 
 @font-face {
-font-family: "FixelText-Regular";
-src: url("/fonts/FixelText-Regular.woff2") format("woff2");
+font-family: "PlusJakartaSans_Semibold";
+src: url("/fonts/PlusJakartaSans-Semibold.woff") format("woff");
 }
 
-@font-face {
-font-family: "FixelText-Medium";
-src: url("/fonts/FixelText-Medium.woff2") format("woff2");
-}
-
-@font-face {
-font-family: "FixelText-Light";
-src: url("/fonts/FixelText-Light.woff2") format("woff2");
-}
 
 .react-daterange-picker__calendar{
     background-color: white;

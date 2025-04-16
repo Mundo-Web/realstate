@@ -9,199 +9,163 @@
 
 @section('content')
 
-    <section class="flex flex-col lg:flex-row gap-3 lg:gap-10 justify-center items-center px-[5%] lg:pl-[5%] lg:pr-0 bg-[#5BE3A4]">
+    <div class="bg-center bg-cover" style="background-image: url({{ asset('images/img/rs_textura.png') }})">
+        {{-- <section class="flex flex-col lg:flex-row gap-3 lg:gap-10 justify-center items-center px-[5%] lg:pl-[5%] lg:pr-0 bg-[#5BE3A4]">
+                
             
-        <!-- Left Side: Text and Filters -->
-        <div class="w-full lg:w-[55%] text-[#151515] flex flex-col justify-center items-center gap-2 md:gap-10">
-            
-            <!-- Title Section -->
-            <div class="w-full flex flex-col gap-5 px-0 lg:pr-[5%] pt-8 lg:pt-0 xl:max-w-4xl">
-                <h1 class="text-[#F8FCFF] font-Homie_Bold text-5xl">
-                    {{ $textoshome->title1section ?? 'Propiedades que inspiran, experiencias que marcan la diferencia.' }}
-                </h1>
-            </div>
-            
-            <!-- Filter Section -->
-            <div class="w-full flex flex-col gap-5 px-0 lg:pr-[5%] pt-8 md:pt-0 relative">
-              <div class="px-0 w-full z-10">              
-                  <!-- Tab Buttons -->
-                  <div class="bg-white rounded-t-lg inline-block w-auto md:max-w-[400px]">
-                      <div class="flex justify-between items-center">
-                          <button
-                              class="px-10 py-3 text-[#009A84] font-FixelText_Semibold border-b-[2.5px] border-[#009A84] focus:outline-none tab-button flex-1"
-                              >
-                              Elige unas Fechas 
-                          </button>
-                      </div>
-                  </div>
-                  
-                  <!-- Tab Content -->
-                  <div id="tab1" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 py-4 px-4 tab-content bg-white justify-between items-center gap-3 rounded-b-lg md:rounded-tr-lg w-full">
-                  
-                      <div class="w-full md:col-span-2">
-                          <div class="relative w-full text-left">
-                          <div class="group">
-                              <div>
-                              <select name="lugar" id="lugar"
-                                  class="w-full min-w-36 py-3 text-sm border-0  font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30">
-                                          <option class="line-clamp-1" value="">Ubicación</option>
-                                        {{-- @foreach ($distritosfiltro as $ubicaciones)
-                                            @if (!empty($ubicaciones->distrito_id && !empty($ubicaciones->distrito->description)))
-                                              <option class="line-clamp-1" value="{{$ubicaciones->distrito_id}}" @selected($ubicaciones->distrito_id == $lugar)>{{$ubicaciones->distrito->description}}</option>
-                                            @endif  
-                                        @endforeach --}}
-                                        @foreach ($distritosParaFiltro as $distrito_id => $productos)
-                                            @php
-                                                $distrito = $productos->first()->distrito; // Obtén el distrito del primer producto del grupo
-                                            @endphp
-                                            @if (!empty($distrito->description))
-                                                <option class="line-clamp-1" value="{{$distrito_id}}">{{$distrito->description}}</option>
-                                            @endif  
-                                        @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          </div>
-                      </div>
-
-                      <div class="w-full md:col-span-3">
-                          <div class="relative w-full text-left md:text-center">
-                          <div class="group">
-                              <div>
-                                  <input type="text" id="arrival-date" class="text-left md:text-center w-full py-3 text-sm flex-1 shrink font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30" value="2024-07-13" aria-label="Fecha de llegada" />
-                              </div>
-                          </div>
-                          </div>
-                      </div>
-
-
-                      <div class="w-full md:col-span-2">
-                          <div class="relative w-full text-left">
-                          <div class="group">
-                              <div>
-                                  
-                                    <select name="cantidad_personas" id="cantidad_personas" class="w-full text-sm font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30">
-                                              <option value=""># Personas</option>
-                                              @for ($i = 1; $i <= $limite; $i++)
-                                                  <option value="{{ $i }}"
-                                                  @selected($i == $cantidad)
-                                                  >{{ $i }}</option>
-                                              @endfor
-                                    </select>
-                                 
-                              </div>
-                          </div>
-                          </div>
-                      </div>    
-          
-
-                      <div class="flex justify-center items-center w-full md:col-span-1">
-                              <div class="flex justify-start items-center">
-                                  <a id="linkExplirarAlquileres"
-                                      class="bg-[#009A84] rounded-xl font-FixelText_Semibold text-base text-white px-3 py-3 text-center">
-                                      <span class="hidden md:flex"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                      <span class="flex md:hidden px-7">Buscar</span>
-                                  </a>
-                              </div>
-                      </div>
-
-                  </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <!-- Pequeño slogan  -->
-                  <p class="font-FixelText_Regular underline text-sm text-white mt-2">
-                      Propietario, anuncia tu propiedad gratis
-                  </p>
-              </div>
-            </div>   
-        </div>
-
-        <!-- Right Side: Image -->
-        <div class="w-full lg:w-[45%]">
-            <div class="w-full h-full flex flex-row items-center justify-center">
-                <img src="{{ asset('images/img/portadacatalogo.png'); }}" class="h-[200px] lg:min-h-[400px] object-contain xl:h-full object-bottom" alt="Portada Catálogo" />
-            </div>
-        </div>
-
-    </section>
-
-
-    <section id="productosf" class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-8 px-[5%] pt-10 lg:pt-16">
-       @foreach ($products as $item)
-        <div class="flex flex-col relative w-full bg-white" data-aos="zoom-in-left">
-            <!-- Contenedor del Producto -->
-            <div class="bg-white product_container basis-4/5 flex flex-col justify-center relative border">
-        
-                <!-- Imagen del Producto -->
-                <div>
-                    <a href="{{ url('/producto/' . $item['id']) }}">
-                        <div class="relative flex justify-center items-center h-max">
-                            <img 
-                                style="opacity: {{ (!$item['imagen_ambiente'] || !$showAmbiente) ? '1' : '0' }};
-                                    scale: {{ (!$item['imagen_ambiente'] || !$showAmbiente) ? '1.05' : '1' }};
-                                    background-color: #eeeeee;"
-                                src="{{ $item['imagen'] ? asset($item['imagen']) : asset('images/img/noimagen.jpg') }}"
-                                alt="{{ $item['name'] }}"
-                                onerror="this.src='{{ asset('images/img/noimagen.jpg') }}';"
-                                class="transition ease-out duration-300 transform w-full aspect-square object-cover inset-0" />
-            
-                            @if (!empty($item['imagen_ambiente']))
-                                <img 
-                                    style="opacity: {{ $showAmbiente ? '1' : '0' }};
-                                        scale: {{ $showAmbiente ? '1.05' : '1' }};"
-                                    src="{{ asset($item['imagen_ambiente']) }}"
-                                    alt="{{ $item['name'] }}"
-                                    onerror="this.src='{{ asset('images/img/noimagen.jpg') }}';"
-                                    class="transition ease-out duration-300 transform w-full h-full aspect-square object-cover absolute inset-0" />
-                            @endif
+            <div class="w-full lg:w-[55%] text-[#151515] flex flex-col justify-center items-center gap-2 md:gap-10">
+                
+                
+                <div class="w-full flex flex-col gap-5 px-0 lg:pr-[5%] pt-8 lg:pt-0 xl:max-w-4xl">
+                    <h1 class="text-[#F8FCFF] font-Homie_Bold text-5xl">
+                        {{ $textoshome->title1section ?? 'Propiedades que inspiran, experiencias que marcan la diferencia.' }}
+                    </h1>
+                </div>
+                
+                
+                <div class="w-full flex flex-col gap-5 px-0 lg:pr-[5%] pt-8 md:pt-0 relative">
+                <div class="px-0 w-full z-10">              
+                    
+                    <div class="bg-white rounded-t-lg inline-block w-auto md:max-w-[400px]">
+                        <div class="flex justify-between items-center">
+                            <button
+                                class="px-10 py-3 text-[#009A84] font-FixelText_Semibold border-b-[2.5px] border-[#009A84] focus:outline-none tab-button flex-1"
+                                >
+                                Elige unas Fechas 
+                            </button>
                         </div>
-                    </a>
+                    </div>
+                    
+                    
+                    <div id="tab1" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 py-4 px-4 tab-content bg-white justify-between items-center gap-3 rounded-b-lg md:rounded-tr-lg w-full">
+                    
+                        <div class="w-full md:col-span-2">
+                            <div class="relative w-full text-left">
+                            <div class="group">
+                                <div>
+                                <select name="lugar" id="lugar"
+                                    class="w-full min-w-36 py-3 text-sm border-0  font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30">
+                                            <option class="line-clamp-1" value="">Ubicación</option>
+                                        
+                                            @foreach ($distritosParaFiltro as $distrito_id => $productos)
+                                                @php
+                                                    $distrito = $productos->first()->distrito; 
+                                                @endphp
+                                                @if (!empty($distrito->description))
+                                                    <option class="line-clamp-1" value="{{$distrito_id}}">{{$distrito->description}}</option>
+                                                @endif  
+                                            @endforeach
+                                </select>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:col-span-3">
+                            <div class="relative w-full text-left md:text-center">
+                            <div class="group">
+                                <div>
+                                    <input type="text" id="arrival-date" class="text-left md:text-center w-full py-3 text-sm flex-1 shrink font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30" value="2024-07-13" aria-label="Fecha de llegada" />
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <div class="w-full md:col-span-2">
+                            <div class="relative w-full text-left">
+                            <div class="group">
+                                <div>
+                                    
+                                        <select name="cantidad_personas" id="cantidad_personas" class="w-full text-sm font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30">
+                                                <option value=""># Personas</option>
+                                                @for ($i = 1; $i <= $limite; $i++)
+                                                    <option value="{{ $i }}"
+                                                    @selected($i == $cantidad)
+                                                    >{{ $i }}</option>
+                                                @endfor
+                                        </select>
+                                    
+                                </div>
+                            </div>
+                            </div>
+                        </div>    
+            
+
+                        <div class="flex justify-center items-center w-full md:col-span-1">
+                                <div class="flex justify-start items-center">
+                                    <a id="linkExplirarAlquileres"
+                                        class="bg-[#009A84] rounded-xl font-FixelText_Semibold text-base text-white px-3 py-3 text-center">
+                                        <span class="hidden md:flex"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                        <span class="flex md:hidden px-7">Buscar</span>
+                                    </a>
+                                </div>
+                        </div>
+
+                    </div>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    
+                    <p class="font-FixelText_Regular underline text-sm text-white mt-2">
+                        Propietario, anuncia tu propiedad gratis
+                    </p>
+                </div>
+                </div>   
+            </div>
+
+            
+            <div class="w-full lg:w-[45%]">
+                <div class="w-full h-full flex flex-row items-center justify-center">
+                    <img src="{{ asset('images/img/portadacatalogo.png'); }}" class="h-[200px] lg:min-h-[400px] object-contain xl:h-full object-bottom" alt="Portada Catálogo" />
                 </div>
             </div>
-        
-            <!-- Detalles del Producto -->
-            <a href="{{ url('/producto/' . $item['id']) }}" class="px-1 py-2 flex flex-col gap-3">
-                <h2 
-                    class="block text-lg text-left overflow-hidden font-Homie_Bold text-[#002677]" 
-                    style="display: -webkit-box; -webkit-line-clamp: 2; text-overflow: ellipsis; -webkit-box-orient: vertical; height: 51px;">
-                    {{ $item['producto'] }}
-                </h2>
-                {{-- <p 
-                    class="block text-[13px] lg:text-base text-left overflow-hidden font-FixelText_Light text-[#000929]" 
-                    style="display: -webkit-box; -webkit-line-clamp: 2; text-overflow: ellipsis; -webkit-box-orient: vertical; height: 42px;">
-                    {{ $item['extract'] }}
-                </p> --}}
-            </a>
-        </div>
-       @endforeach
-    </section>
+
+        </section> --}}
+        <section class="px-[5%] xl:px-[8%] pt-10 lg:pt-16 ">
+            <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-[#191919] rounded-3xl overflow-hidden">
+                
+                <div class="h-full w-full md:w-3/5  bg-opacity-70 rounded-3xl py-8 px-10 ">
+                    <div class="max-w-lg 2xl:max-w-none flex flex-col gap-5">
+                        <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-[44px] leading-tight 2xl:text-5xl">Alquila o vende tu propiedad <span class="text-[#C8A049]">fácilmente</span> </h2>
+                        <p class="font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Una gran plataforma para vender o incluso alquilar tus propiedades sin comisiones.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="productosf" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 px-[5%] xl:px-[8%] py-10 lg:py-16">
+        @foreach ($products as $item)
+                <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
+        @endforeach
+        </section>
+    </div>
 
 
-
-
-    <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-14 w-full bg-[#73F7AD]">
+    <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-10 w-full" style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
       <div class="flex flex-col max-w-xl">
 
           <div class="flex flex-col w-full text-center gap-5 text-[#006258]">
-              <h2 class="text-4xl font-Homie_Bold">{{$textoshome->title5section ?? 'Ingrese un texto'}}</h2>
-              <p class="text-base font-FixelText_Regular text-[#000929]">{{$textoshome->description5section ?? 'Ingrese un texto'}}</p>
+            <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] 2xl:text-5xl leading-tight">¿Es usted <span class="text-[#C8A049]">propietario?</span></h2>
+            <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Descubra formas de aumentar el valor de su casa y cotizar en la lista.
+                No es Spam.</p>
           </div>
 
           <div class="flex flex-col mt-8 w-full gap-4">
               <div class="flex flex-col w-full rounded-lg">
                   <form id="subsEmail"
-                      class="flex flex-row gap-5 justify-end px-5 py-3.5 w-full bg-white rounded-2xl">
+                      class="flex flex-row gap-5 justify-end px-5 py-2.5 w-full bg-[#141414] rounded-2xl">
                       @csrf
                       <input placeholder="Introduce tu correo electrónico" type="email" id="email"
                           name="email"
-                          class="w-full px-4 py-2 text-sm font-FixelText_Regular focus:border-0 focus:ring-0 text-[#006258] placeholder:text-[#00625852] border border-transparent rounded-xl"
+                          class="w-full px-4 py-2 bg-[#141414] text-sm font-PlusJakartaSans_Regular focus:border-0 focus:ring-0 text-white placeholder:text-white border border-transparent rounded-xl"
                           aria-label="Introduce tu correo electrónico" required>
                       <input type="hidden" name="tipo" value="Inicio" />
                       <button type="submit"
-                          class="self-end px-10 py-3 text-base font-FixelText_Semibold text-center text-[#73F7AD] bg-[#009A84] rounded-lg">Enviar</button>
+                          class="self-end px-10 py-3 text-base font-PlusJakartaSans_Medium text-center text-[#141414] bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] rounded-lg">Enviar</button>
                   </form>
               </div>
-              <p class="text-base text-center font-FixelText_Regular text-[#000929]">
-                  {{$textoshome->footer5section ?? 'Ingrese un texto'}}
+              <p class="text-base text-center font-PlusJakartaSans_Regular text-white">
+                    Únese a <span class="text-[#C8A049]"> +1.000 </span> propietarios en nuestra comunidad inmobiliaria.
               </p>
           </div>
 

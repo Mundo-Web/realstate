@@ -80,17 +80,18 @@
                   <div class="col-span-5 md:col-span-5">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
-                      {{-- <textarea type="text" rows="2" id="description" name="description" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Descripción">{{ $product->description }}</textarea> --}}
-                      <x-form.quill id="description" :value="$product->description" />
+                        <textarea type="text" rows="2" id="description" name="description"
+                        class="ckeditor mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Descripción">{!! $product->description !!}</textarea>
                     </div>
                   </div>
 
                   <div class="col-span-5 md:col-span-5">
-                    <label for="incluye">Incluye (Inmueble)</label>
+                    <label for="incluye">Beneficios (Un beneficio por salto de linea)</label>
                     <div class="relative mb-2 mt-2">
-                      <x-form.quill id="incluye" :value="$product->incluye" />
+                      <textarea type="text" rows="2" id="incluye" name="incluye"
+                        class="ckeditor mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Descripción">{!! $product->incluye !!}</textarea>
                     </div>
                   </div>
 
@@ -1440,3 +1441,40 @@
   </script>
 
 </x-app-layout>
+
+<script src="/ckeditor/ckeditor.js"></script>
+<script>
+   CKEDITOR.replace('description', {
+        toolbar: [
+            { name: 'document', items: ['Source'] }, // Código fuente
+            { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+            { name: 'styles', items: ['Styles', 'Format', 'FontSize'] }, // Tamaño y fuente
+            { name: 'colors', items: ['TextColor', 'BGColor'] }, // Color de texto y fondo
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
+            { name: 'insert', items: ['Table', 'HorizontalRule'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'tools', items: ['Maximize'] } // Maximizar
+        ],
+        extraPlugins: 'colorbutton,font', // Activa plugins para color y fuentes
+        removePlugins: 'elementspath', // Elimina la ruta de elementos
+        resize_enabled: true // Permite redimensionar el editor
+    });
+
+    CKEDITOR.replace('incluye', {
+        toolbar: [
+            { name: 'document', items: ['Source'] }, // Código fuente
+            { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+            { name: 'styles', items: ['Styles', 'Format', 'FontSize'] }, // Tamaño y fuente
+            { name: 'colors', items: ['TextColor', 'BGColor'] }, // Color de texto y fondo
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
+            { name: 'insert', items: ['Table', 'HorizontalRule'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'tools', items: ['Maximize'] } // Maximizar
+        ],
+        extraPlugins: 'colorbutton,font', // Activa plugins para color y fuentes
+        removePlugins: 'elementspath', // Elimina la ruta de elementos
+        resize_enabled: true // Permite redimensionar el editor
+    });
+</script>

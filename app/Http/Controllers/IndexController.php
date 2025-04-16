@@ -479,7 +479,20 @@ class IndexController extends Controller
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
       ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
 
-    return view('public.contact', compact('textoshome', 'general', 'url_env', 'categorias', 'destacados'));
+  try {
+     $json = file_get_contents(public_path('phone/countries_phone.json'));
+     $paises = json_decode($json, true);
+     if (json_last_error() !== JSON_ERROR_NONE) {
+         throw new \Exception('Error al decodificar JSON');
+     }
+     usort($paises, function($a, $b) {
+         return strcmp($a['nameES'], $b['nameES']);
+     });
+  } catch (\Exception $e) {
+       $paises = [];
+  }
+
+    return view('public.contact', compact('paises','textoshome', 'general', 'url_env', 'categorias', 'destacados'));
   }
 
   public function carrito()
@@ -976,8 +989,6 @@ class IndexController extends Controller
 
         $disabledDates = [];
         
-
-        
         // 1. Obtener fechas bloqueadas desde la base de datos
         $fechasDB = DB::table('events')
         ->where('product_id', $product->id)
@@ -985,6 +996,7 @@ class IndexController extends Controller
 
         foreach ($fechasDB as $checkout => $checkin) {
             $startDate = Carbon::parse($checkin)->startOfDay();
+            //$endDate = Carbon::parse($checkout)->startOfDay();
             $endDate = Carbon::parse($checkout)->subDay()->startOfDay(); // Restar un día al checkout
 
             while ($startDate->lte($endDate)) {
@@ -1015,7 +1027,8 @@ class IndexController extends Controller
               } elseif (strpos($line, 'DTEND') === 0) {
                   // Extraer la fecha de fin
                   $endDate = Carbon::createFromFormat('Ymd', substr($line, strpos($line, ':') + 1))->startOfDay();
-                  $endDate->subDay(); // Restar un día porque el check-out ocurre en esta fecha
+                  //$endDate->subDay(); // Restar un día porque el check-out ocurre en esta fecha
+                  $endDate->subDay();
               }
 
               // Si tenemos las fechas de inicio y fin, generar las fechas entre ese rango

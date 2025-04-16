@@ -6,107 +6,130 @@
 @section('meta_keywords', $meta_keywords)
 
 @section('css_importados')
-<style>
-  .close-modal{
-    z-index: 9999;
-  }
-</style>
 @stop
 
 @section('content')
-  <?php
-  // Definición de la función capitalizeFirstLetter()
-  // function capitalizeFirstLetter($string)
-  // {
-  //     return ucfirst($string);
-  // }
-  ?>
-  <style>
-    /* imagen de fondo transparente para calcar el dise;o */
-    .clase_table {
-      border-collapse: separate;
-      border-spacing: 10;
-    }
+    <?php
+    // Definición de la función capitalizeFirstLetter()
+    // function capitalizeFirstLetter($string)
+    // {
+    //     return ucfirst($string);
+    // }
+    ?>
+    <style>
+        /* imagen de fondo transparente para calcar el dise;o */
+        .clase_table {
+            border-collapse: separate;
+            border-spacing: 10;
+        }
 
-    .fixedWhastapp {
-      right: 2vw !important;
-    }
+        .fixedWhastapp {
+            right: 2vw !important;
+        }
 
-    .clase_table td {
-      /* border: 1px solid black; */
-      border-radius: 10px;
-      -moz-border-radius: 10px;
-      padding: 10px;
-    }
+        .clase_table td {
+            /* border: 1px solid black; */
+            border-radius: 10px;
+            -moz-border-radius: 10px;
+            padding: 10px;
+        }
 
-    .swiper-pagination-bullet-active {
-      background-color: #272727;
-    }
+        .swiper-pagination-bullet-active {
+            background-color: #272727;
+        }
 
-    .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
-      background-color: #979693 !important;
-    }
+        .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+            background-color: #979693 !important;
+        }
 
-    .blocker {
-      z-index: 20;
-    }
+        .blocker {
+            z-index: 20;
+        }
 
+        .close-modal {
+            z-index: 9999;
+        }
 
-    @media (min-width: 600px) {
-      #offers .swiper-slide {
-        margin-right: 100px !important;
-      }
+        /* Flatpickr custom styles */
+        .check-in-date:not(.check-in-out-date) {
+            background: linear-gradient(to right, white 50%, #e2e8f0 50%) !important;
+            border-radius: 0 !important;
+        }
 
-      #offers .swiper-slide::before {
-        content: '+';
-        display: block;
-        position: absolute;
-        top: 50%;
-        right: -70px;
-        transform: translateY(-50%);
-        font-size: 32px;
-        font-weight: bolder;
-        color: #ffffff;
-        padding: 0px 12px;
-        background-color: #0d2e5e;
-        border-radius: 50%;
-        box-shadow: 0 0 5px rgba(0, 0, 0, .125);
-      }
+        .check-out-date:not(.check-in-out-date) {
+            background: linear-gradient(to right, #e2e8f0 50%, white 50%) !important;
+            border-radius: 0 !important;
+        }
 
-      #offers .swiper-slide:last-child::before {
-        content: none;
-      }
+        .check-in-out-date {
+            background: #e2e8f0 !important;
+            border-radius: 0 !important;
+        }
 
-    }
-  </style>
+        .flatpickr-day.selected.startRange {
+            border-radius: 50% 0 0 50% !important;
+        }
 
-  @php
-    $images = ['', '_ambiente'];
-    $x = $product->toArray();
-    $i = 1;
-  @endphp
-  @php
-    $breadcrumbs = [['title' => 'Inicio', 'url' => route('index')], ['title' => 'Producto', 'url' => '']];
-  @endphp
-  @php
-    $StockActual = $product->stock;
-    $maxStock = 100; // maximo stock
+        .flatpickr-day.selected.endRange {
+            border-radius: 0 50% 50% 0 !important;
+        }
 
-    if (!is_null($product->max_stock) > 0) {
-        $maxStock = $product->max_stock;
-    }
-    # calculamos en % cuanto queda en base a 100
-    $stock = 0;
-    if ($maxStock !== 0) {
-        $stock = ($StockActual * 100) / $maxStock;
-    }
+        @media (min-width: 600px) {
+            #offers .swiper-slide {
+                margin-right: 100px !important;
+            }
 
-  @endphp
-  {{-- @component('components.breadcrumbs', ['breadcrumbs' => $breadcrumbs])
+            #offers .swiper-slide::before {
+                content: '+';
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: -70px;
+                transform: translateY(-50%);
+                font-size: 32px;
+                font-weight: bolder;
+                color: #ffffff;
+                padding: 0px 12px;
+                background-color: #0d2e5e;
+                border-radius: 50%;
+                box-shadow: 0 0 5px rgba(0, 0, 0, .125);
+            }
+
+            #offers .swiper-slide:last-child::before {
+                content: none;
+            }
+
+        }
+    </style>
+
+    @php
+        $images = ['', '_ambiente'];
+        $x = $product->toArray();
+        $i = 1;
+    @endphp
+    @php
+        $breadcrumbs = [['title' => 'Inicio', 'url' => route('index')], ['title' => 'Producto', 'url' => '']];
+    @endphp
+    @php
+        $StockActual = $product->stock;
+        $maxStock = 100; // maximo stock
+
+        if (!is_null($product->max_stock) > 0) {
+            $maxStock = $product->max_stock;
+        }
+        # calculamos en % cuanto queda en base a 100
+        $stock = 0;
+        if ($maxStock !== 0) {
+            $stock = ($StockActual * 100) / $maxStock;
+        }
+
+    @endphp
+    {{-- @component('components.breadcrumbs', ['breadcrumbs' => $breadcrumbs])
   @endcomponent --}}
 
-  <main class="font-Inter_Regular" id="mainSection">
+    <main class="font-PlusJakartaSans_Regular py-10 bg lg:py-16 bg-cover" id="mainSection" style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
         @csrf
+
         {{-- <section class="w-full px-[5%] ">
             <div class="grid grid-cols-1 2md:grid-cols-2 gap-10 md:gap-16 pt-8 lg:pt-16">
 
@@ -126,8 +149,8 @@
                             @if ($value->attribute_id == $item->id)
                               
                                   @isset($valoresdeatributo)
-                                      @foreach($valoresdeatributo as $valorat)
-                                        @if($valorat->attribute_value_id == $value->id)
+                                      @foreach ($valoresdeatributo as $valorat)
+                                        @if ($valorat->attribute_value_id == $value->id)
                                           <img src={{asset($value->imagen)}} class="w-24 h-12 object-contain"/>
                                         @endif
                                       @endforeach
@@ -262,936 +285,858 @@
             </div>
         </section> --}}
 
-        <section class="flex flex-row gap-1 lg:gap-3 w-full px-[5%] mt-8 lg:mt-14 relative" aria-label="Image Gallery">
-          
-          <div class="w-1/3 galeriatotal ">
-            @if ($product->imagen_2)
-              <img id="collage1_previewer" loading="lazy" src="{{ asset($product->imagen_2) }}" class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 1" />
-            @else
-              <img id="collage1_previewer"
-                    src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                    class="object-cover w-full rounded-xl aspect-[0.7]" />
-            @endif
-          </div>
-          
-          <div class="flex flex-col  w-1/3 gap-1 lg:gap-3 galeriatotal ">
-            @if ($product->imagen_3)
-              <img id="collage2_previewer" loading="lazy" src="{{ asset($product->imagen_3) }}" class="cursor-pointer object-cover flex-1 w-full rounded-xl aspect-[1.45]" alt="Gallery image 2" />
-            @else
-              <img id="collage2_previewer"
-                src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                class="object-cover flex-1 w-full rounded-xl aspect-[1.45]" />
-            @endif
+        <section class="flex flex-row gap-1 lg:gap-3 w-full px-[5%] relative" aria-label="Image Gallery">
 
-            @if($product->imagen_4)
-              <img id="collage3_previewer" loading="lazy" src="{{ asset($product->imagen_4) }}" class="cursor-pointer object-cover flex-1 w-full rounded-xl aspect-[1.45]" alt="Gallery image 3" />
-            @else
-                <img id="collage3_previewer"
-                    src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                    class="object-cover flex-1 w-full rounded-xl aspect-[1.45]" />
-            @endif
-          </div>
+            <div class="w-1/3 galeriatotal ">
+                @if ($product->imagen_2)
+                    <img id="collage1_previewer" loading="lazy" src="{{ asset($product->imagen_2) }}"
+                        class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 1" />
+                @else
+                    <img id="collage1_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                        class="object-cover w-full rounded-xl aspect-[0.7]" />
+                @endif
+            </div>
 
-          <div class="w-1/3 galeriatotal">
-            @if($product->image_texture)
-              <img id="collage4_previewer" loading="lazy" src="{{ asset($product->image_texture) }}" class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 4" />
-            @else
-                <img id="collage4_previewer"
-                src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                class="object-cover w-full rounded-xl aspect-[0.7]" />
-            @endif
-          </div>
+            <div class="flex flex-col  w-1/3 gap-1 lg:gap-3 galeriatotal ">
+                @if ($product->imagen_3)
+                    <img id="collage2_previewer" loading="lazy" src="{{ asset($product->imagen_3) }}"
+                        class="cursor-pointer object-cover flex-1 w-full rounded-xl aspect-[1.45]" alt="Gallery image 2" />
+                @else
+                    <img id="collage2_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                        class="object-cover flex-1 w-full rounded-xl aspect-[1.45]" />
+                @endif
+
+                @if ($product->imagen_4)
+                    <img id="collage3_previewer" loading="lazy" src="{{ asset($product->imagen_4) }}"
+                        class="cursor-pointer object-cover flex-1 w-full rounded-xl aspect-[1.45]" alt="Gallery image 3" />
+                @else
+                    <img id="collage3_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                        class="object-cover flex-1 w-full rounded-xl aspect-[1.45]" />
+                @endif
+            </div>
+
+            <div class="w-1/3 galeriatotal">
+                @if ($product->image_texture)
+                    <img id="collage4_previewer" loading="lazy" src="{{ asset($product->image_texture) }}"
+                        class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 4" />
+                @else
+                    <img id="collage4_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                        class="object-cover w-full rounded-xl aspect-[0.7]" />
+                @endif
+            </div>
         </section>
-        <section class="galeriatotal flex flex-row justify-start w-full px-[5%] mt-5 relative"><div><a class="bg-[#006258] text-white px-6 py-3 md:py-4 rounded-3xl text-sm font-FixelText_Semibold">Ver todas las imágenes</a></div></section>
+
+        <section class="galeriatotal flex flex-row justify-start w-full px-[5%] mt-5 relative">
+            <div><a class="bg-[#006258] text-white px-6 py-3 md:py-4 rounded-3xl text-sm font-FixelText_Semibold">Ver todas
+                    las imágenes</a></div>
+        </section>
 
         <section class="flex flex-col lg:flex-row gap-10 justify-between items-start px-[5%] mt-8 lg:mt-16">
-          
-          <div class="flex flex-col min-w-[240px] w-full max-w-4xl order-2 lg:order-1">
-
-            <div class="flex flex-col justify-center bg-white rounded-2xl">
-              <div class="flex flex-col w-full">
-
-                <nav class="flex flex-wrap gap-10 justify-between items-start w-full text-base whitespace-nowrap min-h-[24px]">
-                  <ul class="flex overflow-hidden items-center list-none gap-1 font-FixelText_Regular">
-                    <li class="self-stretch my-auto text-slate-950 text-opacity-30">Inicio</li>
-                    <li class="overflow-hidden self-stretch px-2 my-auto text-slate-950 text-opacity-20">/</li>
-                    <li class="self-stretch my-auto text-[#002677]">Departamento</li>
-                  </ul>
-                  <button onclick="copiarEnlace()" class="flex items-center justify-center">
-                    <img loading="lazy" src="{{ asset('images/svg/compartir.svg') }}" 
-                         class="object-contain shrink-0 w-6 aspect-square" alt="Copiar enlace" />
-                  </button>
-                </nav>
-
-                <article class="flex flex-col items-start mt-5 w-full">
-                  <header class="flex flex-col">
-                    <h1 class="text-3xl font-Homie_Bold text-[#006258]">{{ $product->producto }}</h1>
-                    
-                    <p class="mt-2.5 text-base font-FixelText_Regular text-slate-950 text-opacity-50">{{$product->address}}, {{$product->inside}}</p>
-                    <p class="mt-2.5 text-base font-FixelText_Regular text-slate-950 text-opacity-50">
-                      @php
-                          $locations = [];
-
-                          if (!empty($departamento->description)) {
-                              $locations[] = $departamento->description;
-                          }
-
-                          if (!empty($provincia->description)) {
-                              $locations[] = $provincia->description;
-                          }
-
-                          if (!empty($distrito->description)) {
-                              $locations[] = $distrito->description;
-                          }
-
-                          $locationsString = implode(', ', $locations);
-                      @endphp
-                        {{ $locationsString }}
-                      </p>
-                  </header>
-                  @if ($product->latitud && $product->longitud)
-                        <div class="h-[350px] w-full" id="map"></div>
-                  @endif
-                  @if ($product->sku)
-                  <div class="flex items-center px-3 py-1.5 mt-5 text-sm text-[#002677] border border-[#002677] border-solid bg-[#002677] bg-opacity-10 rounded-[43px]">
-                    <span class="font-FixelText_Regular"># Cod. inmueble  {{ $product->sku }}</span>
-                  </div>
-                  @endif
-                </article>
-
-              </div>
-            </div>
-
-            <div class="flex flex-col justify-center p-8 text-xs font-medium text-center bg-white rounded-2xl  text-slate-950 max-md:px-5" aria-label="Property Features">
-              <div class="flex flex-wrap gap-4 justify-between items-start w-full font-FixelText_Medium">
-                @if(!empty($product->area))
-                  <div class="flex flex-col items-center min-h-[50px] w-[60px]">
-                    <img loading="lazy" src="{{asset('images/svg/area.svg')}}" class="object-contain w-6 aspect-square" alt="Area icon" />
-                    <p class="mt-1.5">{{$product->area}} m²</p>
-                  </div>
-                @endif
-
-                @if(!empty($product->cuartos))  
-                <div class="flex flex-col items-center min-h-[50px] w-[60px]">
-                  <img loading="lazy" src="{{asset('images/svg/cuartos.svg')}}" class="object-contain w-6 aspect-square" alt="Bedroom icon" />
-                  <p class="mt-1.5">{{$product->cuartos}} cuartos</p>
-                </div>
-                @endif
-
-                @if(!empty($product->banios))  
-                <div class="flex flex-col min-h-[50px] w-[60px]">
-                  <img loading="lazy" src="{{asset('images/svg/banios.svg')}}" class="object-contain self-center w-6 aspect-square" alt="Bathroom icon" />
-                  <p class="mt-1.5">{{$product->banios}} baños</p>
-                </div>
-                @endif
-
-                @if(!empty($product->cochera))  
-                <div class="flex flex-col items-center min-h-[50px] w-[60px]">
-                  <img loading="lazy" src="{{asset('images/svg/cochera.svg')}}" class="object-contain w-6 aspect-square" alt="Parking space icon" />
-                  <p class="mt-1.5">{{$product->cochera}} espacios</p>
-                </div>
-                @endif
-
-                @if(!empty($product->pisos))  
-                <div class="flex flex-col items-center min-h-[50px] w-[60px]">
-                  <img loading="lazy" src="{{asset('images/svg/piso.svg')}}" class="object-contain w-6 aspect-square" alt="Floor level icon" />
-                  <p class="mt-1.5">{{$product->pisos}}º piso</p>
-                </div>
-                @endif
-
-                @if($product->mascota)  
-                <div class="flex flex-col items-center whitespace-nowrap min-h-[50px] w-[60px]">
-                  <img loading="lazy" src="{{asset('images/svg/mascota.svg')}}" class="object-contain w-6 aspect-square" alt="Pet friendly icon" />
-                  <p class="mt-1.5">Mascota</p>
-                </div>
-                @endif
-
-                @if($product->mobiliado)  
-                <div class="flex flex-col items-center whitespace-nowrap min-h-[50px] w-[60px]">
-                  <img loading="lazy" src="{{asset('images/svg/mobiliado.svg')}}" class="object-contain w-6 aspect-square" alt="Furnished icon" />
-                  <p class="mt-1.5">Mobiliado</p>
-                </div>
-                @endif
+            <div class="flex flex-col min-w-[240px] w-full max-w-4xl 2xl:max-w-6xl order-2 lg:order-1">
                 
-                @if(!empty($product->movilidad))  
-                <div class="flex flex-col items-center whitespace-nowrap min-h-[50px] w-[60px]">
-                  <img loading="lazy" src="{{asset('images/svg/movilidad.svg')}}" class="object-contain w-6 aspect-square" alt="Proximity icon" />
-                  <p class="mt-1.5">{{$product->movilidad}}</p>
+                <div class="flex flex-col justify-center rounded-2xl">
+                    <div class="flex flex-col w-full">
+                        <nav
+                            class="flex flex-wrap gap-10 justify-between items-start w-full text-base whitespace-nowrap min-h-[24px]">
+                            <ul class="flex overflow-hidden items-center list-none gap-1 font-PlusJakartaSans_Regular">
+                                <li class="self-stretch my-auto text-white">Lima, Lima, Los Olivos</li>
+                            </ul>
+                            <button onclick="copiarEnlace()" class="flex items-center justify-center">
+                               <i class="fa-solid fa-share object-contain text-xl aspect-square text-white"></i>
+                            </button>
+                        </nav>
+
+                        <article class="flex flex-col items-start mt-5 w-full gap-3">
+                            <header class="flex flex-col">
+                                <h1 class="text-3xl lg:text-4xl 2xl:text-5xl font-PlusJakartaSans_Medium text-white">{{ $product->producto }}</h1>
+                                {{-- <p class="mt-2.5 text-base font-FixelText_Regular text-slate-950 text-opacity-50">
+                                    {{ $product->address }}, {{ $product->inside }}</p> --}}
+
+                                {{-- <p class="mt-2.5 text-base font-FixelText_Regular text-slate-950 text-opacity-50">
+                                    @php
+                                        $locations = [];
+
+                                        if (!empty($departamento->description)) {
+                                            $locations[] = $departamento->description;
+                                        }
+
+                                        if (!empty($provincia->description)) {
+                                            $locations[] = $provincia->description;
+                                        }
+
+                                        if (!empty($distrito->description)) {
+                                            $locations[] = $distrito->description;
+                                        }
+
+                                        $locationsString = implode(', ', $locations);
+                                    @endphp
+                                    {{ $locationsString }}
+                                </p> --}}
+                            </header>
+
+                            <div class="flex flex-col md:flex-row gap-3 md:gap-6 md:items-center">
+                              <div>
+                                  <h2 class="font-PlusJakartaSans_Medium text-lg lg:text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">S/. 878,400.00 - USD 240,000.00</h2>
+                              </div>
+                              @if ($product->sku)
+                                  <div
+                                      class="flex items-center px-3 py-1.5 text-sm 2xl:text-lg text-white border border-[#262626] border-solid rounded-3xl bg-[#1A1A1A]">
+                                      <span class="font-PlusJakartaSans_Medium">Cod. {{ $product->sku }}</span>
+                                  </div>
+                              @endif
+                            </div> 
+                        </article>
+
+                    </div>
                 </div>
-                @endif
-              </div>
+
+                <div class="flex flex-col gap-4 justify-center pt-8 text-center rounded-2xl text-white">
+                  <div class="flex items-center">
+                      <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Características</h2>
+                  </div>
+                  <div class="flex flex-wrap justify-between sm:justify-normal gap-8 2xl:gap-10 items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
+                        @if (!empty($product->cuartos))
+                            <div class="flex flex-col items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_cama.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Bedroom icon" />
+                                <p class="mt-1.5">{{ $product->cuartos }} cuartos</p>
+                            </div>
+                        @endif
+
+                        @if (!empty($product->banios))
+                            <div class="flex flex-col items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_banios.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Bathroom icon" />
+                                <p class="mt-1.5">{{ $product->banios }} baños</p>
+                            </div>
+                        @endif
+
+                        @if (!empty($product->cochera))
+                            <div class="flex flex-col items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_cochera.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Parking space icon" />
+                                <p class="mt-1.5">{{ $product->cochera }} cocheras</p>
+                            </div>
+                        @endif
+
+                        @if (!empty($product->pisos))
+                            <div class="flex flex-col items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_pisos.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Floor level icon" />
+                                <p class="mt-1.5">{{ $product->pisos }}º piso</p>
+                            </div>
+                        @endif
+    
+                        @if ($product->mascota)
+                            <div class="flex flex-col items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_mascota.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Pet friendly icon" />
+                                <p class="mt-1.5">Mascota</p>
+                            </div>
+                        @endif    
+
+                        @if (!empty($product->movilidad))
+                            <div class="flex flex-col items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_estaciones.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Proximity icon" />
+                                <p class="mt-1.5">{{ $product->movilidad }} Estaciones</p>
+                            </div>
+                        @endif
+
+                        @if ($product->mobiliado)
+                            <div class="flex flex-col items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/mobiliado.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Furnished icon" />
+                                <p class="mt-1.5">Mobiliado</p>
+                            </div>
+                        @endif
+                  </div>
+                </div>
+
+                <section class="flex flex-col gap-8 text-white pt-8">
+                    @if ($product->description)
+                        <div class="flex flex-col w-full gap-4">
+                            <div class="flex items-center">
+                                <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Acerca de esta propiedad</h2>
+                            </div>
+                            <div class="w-full font-PlusJakartaSans_Regular flex flex-col gap-3 text-white text-base lg:text-lg 2xl:text-xl leading-6">
+                                {!! $product->description !!}
+                            </div>
+                        </div>
+                    @endif
+
+                    @php
+                        $incluyef = strip_tags($product->incluye);
+                    @endphp
+
+                    @if ($incluyef !== '')
+                        <section class="flex flex-col w-full gap-4">
+                            <div class="flex items-center">
+                              <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Beneficios</h2>
+                            </div>
+                            <div class="w-full font-PlusJakartaSans_Regular flex flex-col gap-3 text-white text-base lg:text-lg 2xl:text-xl leading-6">
+                                <ul class="flex flex-col gap-2">
+                                  @if (!is_null($product->incluye) && $incluyef !== '')
+                                    @php
+                                        $dom = new DOMDocument();
+                                        @$dom->loadHTML($product->incluye);
+                                        $paragraphs = $dom->getElementsByTagName('p');
+                                    @endphp
+                                    @foreach ($paragraphs as $paragraph)
+                                      <li>
+                                          <div class="flex flex-row gap-2 items-start">
+                                            <div class="flex flex-col justify-start items-start">
+                                              <img loading="lazy" src="{{ asset('images/svg/rs_check.svg') }}"
+                                                  class="object-contain min-w-8 aspect-square" alt="Beneficio icon" />
+                                            </div>
+                                            <div class="flex flex-col">
+                                              <p>{{ $paragraph->nodeValue }}</p>
+                                            </div>
+                                          </div>
+                                      </li>
+                                    @endforeach
+                                  @endif
+                                </ul>
+                            </div>
+                        </section>
+                    @endif
+                </section>
+
+                <div class="flex flex-col justify-center gap-4 pt-8 text-center rounded-2xl text-white">
+                    <div class="flex items-center">
+                      <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Medidas</h2>
+                    </div>
+                    <div class="flex flex-wrap gap-8 2xl:gap-10 items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
+                        @if (!empty($product->area))
+                            <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_libre.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                                <p class="text-[13px]">Área Libre</p>    
+                                <p class="text-base">{{ $product->area }} m²</p>
+                            </div>
+                        @endif
+
+                        <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                            <img loading="lazy" src="{{ asset('images/svg/rs_ocupada.svg') }}"
+                                class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                            <p class="text-[13px]">Área Ocupada</p>    
+                            <p class="text-base">60.00 m²</p>
+                        </div>
+
+                        <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                            <img loading="lazy" src="{{ asset('images/svg/rs_construida.svg') }}"
+                                class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                            <p class="text-[13px]">Área Construida</p>    
+                            <p class="text-base">60.00 m²</p>
+                        </div>
+
+                        <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                            <img loading="lazy" src="{{ asset('images/svg/rs_medidas.svg') }}"
+                                class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                            <p class="text-[13px]">Medidas</p>    
+                            <p class="text-base">0x0</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-
-            <section class="flex flex-col bg-white rounded-2xl">
-              @if ($product->description)
-                <div class="flex flex-col w-full">
-                  <header class="flex gap-4 items-center self-start">
-                    <div class="flex gap-1.5 items-center self-stretch p-3 my-auto w-10 h-10 bg-emerald-300 rounded-3xl">
-                      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c687d39e503ce7592bc6e5025bf338b8588a42a5f15e6d7869d3331e3572af84?placeholderIfAbsent=true&apiKey=5531072f5ff9482693929f17ec98446f" class="object-contain aspect-square w-[18px]" alt="" />
+            <div class="flex flex-col lg:sticky lg:top-0 justify-center rounded-2xl w-full lg:w-[500px] 2xl:min-w-[500px] order-1 lg:order-2">
+                <section class="flex flex-col rounded-xl bg-[#262626]">
+                    <div class="border-b border-b-[#C8A049] py-4 lg:py-6">
+                        <h2 class="text-center font-PlusJakartaSans_Semibold text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Contacta al Asesor</h2>
                     </div>
-                    <h2 class="self-stretch my-auto text-2xl font-Homie_Bold text-[#006258]">Acerca de esta propiedad</h2>
-                  </header>
-                  <div class="flex-1 shrink gap-2.5 pl-14 mt-4 w-full font-FixelText_Regular text-base leading-6 text-[#000929]">
-                      {!! $product->description !!} 
-                  </div>
-                </div>
-              @endif
+                    <div class="flex flex-col gap-4 p-6 justify-center items-center w-full">
+                        <img loading="lazy" src="{{ asset('images/img/rs_profile.png') }}"
+                            class="object-contain w-24 aspect-square" alt="Asesor icon" />
 
-              @if (!$especificaciones->isEmpty())          
-                <section class="flex flex-col p-4 gap-4 mt-10 w-full text-teal-800 bg-white rounded-3xl max-md:max-w-full">
-                  @foreach ($especificaciones as $item)
-                    <div class="flex flex-col w-full max-md:max-w-full">
-                      <h3 class="text-lg font-Homie_Bold text-[#006258]"> {{ $item->tittle }}</h3>
-                      <p class="mt-1 font-FixelText_Regular text-base leading-6 text-[#000929]">
-                        {{ $item->specifications }}
-                      </p>
-                    </div>
-                  @endforeach
-                </section>
-              @endif
+                        <div class="flex flex-col">
+                          <h2 class="font-PlusJakartaSans_Medium text-white text-lg xl:text-2xl 2xl:text-3xl flex flex-row justify-start items-center gap-2">
+                            Carlos Soria 
+                          </h2>
+                          <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
+                              Agente inmobiliario
+                          </p>
+                        </div>
 
-              @php
-                $incluyef = strip_tags($product->incluye);  
-                $noincluyef = strip_tags($product->no_incluye);  
-              @endphp
-              @if ( $incluyef !== '' ||  $noincluyef !== '')
-                <section class="flex flex-col mt-10 w-full max-md:max-w-full">
-                  <header class="flex gap-4 items-center self-start">
-                    <div class="flex gap-1.5 items-center self-stretch p-3 my-auto w-10 h-10 bg-emerald-300 rounded-3xl">
-                      <img loading="lazy" src="{{asset('images/img/iconoproduct.png')}}" class="object-contain aspect-square w-[18px]" alt="" />
-                    </div>
-                    <h2 class="self-stretch my-auto text-2xl font-Homie_Bold text-[#006258]">Inmueble</h2>
-                  </header>
-                  <div class="flex-1 shrink gap-2.5 pl-14 mt-4 w-full text-base leading-6 max-md:pl-5 max-md:max-w-full">
-                     @if (!is_null($product->incluye) && $incluyef !== '')
-                      <h3 class="font-bold leading-6 text-[#006258] font-FixelText_Semibold ">Incluye</h3>
-                      <p class="font-FixelText_Regular text-base leading-6 text-[#000929]">
-                        {!! $product->incluye !!} 
-                      </p>
-                     @endif
-                     @if (!is_null($product->no_incluye) && $noincluyef !== '')
-                      <h3 class="font-bold leading-6 text-[#006258] font-FixelText_Semibold  mt-4">No Incluye</h3>
-                      <p class="font-FixelText_Regular text-base leading-6 text-[#000929]">
-                        {!! $product->no_incluye !!} 
-                      </p>
-                    @endif
-                  </div>
-                </section>
-              @endif
-              
-              @php
-                $disponiblef = strip_tags($product->disponible);  
-                $nodisponiblef = strip_tags($product->no_disponible);  
-              @endphp  
-              @if ( $disponiblef !== '' ||  $nodisponiblef !== '')
-                <section class="flex flex-col mt-10 w-full max-md:max-w-full">
-                  <header class="flex gap-4 items-center self-start">
-                    <div class="flex gap-1.5 items-center self-stretch p-3 my-auto w-10 h-10 bg-emerald-300 rounded-3xl">
-                      <img loading="lazy" src="{{asset('images/img/iconoproduct.png')}}" class="object-contain aspect-square w-[18px]" alt="" />
-                    </div>
-                    <h2 class="self-stretch my-auto text-2xl font-Homie_Bold text-[#006258]">Condominio</h2>
-                  </header>
-                  <div class="flex-1 shrink gap-2.5 pl-14 mt-4 w-full text-base leading-6 text-slate-950 max-md:pl-5 max-md:max-w-full">
-                    @if (!is_null($product->disponible) && $disponiblef !== '')
-                      <h3 class="font-bold leading-5 text-[#006258] font-FixelText_Semibold">Disponible</h3>
-                      <p class="font-FixelText_Regular text-base leading-6 text-[#000929]">
-                        {!! $product->disponible !!} 
-                      </p>
-                    @endif
-                    @if (!is_null($product->no_disponible) && $nodisponiblef !== '')
-                      <h3 class="font-bold leading-5 text-[#006258] font-FixelText_Semibold  mt-4">Indisponible</h3>
-                      <p class="font-FixelText_Regular text-base leading-6 text-[#000929]">
-                        {!! $product->no_disponible !!} 
-                      </p>
-                    @endif  
-                    <h3 class="font-bold leading-5 text-[#006258] font-FixelText_Semibold mt-4">¿Te gustó el condominio?</h3>
-                    <p class="font-FixelText_Regular text-base leading-6 text-[#000929]">
-                      Obtenga más información y vea si hay otros apartamentos disponibles allí.
-                    </p>
-                  </div>
-                </section>
-              @endif
-              {{-- <button class="gap-2.5 self-stretch font-FixelText_Semibold tracking-wide px-6 py-3 mt-10 w-full text-base font-bold text-[#73F7AD] bg-[#009A84] rounded-xl min-h-[40px] max-md:px-5 max-md:max-w-full">
-                Conocer Departamento
-              </button> --}}
-            </section>
-          
-          </div>
-
-          
-          <div class="flex flex-col lg:sticky lg:top-0 justify-center rounded-2xl w-full lg:w-[400px] order-1 lg:order-2">
-                <section class="flex flex-col p-0 lg:p-6 bg-white rounded-2xl">
-                  {{-- <h2 class="gap-10 self-stretch w-full text-lg font-FixelText_Bold text-[#006258]">S/ 333,00 / noche</h2> --}}
-                  <div class="flex flex-row gap-4 items-start mt-4 w-full font-medium px-4 justify-center">
-                      <div class="flex flex-col w-full">
-                          <label for="arrival-date" class="text-lg font-FixelText_Medium text-[#000929]">Seleccione fechas</label>
-                          <div class="flex gap-3 justify-center items-center px-4 py-1 mt-2 w-full text-sm rounded-lg border border-solid border-teal-600 border-opacity-30">
-                              <input type="text" id="arrival-date" class="flex-1 shrink font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30" value="2024-07-13" aria-label="Fecha de llegada" />
+                        <div class="w-full flex flex-col justify-center items-center gap-5 p-5 rounded-xl border border-[#333131]">
+                          <div class="flex flex-col justify-center items-center">
+                              <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
+                                ID. 45467757
+                              </p>
+                              <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
+                                csoria@mprealstate.com.pe
+                              </p>
+                              <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
+                                Celular: 995 402 072
+                              </p>
                           </div>
-                      </div>
-                      {{-- <div class="flex flex-col w-1/2">
-                          <label for="departure-date" class="text-sm font-FixelText_Medium text-[#000929]">Salida</label>
-                          <div class="flex gap-3 justify-center items-center px-4 py-1 mt-2 w-full text-sm rounded-lg border border-solid border-teal-600 border-opacity-30 text-teal-800 text-opacity-30">
-                              <input type="date" id="departure-date" class="flex-1 shrink self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30" value="2024-07-13" aria-label="Fecha de salida" />
-                          </div>
-                      </div> --}}
-                  </div>
-                  <div class="flex gap-3 items-center mt-8 w-full text-sm font-medium text-center text-teal-800">
-                      <div class="flex justify-center items-center cursor-pointer rounded-l-3xl">
-                          <button class="py-2.5 px-5 text-lg font-Helvetica_Bold rounded-full bg-[#009A84] m-1 text-white" id=disminuir
-                              type="button">-</button>
-                      </div>
-                      <div id="cantidadSpan" data-max-personas="{{ $product->precioservicio > 0 ? $product->precioservicio : 2 }}" class="flex-1 shrink gap-2.5 font-FixelText_Semibold self-stretch p-4 h-full rounded-lg border border-teal-600 border-solid bg-slate-50 min-w-[140px]">
-                        <span>1</span> personas
-                      </div>
-                      <div class="flex justify-center items-center cursor-pointer rounded-full">
-                        <button class="py-2.5 px-[18px] text-lg font-Helvetica_Bold rounded-full bg-[#009A84] m-1 text-white" id=aumentar
-                            type="button">+</button>
-                      </div>
-                  </div>
-
-                  {{-- <a id="cotizar" data-product-sku="{{ $product->sku }}" class="bg-green-500 p-2 text-white my-2">Calcular</a> --}}
-
-                  <section class="flex flex-col mt-8 w-full">
-                      <div class="flex flex-col p-3 w-full text-base font-bold text-[#006258] rounded-lg bg-slate-50">
-                          <h3 class="text-[#006258] font-FixelText_Bold text-base">Resumen</h3>
-                          <div class="flex flex-col pb-3 mt-4 w-full border-b border-[#006258] font-FixelText_Regular text-[#000929] text-opacity-50">
-                              <div class="flex gap-10 justify-between items-center w-full">
-                                  <div class="flex gap-1 items-center self-stretch my-auto">
-                                      <span id="cantidadnoches">0</span>noches
-                                      {{-- <img loading="lazy" src="{{asset('images/svg/alert.svg')}}" class="object-contain shrink-0 self-stretch my-auto w-4 aspect-square" alt="" /> --}}
-                                  </div>
-                                  
-                                  <span id="costonoches" class="self-stretch my-auto">Calculando</span>
-                              </div>
-                              @if ($product->preciolimpieza && $product->preciolimpieza > 0)
-                                <div class="flex gap-10 justify-between items-center mt-1 w-full">
-                                  <div class="flex gap-1 items-center self-stretch my-auto">
-                                      <span>Tasa de limpieza</span>
-                                      {{-- <img loading="lazy" src="{{asset('images/svg/alert.svg')}}" class="object-contain shrink-0 self-stretch my-auto w-4 aspect-square" alt="" /> --}}
-                                  </div>
-                                  <span class="self-stretch my-auto">$ {{$product->preciolimpieza}}</span>
+                          <div class="flex flex-row justify-end gap-3">
+                                <a href="#">
+                                <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                            <path d="M4.85938 8.26986C4.85938 5.52 4.85937 4.14507 5.71365 3.2908C6.56792 2.43652 7.94285 2.43652 10.6927 2.43652C13.4425 2.43652 14.8175 2.43652 15.6718 3.2908C16.526 4.14507 16.526 5.52 16.526 8.26986V13.2699C16.526 16.0197 16.526 17.3946 15.6718 18.2489C14.8175 19.1032 13.4425 19.1032 10.6927 19.1032C7.94285 19.1032 6.56792 19.1032 5.71365 18.2489C4.85937 17.3946 4.85938 16.0197 4.85938 13.2699V8.26986Z" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
+                                            <path d="M9.85938 16.6025H11.526" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.19238 2.43652L8.26655 2.88154C8.42728 3.84593 8.50765 4.32813 8.83837 4.62156C9.18338 4.92764 9.67247 4.93652 10.6924 4.93652C11.7123 4.93652 12.2014 4.92764 12.5464 4.62156C12.8771 4.32813 12.9575 3.84593 13.1182 2.88154L13.1924 2.43652" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
+                                        </svg>
                                 </div>
-                              @endif
+                                </a>
+                                <a href="#">
+                                    <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                            <path d="M6.89746 12.0192H13.5641M6.89746 7.85254H10.2308" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M5.31314 16.6025C4.22971 16.496 3.41809 16.1705 2.87377 15.6262C1.89746 14.65 1.89746 13.0785 1.89746 9.93587V9.51921C1.89746 6.37651 1.89746 4.80516 2.87377 3.82885C3.85009 2.85254 5.42143 2.85254 8.56413 2.85254H11.8975C15.0401 2.85254 16.6115 2.85254 17.5878 3.82885C18.5641 4.80516 18.5641 6.37651 18.5641 9.51921V9.93587C18.5641 13.0785 18.5641 14.65 17.5878 15.6262C16.6115 16.6025 15.0401 16.6025 11.8975 16.6025C11.4304 16.613 11.0584 16.6485 10.693 16.7317C9.69429 16.9616 8.76954 17.4726 7.85569 17.9183C6.55354 18.5532 5.90246 18.8707 5.49387 18.5735C4.7122 17.9913 5.47624 16.1875 5.64746 15.3525" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                          </div>
+                        </div>
 
-                              @if (!$serviciosextras->isEmpty())
-                                  <p class="text-[#006258] font-FixelText_Bold text-base mt-3">Extras: </p>
-                                  <div class="flex flex-col gap-1 mt-1">
-                                      @foreach ($serviciosextras as $items)
-                                          <div class="flex gap-10 justify-between items-center w-full">
-                                              <div class="flex gap-1 items-center">
-                                                  <label for="servicio_extra_{{ $items->id }}" class="flex items-center gap-1 line-clamp-1">
-                                                      <span>{{ $items->service }}</span>
-                                                      {{-- <img 
-                                                          loading="lazy" 
-                                                          src="{{ asset('images/svg/alert.svg') }}" 
-                                                          class="object-contain w-4 aspect-square" 
-                                                          alt="" 
-                                                      /> --}}
-                                                  </label>
-                                              </div>
-                                              <div class="flex flex-row items-center justify-center gap-1">
-                                                <span class="mt-1">$ {{ $items->price }}</span>
-                                                <input 
-                                                        type="checkbox" 
-                                                        name="servicios_extras[]" 
-                                                        value="{{ $items->id }}" 
-                                                        id="servicio_extra_{{ $items->id }}" 
-                                                        class="w-4 h-4 focus:ring-0 ring-0 text-[#006258] rounded-sm servicio-extra"
-                                                  >
-                                               </div>
-                                          </div>
-                                      @endforeach
-                                  </div>
-                              @endif
-                              
-                              {{-- @if ($product->precioservicio)
-                              <div class="flex gap-10 justify-between items-center mt-3 w-full">
-                                  <div class="flex gap-1 items-center self-stretch my-auto">
-                                      <span>Tasa de servicio</span>
-                                      <img loading="lazy" src="{{asset('images/svg/alert.svg')}}" class="object-contain shrink-0 self-stretch my-auto w-4 aspect-square" alt="" />
-                                  </div>
-                                  <span class="self-stretch my-auto">S/ {{$product->precioservicio}}</span>
-                              </div>
-                              @endif --}}
-                          </div>
-                          <div class="flex gap-10 justify-between items-center mt-4 w-full text-lg font-FixelText_Bold">
-                              <span class="self-stretch my-auto">Total</span>
-                              <span class="self-stretch my-auto" id="costototal">Selecciona fechas</span>
-                          </div>
-                      </div>
-                      <p class="self-center mt-2 text-xs font-medium text-center text-slate-950 font-FixelText_Medium">
-                          Aún no se te cobrará
-                      </p>
-                  </section>
-                  <div class="flex flex-col mt-8 w-full text-sm font-bold">
-                    @if ($product->status == 1 && $product->visible == 1)
-                      <button href="{{route('carrito')}}" id="btnAgregarCarritoPr" data-id="{{ $product->id }}" class="gap-2.5 self-stretch px-6 py-3 w-full font-FixelText_Semibold text-base text-[#73F7AD] bg-[#009A84] rounded-xl">
-                          Reservar ahora
-                      </button>
-                    @endif
-                      {{-- <button class="gap-2.5 self-stretch px-6 py-3 mt-3 w-full text-teal-600 whitespace-nowrap rounded-xl border border-teal-600 border-solid">
-                          Descartar
-                      </button> --}}
-                  </div>
+                        <div class="w-full">
+                          <a class="w-full mt-4 border border-[#C8A049] flex flex-col justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent px-4 md:px-3 py-3 leading-normal rounded-xl">Datos del Asesor</a>
+                        </div>
+                    </div>
                 </section>
-          </div>
-          
+                <p class="font-PlusJakartaSans_Regular text-white text-xs mt-3">* Las fotos, precios y descripción de esta propiedad son referenciales</p>
+            </div>
         </section>
+    </main>
 
-
-
-        <section class="w-full px-[5%] py-12 overflow-visible mt-4 lg:mt-8" style="overflow-x: visible">
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
+    <section class="w-full px-[5%] py-10 lg:py-16 overflow-visible bg-[#1D1D1D]" style="overflow-x: visible">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-7 lg:gap-10">
             <div class="flex flex-col gap-3 max-w-2xl">
-              <h1 class="text-3xl lg:text-4xl font-Homie_Bold text-[#002677]">Nuestras propiedades</h1>
-              <p class="text-lg text-[#000929] font-FixelText_Regular">Conoce acá todas las propiedades exclusivas que  tenemos disponibles. 
-                Disfruta de una estadía  perfecta en las mejores zonas de Lima.</p>
+              <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-4xl md:text-[44px] leading-tight 2xl:text-5xl">Propiedades <span class="text-[#C8A049]">similares</span> </h2>
             </div>
             <div>
-              <a href="/catalogo" class="bg-[#00897B] text-[#73F7AD] px-4 py-4 rounded-xl font-FixelText_Semibold">
-                Ver todos los departamentos</a>
+                <a href="/catalogo" class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 py-4 rounded-xl font-PlusJakartaSans_Medium">
+                    Ver todos </a>
             </div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-4 lg:gap-8 mt-7 w-full">
-            @foreach ($ProdComplementarios->take(3) as $item)      
-               <x-product.container width="col-span-1 " bgcolor="bg-[#FFFFFF]" :item="$item" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-4 lg:gap-8 mt-12 md:mt-7 w-full ">
+            @foreach ($ProdComplementarios->take(3) as $item)
+                <x-product.container width="col-span-1 " bgcolor="bg-[#FFFFFF]" :item="$item" />
             @endforeach
-          </div>
-        </section>
+        </div>
+    </section>
 
-  </main>
 
-  <div id="modalgaleriatotal" class="modal !bg-transparent !px-[0px] !py-[0px] !z-50" style="display: none; max-width: 650px !important; width: 100% !important;">
-      <div class=" !bg-transparent flex flex-col gap-3">
-          <div class="">
-            <div class="swiper galeriadeimagenes">
-              <div class="swiper-wrapper">
-                
-                @foreach ($product->galeria as $index => $image)
-                  <div class="swiper-slide">
-                    <img loading="lazy" src="{{ asset($image->imagen) }}" class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden"/>
-                  </div>
-                @endforeach
 
-                @if ($product->imagen_2)
-                  <div class="swiper-slide">
-                    <img loading="lazy" src="{{ asset($product->imagen_2) }}" class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden"/>
-                  </div>
-                @endif
-                @if ($product->imagen_2)
-                  <div class="swiper-slide">
-                    <img loading="lazy" src="{{ asset($product->imagen_3) }}" class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden"/>
-                  </div>
-                @endif
-                @if ($product->imagen_2)
-                  <div class="swiper-slide">
-                    <img loading="lazy" src="{{ asset($product->imagen_4) }}" class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden"/>
-                  </div>
-                @endif
-                @if ($product->image_texture)
-                  <div class="swiper-slide">
-                    <img loading="lazy" src="{{ asset($product->image_texture) }}" class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden"/>
-                  </div>
-                @endif  
-              </div>
+    <div id="modalgaleriatotal" class="modal !bg-transparent !px-[0px] !py-[0px] !z-50"
+        style="display: none; max-width: 650px !important; width: 100% !important;">
+        <div class=" !bg-transparent flex flex-col gap-3">
+            <div class="">
+                <div class="swiper galeriadeimagenes">
+                    <div class="swiper-wrapper">
+
+                        @foreach ($product->galeria as $index => $image)
+                            <div class="swiper-slide">
+                                <img loading="lazy" src="{{ asset($image->imagen) }}"
+                                    class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden" />
+                            </div>
+                        @endforeach
+
+                        @if ($product->imagen_2)
+                            <div class="swiper-slide">
+                                <img loading="lazy" src="{{ asset($product->imagen_2) }}"
+                                    class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden" />
+                            </div>
+                        @endif
+                        @if ($product->imagen_2)
+                            <div class="swiper-slide">
+                                <img loading="lazy" src="{{ asset($product->imagen_3) }}"
+                                    class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden" />
+                            </div>
+                        @endif
+                        @if ($product->imagen_2)
+                            <div class="swiper-slide">
+                                <img loading="lazy" src="{{ asset($product->imagen_4) }}"
+                                    class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden" />
+                            </div>
+                        @endif
+                        @if ($product->image_texture)
+                            <div class="swiper-slide">
+                                <img loading="lazy" src="{{ asset($product->image_texture) }}"
+                                    class="object-contain w-full max-h-[450px] rounded-xl overflow-hidden" />
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div
+                    class="swiper-galeria-prev absolute top-1/2 -translate-y-1/2 -left-2 lg:-left-5 z-50 bg-white rounded-full">
+                    <i class="fa-solid fa-circle-chevron-left text-5xl text-[#006258]"></i></div>
+                <div
+                    class="swiper-galeria-next absolute top-1/2 -translate-y-1/2 -right-2 lg:-right-5 z-50 bg-white rounded-full">
+                    <i class="fa-solid fa-circle-chevron-right text-5xl text-[#006258]"></i></div>
             </div>
-            <div class="swiper-galeria-prev absolute top-1/2 -translate-y-1/2 -left-2 lg:-left-5 z-50 bg-white rounded-full"><i class="fa-solid fa-circle-chevron-left text-5xl text-[#006258]"></i></div>
-            <div class="swiper-galeria-next absolute top-1/2 -translate-y-1/2 -right-2 lg:-right-5 z-50 bg-white rounded-full"><i class="fa-solid fa-circle-chevron-right text-5xl text-[#006258]"></i></div>
-          </div>
-      </div>
-  </div>
+        </div>
+    </div>
 
 @section('scripts_importados')
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const latitude = parseFloat("{{ $product->latitud }}");
-        const longitude = parseFloat("{{ $product->longitud }}");
-        const mapElement = document.getElementById("map");
 
-        // Si no hay coordenadas válidas, oculta el contenedor del mapa
-        if (isNaN(latitude) || isNaN(longitude) || latitude === 0 || longitude === 0) {
-            mapElement.style.display = "none"; // Oculta el div#map
-        }
-   });
-  </script>
-  <script>
-    
-    function copiarEnlace() {
-        // Obtener la URL actual
-        const url = window.location.href;
-        
-        // Crear un elemento temporal para copiar
-        const inputTemp = document.createElement('input');
-        inputTemp.value = url;
-        document.body.appendChild(inputTemp);
-        inputTemp.select();
-        
-        // Copiar al portapapeles
-        document.execCommand('copy');
-        
-        // Eliminar el elemento temporal
-        document.body.removeChild(inputTemp);
-        
-        // Mostrar notificación (opcional)
-        alert('Enlace copiado: ' + url);
-    }
-
-  </script>
-  <script type="text/javascript">
-      $(document).ready(function(){
-          var latitude = {{ $product->latitud }};
-          var longitude = {{ $product->longitud }};
-
-          var location = [
-              ['center', latitude, longitude],
-          ];
-
-          var mylatlng= {
-              lat:location[0][1],
-              lng: location[0][2]
-          };
-
-          var map= new google.maps.Map(document.getElementById("map"),{
-              zoom:15,
-              center: mylatlng,
-              // styles: darkModeStyle
-          });
-          for(var i=0; i< location.length; i++){
-              new google.maps.Marker({
-                  position: new google.maps.LatLng(location[i][1],location[i][2]),
-                  map: map
-              });
-          }
-      });   
-  </script>
-<script>
-  $(document).ready(function () {
-      $(document).on('click', '.galeriatotal', function () {
-          $(`#modalgaleriatotal`).modal({
-              show: true,
-              fadeDuration: 400,
-          });
-      });
-  });
-</script>
     <script>
-      let serviciosExtras = [];
-      let costoTotalFinal = 0;
-      let disabledDates = @json($disabledDates);
-      let formattedDisabledDates = (Array.isArray(disabledDates) ? disabledDates : []).map(date =>
-          moment(date, 'DD/MM/YYYY')
-      );
-      
-      const fechasGuardadas = localStorage.getItem('fechasBusqueda');
-      let fechaInicio = moment();
-      let fechaFin = moment().add(1, 'days');
-      let fechasValidas = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            const latitude = parseFloat("{{ $product->latitud }}") ?? 0;
+            const longitude = parseFloat("{{ $product->longitud }}") ?? 0;
+            const mapElement = document.getElementById("map");
 
-      if (fechasGuardadas) {
-          const fechas = JSON.parse(fechasGuardadas);
-          fechaInicio = moment(fechas.llegada, 'DD/MM/YYYY');
-          fechaFin = moment(fechas.salida, 'DD/MM/YYYY');
-      }
-
-      if (fechasGuardadas) {
-          try {
-              const fechas = JSON.parse(fechasGuardadas);
-              
-              // Verificar si las fechas están bloqueadas
-              const llegada = moment(fechas.llegada, 'DD/MM/YYYY');
-              const salida = moment(fechas.salida, 'DD/MM/YYYY');
-              
-              let fechaBloqueadaEncontrada = false;
-              
-              // Verificar cada día en el rango guardado
-              for (let m = llegada.clone(); m.isBefore(salida); m.add(1, 'days')) {
-                  if (formattedDisabledDates.some(blockedDate => m.isSame(blockedDate, 'day'))) {
-                      fechaBloqueadaEncontrada = true;
-                      break;
-                  }
-              }
-              
-              if (!fechaBloqueadaEncontrada) {
-                  fechaInicio = llegada;
-                  fechaFin = salida;
-                  fechasValidas = true;
-              } else {
-                  // Si hay fechas bloqueadas, limpiar localStorage
-                  localStorage.removeItem('fechasBusqueda');
-                  Swal.fire({
-                      title: 'Fechas no disponibles',
-                      text: 'Algunas fechas previamente seleccionadas ya no están disponibles. Por favor, selecciona un nuevo rango.',
-                      icon: 'warning'
-                  });
-              }
-          } catch (e) {
-              console.error('Error al parsear fechas:', e);
-              localStorage.removeItem('fechasBusqueda');
-          }
-      }
-
-      $('#arrival-date').daterangepicker(
-          {
-          locale: {
-            format: 'DD/MM/YYYY',
-            cancelLabel: 'Cancelar',
-            applyLabel: 'Aplicar'
-          },
-          startDate: fechaInicio,
-          endDate: fechaFin,
-          minDate: moment(),
-          maxDate: moment().add(9, 'months'),
-          minSpan: {
-            days: 1  // Mínimo 2 noches, es decir, 1 día de diferencia entre start y end
-          },
-          isInvalidDate: function(date) {
-            // Verificar si la fecha está en las fechas bloqueadas
-            return formattedDisabledDates.some(blockedDate => 
-                date.isSame(blockedDate, 'day')
-            );
-        }
-      }, function(start, end) {
-          let nights = end.diff(start, 'days');
-          // Verificar si el rango de fechas seleccionado incluye fechas reservadas
-          let rangeBlocked = false;
-
-          for (let m = start.clone(); m.isBefore(end); m.add(1, 'days')) {
-              if (formattedDisabledDates.some(blockedDate => m.isSame(blockedDate, 'day'))) {
-                  rangeBlocked = true;
-                  break;
-              }
-          }
-
-        if (rangeBlocked) {
-            Swal.fire({
-                title: 'Selección Fallida',
-                text: 'No se puede seleccionar un rango que incluya fechas reservadas.',
-                icon: 'warning',
-            });
-            $('#arrival-date').data('daterangepicker').setStartDate(start);
-            $('#arrival-date').data('daterangepicker').setEndDate(start.clone().add(1, 'days'));
-            $('#arrival-date').val('Fecha Inicio - Fecha Fin');
-            return; // Salir para no seguir con la ejecución
-        }
-
-        // Actualizar el input solo si la selección es válida
-        if (nights > 1) {
-            $('#arrival-date').val(start.format('DD/MM/YYYY') + ' - ' + end.clone().subtract(1, 'days').format('DD/MM/YYYY'));
-            
-            $('#arrival-date').data('checkin', start.format('YYYY-MM-DD'));
-            $('#arrival-date').data('checkout', end.clone().format('YYYY-MM-DD'));
-
-            $('#cantidadnoches').text(nights);
-        } else {
-            $('#arrival-date').val(start.format('DD/MM/YYYY') + ' - Fecha Fin');
-            $('#arrival-date').data('daterangepicker').setEndDate(start.clone().add(1, 'days')); 
-
-            $('#arrival-date').data('checkin', start.format('YYYY-MM-DD'));
-            $('#arrival-date').data('checkout', start.clone().add(1, 'days').format('YYYY-MM-DD'));
-
-            $('#cantidadnoches').text(1);  
-        }
-
-         
-        cotizarPrecios();
-        
-      });
-      
-      if (fechasValidas) {
-          const fechas = JSON.parse(fechasGuardadas);
-          $('#arrival-date').val(fechas.llegada + ' - ' + fechas.salida);
-          $('#arrival-date').data('checkin', moment(fechas.llegada, 'DD/MM/YYYY').format('YYYY-MM-DD'));
-          $('#arrival-date').data('checkout', moment(fechas.salida, 'DD/MM/YYYY').format('YYYY-MM-DD'));
-          
-          // Calcular noches y mostrar precio inicial
-          let nights = moment(fechas.salida, 'DD/MM/YYYY').diff(moment(fechas.llegada, 'DD/MM/YYYY'), 'days');
-          $('#cantidadnoches').text(nights);
-          cotizarPrecios(); // Llamar a la función para calcular precios con las fechas cargadas
-      } else {
-          $('#arrival-date').val('Fecha Inicio - Fecha Fin');
-      }
-
-
-      function cotizarPrecios() {
-        let productSku = @json($product->sku);
-        let checkin = $('#arrival-date').data('checkin');
-        let checkout = $('#arrival-date').data('checkout');
-        serviciosExtras = [];
-
-        if (!checkin || !checkout) {
-            Swal.fire({
-                title: 'Selección Fallida',
-                text: 'Por favor, selecciona un rango de fechas válido.',
-                icon: 'warning',
-            });
-            return;
-        }
-
-        $('#costototal').text("Calculando...");
-        $('#btnAgregarCarritoPr').prop('disabled', true);
-
-
-        $('input[name="servicios_extras[]"]:checked').each(function() {
-            serviciosExtras.push($(this).val());
+            // Si no hay coordenadas válidas, oculta el contenedor del mapa
+            if (isNaN(latitude) || isNaN(longitude) || latitude === 0 || longitude === 0) {
+                mapElement.style.display = "none"; // Oculta el div#map
+            }
         });
+    </script>
 
+    <script>
+        function copiarEnlace() {
+            // Obtener la URL actual
+            const url = window.location.href;
+            // Crear un elemento temporal para copiar
+            const inputTemp = document.createElement('input');
+            inputTemp.value = url;
+            document.body.appendChild(inputTemp);
+            inputTemp.select();
+            // Copiar al portapapeles
+            document.execCommand('copy');
+            // Eliminar el elemento temporal
+            document.body.removeChild(inputTemp);
+            // Mostrar notificación (opcional)
+            alert('Enlace copiado: ' + url);
+        }
+    </script>
 
-        $.ajax({
-            url: "{{ route('producto.prices') }}",
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            },
-            data: JSON.stringify({
-                id: productSku, // SKU del producto
-                checkin: checkin, // Fecha de llegada
-                checkout: checkout, // Fecha de salida
-                servicios: serviciosExtras // Servicios extras
-            }),
-            success: function(response) {
-                if(response) {
-                    $('#costonoches').text("$ " + response.data.totalCost);
-                    // let total = response.data.totalCost + {{ $product->preciolimpieza ?? 0.00 }};
-                    $('#costototal').text("$ " + response.data.costoTotalFinal);
-                    costoTotalFinal = response.data.costoTotalFinal;
-                } else {
-                    $('#costonoches').text('0.00');
-                }
-                $('#btnAgregarCarritoPr').prop('disabled', false);
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Ocurrió un error inesperado.',
-                    icon: 'error',
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var latitude = {{ $product->latitud ?? 0 }};
+            var longitude = {{ $product->longitud ?? 0 }};
+
+            var location = [
+                ['center', latitude, longitude],
+            ];
+
+            var mylatlng = {
+                lat: location[0][1],
+                lng: location[0][2]
+            };
+
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: mylatlng,
+                // styles: darkModeStyle
+            });
+            for (var i = 0; i < location.length; i++) {
+                new google.maps.Marker({
+                    position: new google.maps.LatLng(location[i][1], location[i][2]),
+                    map: map
                 });
             }
         });
-     }
+    </script>
 
-     $(document).ready(function () {
-      $('.servicio-extra').on('change', function () {
-          cotizarPrecios();
-      });
-    });
-  </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.galeriatotal', function() {
+                $(`#modalgaleriatotal`).modal({
+                    show: true,
+                    fadeDuration: 400,
+                });
+            });
+        });
+    </script>
 
-  <script>
-    var galeria = new Swiper(".galeriadeimagenes", {
-      slidesPerView: 1,
-      autoHeight: true,
-      spaceBetween:20,
-      loop: true,
-      centeredSlides: false,
-      initialSlide: 0, 
-      allowTouchMove: true,
-      autoplay: {
-        delay: 5500,
-        disableOnInteraction: true,
-        pauseOnMouseEnter: true
-      },
-      navigation: {
+    <script>
+        let serviciosExtras = [];
+        let costoTotalFinal = 0;
+        let disabledDates = @json($disabledDates);
+        let formattedDisabledDates = (Array.isArray(disabledDates) ? disabledDates : []).map(date =>
+            moment(date, 'DD/MM/YYYY')
+        );
+
+        const fechasGuardadas = localStorage.getItem('fechasBusqueda');
+        let fechaInicio = moment();
+        let fechaFin = moment().add(1, 'days');
+        let fechasValidas = false;
+
+        if (fechasGuardadas) {
+            const fechas = JSON.parse(fechasGuardadas);
+            fechaInicio = moment(fechas.llegada, 'DD/MM/YYYY');
+            fechaFin = moment(fechas.salida, 'DD/MM/YYYY');
+        }
+
+        if (fechasGuardadas) {
+            try {
+                const fechas = JSON.parse(fechasGuardadas);
+
+                // Verificar si las fechas están bloqueadas
+                const llegada = moment(fechas.llegada, 'DD/MM/YYYY');
+                const salida = moment(fechas.salida, 'DD/MM/YYYY');
+
+                let fechaBloqueadaEncontrada = false;
+
+                // Verificar cada día en el rango guardado
+                for (let m = llegada.clone(); m.isBefore(salida); m.add(1, 'days')) {
+                    if (formattedDisabledDates.some(blockedDate => m.isSame(blockedDate, 'day'))) {
+                        fechaBloqueadaEncontrada = true;
+                        break;
+                    }
+                }
+
+                if (!fechaBloqueadaEncontrada) {
+                    fechaInicio = llegada;
+                    fechaFin = salida;
+                    fechasValidas = true;
+                } else {
+                    // Si hay fechas bloqueadas, limpiar localStorage
+                    localStorage.removeItem('fechasBusqueda');
+                    Swal.fire({
+                        title: 'Fechas no disponibles',
+                        text: 'Algunas fechas previamente seleccionadas ya no están disponibles. Por favor, selecciona un nuevo rango.',
+                        icon: 'warning'
+                    });
+                }
+            } catch (e) {
+                console.error('Error al parsear fechas:', e);
+                localStorage.removeItem('fechasBusqueda');
+            }
+        }
+
+        // Configuración de Flatpickr
+        $('#arrival-date').daterangepicker({
+            locale: {
+                format: 'DD/MM/YYYY',
+                cancelLabel: 'Cancelar',
+                applyLabel: 'Aplicar'
+            },
+            startDate: fechaInicio,
+            endDate: fechaFin,
+            minDate: moment(),
+            maxDate: moment().add(9, 'months'),
+            minSpan: {
+                days: 1 // Mínimo 2 noches, es decir, 1 día de diferencia entre start y end
+            },
+            isInvalidDate: function(date) {
+                // Verificar si la fecha está en las fechas bloqueadas
+                return formattedDisabledDates.some(blockedDate =>
+                    date.isSame(blockedDate, 'day')
+                );
+            }
+        }, function(start, end) {
+            let nights = end.diff(start, 'days');
+            // Verificar si el rango de fechas seleccionado incluye fechas reservadas
+            let rangeBlocked = false;
+
+            for (let m = start.clone(); m.isBefore(end); m.add(1, 'days')) {
+                //  for (let m = start.clone(); m.isBefore(end.clone().subtract(1, 'days')); m.add(1, 'days')) {
+                if (formattedDisabledDates.some(blockedDate => m.isSame(blockedDate, 'day'))) {
+                    // if (!m.isSame(end, 'day') && formattedDisabledDates.some(blockedDate => m.isSame(blockedDate, 'day'))) {
+                    rangeBlocked = true;
+                    break;
+                }
+            }
+
+            if (rangeBlocked) {
+                Swal.fire({
+                    title: 'Selección Fallida',
+                    text: 'No se puede seleccionar un rango que incluya fechas reservadas.',
+                    icon: 'warning',
+                });
+                $('#arrival-date').data('daterangepicker').setStartDate(start);
+                $('#arrival-date').data('daterangepicker').setEndDate(start.clone().add(1, 'days'));
+                $('#arrival-date').val('Fecha Inicio - Fecha Fin');
+                return; // Salir para no seguir con la ejecución
+            }
+
+            // Actualizar el input solo si la selección es válida
+            if (nights > 1) {
+                $('#arrival-date').val(start.format('DD/MM/YYYY') + ' - ' + end.clone().subtract(1, 'days').format(
+                    'DD/MM/YYYY'));
+
+                $('#arrival-date').data('checkin', start.format('YYYY-MM-DD'));
+                $('#arrival-date').data('checkout', end.clone().format('YYYY-MM-DD'));
+
+                $('#cantidadnoches').text(nights);
+            } else {
+                $('#arrival-date').val(start.format('DD/MM/YYYY') + ' - Fecha Fin');
+                $('#arrival-date').data('daterangepicker').setEndDate(start.clone().add(1, 'days'));
+
+                $('#arrival-date').data('checkin', start.format('YYYY-MM-DD'));
+                $('#arrival-date').data('checkout', start.clone().add(1, 'days').format('YYYY-MM-DD'));
+
+                $('#cantidadnoches').text(1);
+            }
+
+            cotizarPrecios();
+
+        });
+
+        if (fechasValidas) {
+            const fechas = JSON.parse(fechasGuardadas);
+            $('#arrival-date').val(fechas.llegada + ' - ' + fechas.salida);
+            $('#arrival-date').data('checkin', moment(fechas.llegada, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+            $('#arrival-date').data('checkout', moment(fechas.salida, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+
+            // Calcular noches y mostrar precio inicial
+            let nights = moment(fechas.salida, 'DD/MM/YYYY').diff(moment(fechas.llegada, 'DD/MM/YYYY'), 'days');
+            $('#cantidadnoches').text(nights);
+            cotizarPrecios(); // Llamar a la función para calcular precios con las fechas cargadas
+        } else {
+            $('#arrival-date').val('Fecha Inicio - Fecha Fin');
+        }
+
+        function cotizarPrecios() {
+            let productSku = @json($product->sku);
+            let checkin = $('#arrival-date').data('checkin');
+            let checkout = $('#arrival-date').data('checkout');
+            serviciosExtras = [];
+
+            if (!checkin || !checkout) {
+                Swal.fire({
+                    title: 'Selección Fallida',
+                    text: 'Por favor, selecciona un rango de fechas válido.',
+                    icon: 'warning',
+                });
+                return;
+            }
+
+            $('#costototal').text("Calculando...");
+            $('#btnAgregarCarritoPr').prop('disabled', true);
+
+
+            $('input[name="servicios_extras[]"]:checked').each(function() {
+                serviciosExtras.push($(this).val());
+            });
+
+
+            $.ajax({
+                url: "{{ route('producto.prices') }}",
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                data: JSON.stringify({
+                    id: productSku, // SKU del producto
+                    checkin: checkin, // Fecha de llegada
+                    checkout: checkout, // Fecha de salida
+                    servicios: serviciosExtras // Servicios extras
+                }),
+                success: function(response) {
+                    if (response) {
+                        $('#costonoches').text("$ " + response.data.totalCost);
+                        // let total = response.data.totalCost + {{ $product->preciolimpieza ?? 0.0 }};
+                        $('#costototal').text("$ " + response.data.costoTotalFinal);
+                        costoTotalFinal = response.data.costoTotalFinal;
+                    } else {
+                        $('#costonoches').text('0.00');
+                    }
+                    $('#btnAgregarCarritoPr').prop('disabled', false);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ocurrió un error inesperado.',
+                        icon: 'error',
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('.servicio-extra').on('change', function() {
+                cotizarPrecios();
+            });
+        })
+    </script>
+
+
+    <script>
+        function capitalizeFirstLetter(string) {
+            string = string.toLowerCase()
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        $('#disminuir').on('click', function() {
+            let cantidad = Number($('#cantidadSpan span').text())
+            if (cantidad > 1) {
+                cantidad--
+                $('#cantidadSpan span').text(cantidad)
+            }
+        })
+
+        $('#aumentar').on('click', function() {
+            let cantidad = Number($('#cantidadSpan span').text());
+            let maxPersonas = Number($('#cantidadSpan').data('max-personas'));
+
+            if (cantidad < maxPersonas) {
+                cantidad++;
+                $('#cantidadSpan span').text(cantidad);
+            }
+        })
+    </script>
+
+    <script>
+        var galeria = new Swiper(".galeriadeimagenes", {
+            slidesPerView: 1,
+            autoHeight: true,
+            spaceBetween: 20,
+            loop: true,
+            centeredSlides: false,
+            initialSlide: 0,
+            allowTouchMove: true,
+            autoplay: {
+                delay: 5500,
+                disableOnInteraction: true,
+                pauseOnMouseEnter: true
+            },
+            navigation: {
                 nextEl: ".swiper-galeria-next",
                 prevEl: ".swiper-galeria-prev",
             },
-      });
-  </script>
-  <script>
-    // $(document).ready(function() {
+        });
+    </script>
+
+    <script>
+        // let articulosCarrito = [];
+        /* 
+            function deleteOnCarBtn(id, operacion) {
+              const prodRepetido = articulosCarrito.map(item => {
+                if (item.id === id && item.cantidad > 0) {
+                  item.cantidad -= Number(1);
+                  return item; // retorna el objeto actualizado 
+                } else {
+                  return item; // retorna los objetos que no son duplicados 
+                }
+
+              });
+              Local.set('carrito', articulosCarrito)
+              limpiarHTML()
+              PintarCarrito()
 
 
-    function capitalizeFirstLetter(string) {
-      string = string.toLowerCase()
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-    // })
-    $('#disminuir').on('click', function() {
-      let cantidad = Number($('#cantidadSpan span').text())
-      if (cantidad > 1) {
-        cantidad--
-        $('#cantidadSpan span').text(cantidad)
-      }
+            } */
 
+        // function calcularTotal() {
+        //   let articulos = Local.get('carrito')
+        //   let total = articulos.map(item => {
+        //     let monto
+        //     if (Number(item.descuento) !== 0) {
+        //       monto = item.cantidad * Number(item.descuento)
+        //     } else {
+        //       monto = item.cantidad * Number(item.precio)
+        //     }
+        //     return monto
+        //   })
+        //   const suma = total.reduce((total, elemento) => total + elemento, 0);
+        //   $('#itemsTotal').text(`S/. ${suma.toFixed(2)} `)
+        // }
 
-    })
-    // cantidadSpan
-    $('#aumentar').on('click', function() {
-      let cantidad = Number($('#cantidadSpan span').text());
-      let maxPersonas = Number($('#cantidadSpan').data('max-personas'));
-      
-      if (cantidad < maxPersonas) {
-            cantidad++;
-            $('#cantidadSpan span').text(cantidad);
-      }
-    })
-  </script>
-  <script>
-    // let articulosCarrito = [];
+        /*  function addOnCarBtn(id, operacion) {
+           const prodRepetido = articulosCarrito.map(item => {
+             if (item.id === id) {
+               item.cantidad += Number(1);
+               return item; // retorna el objeto actualizado 
+             } else {
+               return item; // retorna los objetos que no son duplicados 
+             }
 
-    /* 
-        function deleteOnCarBtn(id, operacion) {
-          const prodRepetido = articulosCarrito.map(item => {
-            if (item.id === id && item.cantidad > 0) {
-              item.cantidad -= Number(1);
-              return item; // retorna el objeto actualizado 
-            } else {
-              return item; // retorna los objetos que no son duplicados 
-            }
-
-          });
-          Local.set('carrito', articulosCarrito)
-          limpiarHTML()
-          PintarCarrito()
-
-
+           });
+           Local.set('carrito', articulosCarrito)
+           // localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+           limpiarHTML()
+           PintarCarrito()
         } */
 
-    // function calcularTotal() {
-    //   let articulos = Local.get('carrito')
-    //   let total = articulos.map(item => {
-    //     let monto
-    //     if (Number(item.descuento) !== 0) {
-    //       monto = item.cantidad * Number(item.descuento)
-    //     } else {
-    //       monto = item.cantidad * Number(item.precio)
+        var appUrl = <?php echo json_encode($url_env); ?>;
+        $(document).ready(function() {
+            articulosCarrito = Local.get('carrito') || [];
+            // PintarCarrito();
+        });
 
-    //     }
-    //     return monto
-
-    //   })
-    //   const suma = total.reduce((total, elemento) => total + elemento, 0);
-
-    //   $('#itemsTotal').text(`S/. ${suma.toFixed(2)} `)
-
-    // }
-
-    /*  function addOnCarBtn(id, operacion) {
-
-       const prodRepetido = articulosCarrito.map(item => {
-         if (item.id === id) {
-           item.cantidad += Number(1);
-           return item; // retorna el objeto actualizado 
-         } else {
-           return item; // retorna los objetos que no son duplicados 
-         }
-
-       });
-       Local.set('carrito', articulosCarrito)
-       // localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
-       limpiarHTML()
-       PintarCarrito()
-
-
-     } */
-
-
-
-    var appUrl = <?php echo json_encode($url_env); ?>;
-    $(document).ready(function() {
-      articulosCarrito = Local.get('carrito') || [];
-
-      // PintarCarrito();
-    });
-
-    function limpiarHTML() {
-      //forma lenta 
-      /* contenedorCarrito.innerHTML=''; */
-      $('#itemsCarrito').html('')
-
-
-    }
-
-    $('#btnAgregarCombo').on('click', async function() {
-      const offerId = this.getAttribute('data-id')
-      const res = await fetch(`/api/offers/${offerId}`)
-      const data = await res.json()
-
-      let nombre = `<b>${data.producto}</b><ul class="mb-1">`
-      data.products.forEach(product => {
-        nombre +=
-          `<li class="text-xs text-nowrap overflow-hidden text-ellipsis w-[270px]">${product.producto}</li>`
-      })
-      nombre += '</ul>'
-
-      let newcarrito
-      articulosCarrito = Local.get('carrito') ?? []
-
-
-      const index = articulosCarrito.findIndex(item => item.id == data.id && item.isCombo)
-
-      if (index != -1) {
-
-        articulosCarrito = articulosCarrito.map(item => {
-          if (item.isCombo && item.id == data.id) {
-            item.nombre = nombre
-            item.cantidad++
-          }
-          return item
-        })
-      } else {
-
-        articulosCarrito = [...articulosCarrito, {
-          "id": data.id,
-          "isCombo": true,
-          "producto": nombre,
-          "descuento": data.descuento,
-          "precio": data.precio,
-          "imagen": data.imagen ? `${appUrl}${data.imagen}` : `${appUrl}/images/img/noimagen.jpg`,
-          "cantidad": 1,
-          "color": null
-        }]
-
-      }
-
-
-      Local.set('carrito', articulosCarrito)
-
-      limpiarHTML()
-      PintarCarrito()
-      mostrarTotalItems()
-
-      Swal.fire({
-        icon: "success",
-        title: `Combo agregado correctamente`,
-        showConfirmButton: true
-      });
-    })
-
-
-
-    $('#addWishlist').on('click', function() {
-      $.ajax({
-        url: `{{ route('wishlist.store') }}`,
-        method: 'POST',
-        data: {
-          _token: $('input[name="_token"]').val(),
-          product_id: '{{ $product->id }}'
-        },
-        success: function(response) {
-
-          // Cambiar el color del botón
-
-          if (response.message === 'Producto agregado a la lista de deseos') {
-            $('#addWishlist').removeClass('bg-[#99b9eb]').addClass('bg-[#0D2E5E]');
-          } else {
-            $('#addWishlist').removeClass('bg-[#0D2E5E]').addClass('bg-[#99b9eb]');
-          }
-          Swal.fire({
-            icon: 'success',
-            title: response.message,
-            showConfirmButton: false,
-            timer: 1500
-          });
-        },
-        error: function(error) {
-          console.log(error);
+        function limpiarHTML() {
+            //forma lenta 
+            /* contenedorCarrito.innerHTML=''; */
+            $('#itemsCarrito').html('')
         }
-      });
-    })
-  </script>
+
+        $('#btnAgregarCombo').on('click', async function() {
+            const offerId = this.getAttribute('data-id')
+            const res = await fetch(`/api/offers/${offerId}`)
+            const data = await res.json()
+            let nombre = `<b>${data.producto}</b><ul class="mb-1">`
+            data.products.forEach(product => {
+                nombre +=
+                    `<li class="text-xs text-nowrap overflow-hidden text-ellipsis w-[270px]">${product.producto}</li>`
+            })
+            nombre += '</ul>'
+
+            let newcarrito
+            articulosCarrito = Local.get('carrito') ?? []
+            const index = articulosCarrito.findIndex(item => item.id == data.id && item.isCombo)
+
+            if (index != -1) {
+
+                articulosCarrito = articulosCarrito.map(item => {
+                    if (item.isCombo && item.id == data.id) {
+                        item.nombre = nombre
+                        item.cantidad++
+                    }
+                    return item
+                })
+            } else {
+
+                articulosCarrito = [...articulosCarrito, {
+                    "id": data.id,
+                    "isCombo": true,
+                    "producto": nombre,
+                    "descuento": data.descuento,
+                    "precio": data.precio,
+                    "imagen": data.imagen ? `${appUrl}${data.imagen}` :
+                        `${appUrl}/images/img/noimagen.jpg`,
+                    "cantidad": 1,
+                    "color": null
+                }]
+
+            }
+
+            Local.set('carrito', articulosCarrito)
+            limpiarHTML()
+            PintarCarrito()
+            mostrarTotalItems()
+
+            Swal.fire({
+                icon: "success",
+                title: `Combo agregado correctamente`,
+                showConfirmButton: true
+            });
+        })
+
+        $('#addWishlist').on('click', function() {
+            $.ajax({
+                url: `{{ route('wishlist.store') }}`,
+                method: 'POST',
+                data: {
+                    _token: $('input[name="_token"]').val(),
+                    product_id: '{{ $product->id }}'
+                },
+                success: function(response) {
+
+                    if (response.message === 'Producto agregado a la lista de deseos') {
+                        $('#addWishlist').removeClass('bg-[#99b9eb]').addClass('bg-[#0D2E5E]');
+                    } else {
+                        $('#addWishlist').removeClass('bg-[#0D2E5E]').addClass('bg-[#99b9eb]');
+                    }
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        })
+    </script>
 
 
 @stop

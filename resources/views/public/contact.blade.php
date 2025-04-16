@@ -1,51 +1,213 @@
 @extends('components.public.matrix', ['pagina' => 'contacto'])
 
 @section('css_importados')
+    <style>
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #262626 !important;
+            border-radius: 0.5rem !important;
+            height: auto !important;
+            padding: 0.5rem 0.75rem !important;
+            background-color: #141414 !important;
+        }
 
+        /* Estilo cuando está enfocado */
+        .select2-container--default.select2-container--focus .select2-selection--single {
+            border-color: #141414 !important;
+            outline: 0 !important;
+            box-shadow: none !important;
+        }
+
+        /* Estilo del texto */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #ffffff !important;
+            font-family: 'Aceh', sans-serif !important;
+            font-size: 1rem !important;
+            line-height: 1.5 !important;
+            padding: 0 !important;
+        }
+
+        /* Para pantallas grandes */
+        @media (min-width: 1536px) {
+            .select2-container--default .select2-selection--single .select2-selection__rendered {
+                font-size: 1.25rem !important;
+            }
+        }
+
+        /* Estilo de la flecha desplegable */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100% !important;
+        }
+
+        .select2-search__field{
+            border-color: #262626 !important;
+            outline: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .select2-results__message{
+            font-size: 12px !important;
+        }
+
+        /* Estilos para select banderas */
+        .js-phone-select + .select2-container--default .select2-selection--single {
+            border: 1px solid #262626 !important;
+            border-radius: 0.5rem 0 0 0.5rem !important; /* Solo redondeo izquierdo */
+            height: auto !important;
+            padding: 0.75rem 0.75rem !important;
+            margin-top: 0px !important;
+            background-color: #141414 !important;
+            transition: border-color 0.3s ease;
+            
+        }
+        
+        .js-phone-select + .select2-container {
+            max-width: 100px!important;
+        }
+    </style>
 @stop
 
 @section('content')
 
-<main class="bg-[#FAFCFE]">
-    <section class="grid grid-cols-1 text-center gap-8 items-center max-w-4xl mx-auto px-[5%] py-8 lg:py-16">
-      <h2 class="text-4xl lg:text-5xl font-bold text-[#006258] px-0 lg:px-[3%] font-Homie_Bold">
-        ¿Tienes un viaje en mente? Escríbenos.
-      </h2>
-      <p class="text-lg text-[#000929] font-FixelText_Regular">
-        ¿Tienes un viaje? Escríbenos si necesitas nuestra ayuda? No dudes en contactarnos.
-      </p>
-    </section>
-      
-    <section class="flex flex-col md:flex-row px-[5%] lg:px-[8%] pb-8 lg:pb-16">
-      
-        <div class="flex flex-col p-10 w-full md:w-1/2 bg-white shadow-lg">
-          <div class="flex flex-col w-full">
-            <h2 class="text-3xl font-Homie_Bold text-[#002677] ">
-                {{$textoshome->title6section ?? 'Ingrese un texto'}}
-            </h2>
-            <p class="mt-4 text-base font-FixelText_Regular text-[#000929]">
-                {{$textoshome->description6section ?? 'Ingrese un texto'}}
-            </p>
-          </div>
-          <form id="formContactos" class="flex flex-col mt-6 w-full text-sm ">
-            @csrf
-            <div class="flex flex-col w-full gap-4">
-              
-              <input id="name" name="name" type="text" class="px-4 py-3.5 text-sm font-FixelText_Regular focus:border-[#006258] focus:ring-[#006258] text-[#006258] placeholder:text-[#00625852] border border-[#00625852] rounded-xl" placeholder="Nombre completo" aria-label="Nombre completo">
-             
-              <input id="phone" name="phone" type="tel" class="px-4 py-3.5 text-sm font-FixelText_Regular focus:border-[#006258] focus:ring-[#006258] text-[#006258] placeholder:text-[#00625852] border border-[#00625852] rounded-xl" placeholder="Teléfono" aria-label="Teléfono">
-              
-              <input id="email" name="email" type="email" class="px-4 py-3.5 text-sm font-FixelText_Regular focus:border-[#006258] focus:ring-[#006258] text-[#006258] placeholder:text-[#00625852] border border-[#00625852] rounded-xl" placeholder="E-mail" aria-label="E-mail">
-             
-              <textarea id="message" name="message" class="px-4 py-3.5 text-sm font-FixelText_Regular focus:border-[#006258] focus:ring-[#006258] text-[#006258] placeholder:text-[#00625852] border border-[#00625852] rounded-xl" placeholder="Mensaje" aria-label="Mensaje" rows="6"></textarea>
-            </div>
-            <button type="submit" class="px-4 py-3.5 mt-10 w-full font-FixelText_Medium text-emerald-300 bg-[#006258] rounded-xl ">
-              Enviar solicitud
-            </button>
-          </form>
-        </div>
+    <main>
+        <section class="px-[5%] xl:px-[8%] py-8 lg:py-16 flex flex-col gap-10" style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20">
 
-        <div class="flex flex-col p-10  w-full md:w-1/2 bg-[#5BE3A5] shadow-lg">
+                <div class="flex flex-col gap-3 md:gap-5 items-start max-w-3xl 2xl:max-w-4xl w-full">
+                    
+                    <div class="grid grid-cols-1 gap-4 xl:gap-6 2xl:gap-8 p-4 xl:p-6 2xl:p-8 z-20 bg-[#141414] rounded-xl min-w-[390px] w-full">
+                        
+                        <h2 class="font-PlusJakartaSans_Semibold text-white text-3xl lg:text-4xl 2xl:text-5xl leading-tight">
+                            Ponte en <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> contacto </span> con nuestro equipo ahora
+                        </h2>
+
+                        <div id="form1" class=" rounded-2xl flex flex-col gap-4 formulariocontacto font-PlusJakartaSans_Regular">
+                            <form class="flex flex-col gap-2 xl:gap-4" id="formContactos">
+                              @csrf
+                                <div class="relative">
+                                    <input type="text" name="full_name" id="full_name" placeholder=" " 
+                                        class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]">
+                                    <label for="full_name" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Nombres y Apellidos</label>
+                                </div>
+
+                                <div class="relative">
+                                    <input type="text" name="email" id="email" placeholder=" " 
+                                        class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]">
+                                    <label for="email" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Correo electrónico</label>
+                                </div>
+                                
+                                <div class="flex flex-row">
+                                    <select class="js-phone-select !max-w-[120px]" name="code_country">
+                                        @foreach($paises as $pais)
+                                            <option value="{{ $pais['iso2'] }}"
+                                                    data-phone-code="+{{ $pais['phoneCode'] }}">
+                                                {{ $pais['nameES'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <div class="relative w-full">
+                                        <input type="text" name="phone" id="telefonoContacto" placeholder=" " 
+                                            class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg rounded-l-none text-base 2xl:text-xl text-white bg-[#141414]">
+                                        <label for="telefonoContacto" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Teléfono</label>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="relative">
+                                    <textarea rows="4" name="email" id="email" placeholder="" 
+                                        class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]"></textarea>
+                                    <label for="email" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Escribe un mensaje</label>
+                                </div>
+                    
+                                 
+                               <button type="submit" class="w-full text-[#141414] text-center text-lg px-6 py-3 font-PlusJakartaSans_Medium rounded-xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] flex flex-row gap-2 justify-center items-center">
+                                    Enviar formulario
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                        <mask id="mask0_2002_48" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="24">
+                                        <rect x="0.5" width="24" height="24" fill="white"/>
+                                        </mask>
+                                        <g mask="url(#mask0_2002_48)">
+                                        <path d="M16.675 13.001H4.5V11.001H16.675L11.075 5.40098L12.5 4.00098L20.5 12.001L12.5 20.001L11.075 18.601L16.675 13.001Z" fill="#141414"/>
+                                        </g>
+                                    </svg>
+                                </button>
+
+                                <p class="col-span-4 -mb-2 text-white font-PlusJakartaSans_Regular text-base 2xl:text-xl">Al enviar el formulario estoy aceptando<span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"><a id="linkTerminos2" class="underline"> Términos y Condiciones</a> y <a id="linkPoliticasDatos2" class="underline">Políticas de privacidad</a></span></p>
+
+                            </form>
+
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="flex flex-row justify-center items-center">
+                    {{-- @if ($general[0]->htop && $general[0]->ig_token) --}}
+                        <div class="h-[600px] w-full rounded-2xl overflow-hidden" id="map">
+                            <img src="{{ asset('images/img/mapafinal.png') }}" alt="Imagen de fondo del mapa" class="w-full h-full object-cover">
+                        </div>
+                    {{-- @endif --}}
+                </div>
+
+            </div>
+        </section>
+
+        <section class="px-[5%] xl:px-[8%] py-8 lg:py-16 flex flex-col bg-[#1E1E1E]">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 lg:gap-10">
+                <h2 class="md:col-span-2 lg:col-span-3 font-PlusJakartaSans_Semibold text-white text-3xl lg:text-4xl 2xl:text-5xl leading-tight">
+                    Hablemos <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> hoy... </span>
+                </h2>
+                
+                <article class="flex flex-col gap-3 p-4 lg:p-6 bg-[#141414] rounded-xl">
+                    <img loading="lazy" src="{{ asset('images/svg/sms.svg') }}" class="object-contain w-14" />
+                    <div class="flex flex-col gap-2 2xl:gap-4 w-full">
+                        <h3
+                            class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
+                            Correo electrónico
+                        </h3>
+                        <p
+                            class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
+                            Escríbenos para recibir atención personalizada y resolver tus dudas.
+                        </p>
+                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">mo-realstate@mail.com</p>
+                    </div>
+                </article>
+
+                <article class="flex flex-col gap-3 p-4 lg:p-6 bg-[#141414] rounded-xl">
+                    <img loading="lazy" src="{{ asset('images/svg/phone.svg') }}" class="object-contain w-14" />
+                    <div class="flex flex-col gap-2 2xl:gap-4 w-full">
+                        <h3
+                            class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
+                            Teléfono
+                        </h3>
+                        <p
+                            class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
+                            Llámanos para obtener soporte inmediato y asistencia profesional.
+                        </p>
+                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">(+51) 000-000-000</p>
+                    </div>
+                </article>
+
+                <article class="flex flex-col gap-3 p-4 lg:p-6 bg-[#141414] rounded-xl">
+                    <img loading="lazy" src="{{ asset('images/svg/address.svg') }}" class="object-contain w-14" />
+                    <div class="flex flex-col gap-2 2xl:gap-4 w-full">
+                        <h3
+                            class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
+                            Oficina
+                        </h3>
+                        <p
+                            class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
+                            Visítanos en nuestra oficina para conocer nuestras soluciones.
+                        </p>
+                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">Av. Javier Prado 2156 San Isidro</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+
+    {{-- <div class="flex flex-col p-10  w-full md:w-1/2 bg-[#5BE3A5] shadow-lg">
           <div class="flex flex-col w-full">
             <h2 class="text-3xl font-Homie_Bold text-[#006258]">{{$textoshome->title7section ?? 'Ingrese un texto'}}</h2>
             <p class="mt-4 text-base font-FixelText_Regular text-[#006258]">
@@ -111,7 +273,7 @@
                 <div class="flex flex-col flex-1 shrink basis-0 min-w-[240px]">
                     <h3 class="text-lg font-FixelText_Bold text-[#006258]">Horario de Atención</h3>
                     <p class="mt-2 text-base font-FixelText_Regular text-[#006258]">
-                        @foreach(explode(',', $general->schedule) as $item)
+                        @foreach (explode(',', $general->schedule) as $item)
                                     {{ $item }}<br>
                         @endforeach
                     </p>
@@ -119,13 +281,101 @@
                 </div>
             @endif    
           </div>
-        </div>
-      
-    </section>
-  </main>
+   </div> --}}
 
 
 @section('scripts_importados')
+    
+    <script>
+       
+        function formatState(state) {
+            if (!state.id) return state.text;
+            
+            // CDN de banderas (flag-icon-css)
+            const baseUrl = "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3";
+            const phoneCode = $(state.element).data('phone-code') || '';
+            const countryName = state.text || '';
+            
+            return $(
+                `<span class="flex flex-row font-aceh">
+                    <img src="${baseUrl}/${state.id.toLowerCase()}.svg" 
+                        class="img-flag w-5 mr-2 object-contain" 
+                        alt="${countryName}" 
+                        onerror="this.src='https://via.placeholder.com/20x15?text=flag'"/>
+                    <span class="text-base">${phoneCode}</span>
+                </span>`
+            );
+        }
+
+        // Inicialización mejorada de Select2
+        function initCountrySelect() {
+            const $select = $(".js-phone-select");
+            
+            $select.select2({
+                templateResult: formatState,
+                templateSelection: formatState,
+                placeholder: "Selecciona un país",
+                width: '100%',
+                dropdownAutoWidth: true,
+                escapeMarkup: function(m) { return m; },
+                language: {
+                    noResults: function() {
+                        return "No se encontraron países";
+                    }
+                }
+            });
+
+            // Auto-seleccionar país local
+            detectLocalCountry().then(countryCode => {
+                if (countryCode && $select.find(`option[value="${countryCode}"]`).length) {
+                    $select.val(countryCode).trigger('change');
+                }
+            });
+        }
+
+        // Función para detectar país local (versión mejorada)
+        async function detectLocalCountry() {
+            try {
+                // 1. Primero intentar con API IP simple
+                const ipResponse = await fetch('https://ipapi.co/json/');
+                if (ipResponse.ok) {
+                    const { country_code } = await ipResponse.json();
+                    if (country_code) return country_code;
+                }
+                
+                // 2. Fallback a geolocalización del navegador
+                if (navigator.geolocation) {
+                    const position = await new Promise((res, rej) => 
+                        navigator.geolocation.getCurrentPosition(res, rej));
+                    const geoResponse = await fetch(
+                        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=es`
+                    );
+                    const { countryCode } = await geoResponse.json();
+                    return countryCode;
+                }
+                
+                // 3. Fallback a idioma del navegador
+                const lang = navigator.language || navigator.userLanguage || 'es-PE';
+                return lang.includes('es') ? 'PE' : 'US';
+
+            } catch (error) {
+                console.error('Error detecting country:', error);
+                return 'PE'; // Valor por defecto (Peru)
+            }
+        }
+
+        // Inicializar cuando el DOM esté listo
+        $(document).ready(function() {
+            initCountrySelect();
+            
+            // Opcional: Actualizar campo de teléfono al cambiar país
+            $('.js-phone-select').on('change', function() {
+                const phoneCode = $(this).find(':selected').data('phone-code') || '';
+                $('#phone_number').val(phoneCode ? `${phoneCode} ` : '').focus();
+            });
+        });
+
+    </script>
     <script>
         function alerta(message) {
             Swal.fire({
@@ -147,8 +397,6 @@
         }
 
         $('#formContactos').submit(function(event) {
-            // Evita que se envíe el formulario automáticamente
-            //console.log('evcnto')
             let btnEnviar = $('#btnEnviar');
             btnEnviar.prop('disabled', true);
             btnEnviar.text('Enviando...');
@@ -156,7 +404,7 @@
 
             event.preventDefault();
             let formDataArray = $(this).serializeArray();
-            
+
             if (!validarEmail($('#email').val())) {
                 btnEnviar.prop('disabled', false);
                 btnEnviar.text('Enviar Mensaje');
@@ -190,7 +438,7 @@
 
                     if (!window.location.href.includes('#formularioenviado')) {
                         window.location.href = window.location.href.split('#')[0] +
-                        '#formularioenviado';
+                            '#formularioenviado';
                     }
                     btnEnviar.prop('disabled', false);
                     btnEnviar.text('Enviar Mensaje');
@@ -394,22 +642,13 @@
         // }
 
 
-
-
-
-
         $('#btnAgregarCarrito').on('click', function() {
             let url = window.location.href;
             let partesURl = url.split('/')
             let item = partesURl[partesURl.length - 1]
             let cantidad = Number($('#cantidadSpan span').text())
             item = item.replace('#', '')
-
-
-
             // id='nodescuento'
-
-
             $.ajax({
 
                 url: `{{ route('carrito.buscarProducto') }}`,
@@ -486,8 +725,6 @@
         //   $('.cartContainer').addClass('hidden')
         //   $('#check').prop('checked', false);
         //   $('.main').removeClass('blur')
-
-
         // })
     </script>
 

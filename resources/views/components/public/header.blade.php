@@ -29,7 +29,7 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: #5BE3A4;
+        background-color: #BE913E;
         transform: scaleX(0);
         transition: transform 0.3s ease;
     }
@@ -96,21 +96,21 @@
             </li>
 
             <li>
-                <a href="/nosotros"
+                <a href="/catalogo"
                     class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
                         <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
-                        Nosotros
+                        Propiedades
                     </span>
                 </a>
             </li>
 
             <li>
-                <a href="/catalogo"
+                <a href="/nosotros"
                     class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
                         <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
-                        Departamentos
+                        Nosotros
                     </span>
                 </a>
             </li>
@@ -219,10 +219,35 @@
 </div>
 
 
-<header class="bg-[#00897B] py-3.5">
-
+<header class="bg-[#191919]">
+   
     <div>
-        <div id="header-menu" class="flex justify-between gap-3 w-full px-[3%] xl:px-[8%] py-1  text-[17px] relative items-center">
+        <div class="px-[5%] xl:px-[8%] flex flex-wrap justify-center md:justify-between bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] py-3">
+            <div class="flex flex-row gap-2 items-center font-PlusJakartaSans_Regular text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M11.3481 17.8062C10.9867 18.1445 10.5037 18.3337 10.0009 18.3337C9.49817 18.3337 9.01517 18.1445 8.65375 17.8062C5.34418 14.6887 0.908967 11.2061 3.07189 6.15004C4.24136 3.41629 7.04862 1.66699 10.0009 1.66699C12.9532 1.66699 15.7605 3.41629 16.93 6.15004C19.0902 11.1997 14.6658 14.6994 11.3481 17.8062Z" stroke="#141414" stroke-width="1.25"/>
+                    <path d="M12.9163 9.16667C12.9163 10.7775 11.6105 12.0833 9.99967 12.0833C8.38884 12.0833 7.08301 10.7775 7.08301 9.16667C7.08301 7.55583 8.38884 6.25 9.99967 6.25C11.6105 6.25 12.9163 7.55583 12.9163 9.16667Z" stroke="#141414" stroke-width="1.25"/>
+                </svg>
+                <h3>Av. Javier Prado 2156 San Isidro</h3>
+            </div>
+
+            <div class="md:flex flex-wrap gap-6 items-center font-PlusJakartaSans_Regular text-sm hidden">
+                <div class="flex flex-row gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3.14932 9.95233C2.3593 8.57474 1.97784 7.44989 1.74783 6.30967C1.40765 4.62331 2.18614 2.976 3.47578 1.92489C4.02084 1.48064 4.64566 1.63243 4.96797 2.21066L5.69562 3.51609C6.27238 4.5508 6.56075 5.06815 6.50355 5.61665C6.44636 6.16515 6.05744 6.61188 5.27961 7.50534L3.14932 9.95233ZM3.14932 9.95233C4.74839 12.7406 7.25783 15.2514 10.0493 16.8523M10.0493 16.8523C11.4269 17.6423 12.5517 18.0238 13.692 18.2538C15.3783 18.594 17.0256 17.8155 18.0767 16.5258C18.521 15.9808 18.3692 15.356 17.791 15.0337L16.4855 14.306C15.4508 13.7292 14.9335 13.4409 14.385 13.4981C13.8365 13.5552 13.3897 13.9442 12.4963 14.722L10.0493 16.8523Z" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>(+51) 926 811 809 <span class="px-1">|</span> 932 073 345</h3>
+                </div>
+                <div class="flex flex-row gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M1.66797 5L7.42882 8.26414C9.55264 9.4675 10.45 9.4675 12.5738 8.26414L18.3346 5" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
+                        <path d="M1.68111 11.23C1.73559 13.7847 1.76283 15.0619 2.70544 16.0082C3.64804 16.9543 4.95991 16.9872 7.58366 17.0532C9.20072 17.0938 10.8019 17.0938 12.419 17.0532C15.0427 16.9872 16.3546 16.9543 17.2972 16.0082C18.2398 15.0619 18.2671 13.7847 18.3215 11.23C18.3391 10.4086 18.3391 9.59208 18.3215 8.77066C18.2671 6.21604 18.2398 4.93873 17.2972 3.99254C16.3546 3.04635 15.0427 3.01339 12.419 2.94747C10.8019 2.90683 9.20072 2.90683 7.58365 2.94746C4.95991 3.01338 3.64804 3.04633 2.70543 3.99253C1.76282 4.93873 1.73559 6.21603 1.6811 8.77066C1.66359 9.59208 1.66359 10.4086 1.68111 11.23Z" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>mo-realstate@mail.com</h3>
+                </div>
+            </div>
+        </div>
+        <div id="header-menu" class="py-3.5 flex justify-between gap-3 w-full px-[5%] xl:px-[8%] text-[17px] relative items-center">
             <div id="menu-burguer" class="lg:hidden z-10 w-max">
                 <img class="h-10 w-10 cursor-pointer" src="{{ asset('images/img/menu_hamburguer.png') }}"
                   alt="menu hamburguesa" onclick="show()" />
@@ -230,15 +255,15 @@
 
             <div class="w-auto flex flex-col justify-center items-center">
                 <a href="{{route('index')}}">
-                  <img id="logo-boostperu" class="w-[170px]"
-                    src="{{ asset($isIndex ? 'images/svg/venturalogo.svg' : 'images/svg/venturalogo.svg') }}" alt="boostperu" />
+                  <img id="logo-realstate" class="w-[200px] 2xl:w-[250px]"
+                    src="{{ asset($isIndex ? 'images/svg/rs_logorealstate.svg' : 'images/svg/rs_logorealstate.svg') }}" alt="realstate" />
                 </a>
             </div>
 
-            <div class="hidden lg:flex items-center justify-center ">
+            <div class="hidden lg:flex items-center justify-center">
                 <div>
                   <nav id="menu-items"
-                    class=" text-white text-base font-FixelText_Medium flex gap-5 xl:gap-10 items-center justify-center">
+                    class=" text-white text-base 2xl:text-lg font-PlusJakartaSans_Regular flex gap-5 xl:gap-10 items-center justify-center">
                     
                     <a href="/" class="font-medium">
                       <span class="underline-this tracking-wide">Inicio</span>
@@ -265,8 +290,8 @@
             </div>
 
             <div class="flex justify-end md:w-auto md:justify-center items-center gap-1 md:gap-4">
-
-                    @if (Auth::user() == null)
+                    
+                    {{-- @if (Auth::user() == null)
                       <a class="text-sm font-FixelText_Semibold tracking-wide border-2 text-white px-2.5 md:px-4 py-2 md:py-3.5 leading-none rounded-full md:rounded-2xl" href="{{ route('login') }}">
                         <span class="hidden md:flex">Iniciar sesion</span>
                         <div class="md:hidden"><i class="fa-solid fa-user text-xl"></i></div>
@@ -312,7 +337,7 @@
                           </div>
                       </div>
 
-                    @endif
+                    @endif --}}
 
                     {{-- @else
                       <div class="relative  hidden md:inline-flex" x-data="{ open: false }">
@@ -350,16 +375,16 @@
                       </div>
                     @endif --}}
 
-                    <a href="/register" class="hidden md:flex text-sm font-FixelText_Semibold tracking-wide bg-[#73F7AD] border-2 border-[#73F7AD] text-white px-3 md:px-6 py-3.5 leading-none rounded-2xl">Inscribirse</a>
+                    <a href="/contacto" class="hidden md:flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">Contacto</a>
                 
-                    <div class="flex justify-center items-center">
+                    {{-- <div class="flex justify-center items-center">
                         <div id="open-cart" class="relative inline-block cursor-pointer pr-3">
                             <span id="itemsCount"
                                 class="bg-[#00897b] border border-[#73F7AD] text-xs font-medium text-white text-center px-[7px] py-[2px]  rounded-full absolute bottom-0 right-0 ml-3">0</span>
                             <img src="{{ asset('images/svg/bag_boost.svg') }}"
                                 class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" />
                         </div>
-                    </div>
+                    </div> --}}
             </div>
         </div>
     </div>    
@@ -905,6 +930,7 @@
 
         })
     }
+    
     $(document).on('click', '#btnAgregarCarritoPr', function() {
         let url = window.location.href;
         let partesURL = url.split('/');
@@ -925,9 +951,7 @@
         let item
         let cantidad
         
-
         item = partesURL[partesURL.length - 1]
-        
         //cantidad = Number($('#cantidadSpan span').text())
         cantidad = 1;
         item = $(this).data('id')

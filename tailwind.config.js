@@ -30,23 +30,24 @@ export default {
             },
 
             fontFamily: {
-                Homie_Bold: ["Homie_Bold"],
-                FixelText_Bold: ["FixelText-Bold"],
-                FixelText_Semibold: ["FixelText-Semibold"],
-                FixelText_Regular: ["FixelText-Regular"],
-                FixelText_Medium: ["FixelText-Medium"],
-                FixelText_Light: ["FixelText-Light"],
+                PlusJakartaSans_Bold: ["PlusJakartaSans_Bold"],
+                PlusJakartaSans_Medium: ["PlusJakartaSans_Medium"],
+                PlusJakartaSans_Regular: ["PlusJakartaSans_Regular"],
+                PlusJakartaSans_Semibold: ["PlusJakartaSans_Semibold"],
             },
 
             screens: {
                 xs: '320px',
                 "2xs": "420px",
+                "3xs": "520px",
                 sm: "640px",
                 md: "768px",
                 "2md": "850px",
                 lg: "1024px",
                 xl: "1280px",
                 "2xl": "1536px",
+                "3xl": "1650px",
+
             },
             colors: {
                 azulboost: '#006BF6',
