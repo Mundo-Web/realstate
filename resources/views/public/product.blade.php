@@ -656,7 +656,7 @@
                         </div>
 
                         <div class="w-full flex flex-col justify-center items-center gap-5 p-5 rounded-xl border border-[#333131]">
-                          <div class="flex flex-col justify-center items-center">
+                          <div class="flex flex-col justify-center items-center text-center">
                               <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
                                 ID. {{$product->staff->twitter ?? "STAFF ID"}}
                               </p>
