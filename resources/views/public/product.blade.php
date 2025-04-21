@@ -634,8 +634,15 @@
                         <h2 class="text-center font-PlusJakartaSans_Semibold text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Contacta al Asesor</h2>
                     </div>
                     <div class="flex flex-col gap-4 p-6 justify-center items-center w-full">
-                        <img loading="lazy" src="{{ asset($product->staff->youtube)}}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
+                      
+                        @if ($product->staff->youtube)
+                            <img loading="lazy" src="{{ asset($product->staff->youtube)}}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
                             class="object-cover rounded-full w-24 aspect-square" alt="Asesor icon" />
+                        @else
+                            <img loading="lazy" src="{{ asset('/images/img/noimagen.jpg')}}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
+                            class="object-cover rounded-full w-24 aspect-square" alt="Asesor icon" />
+                        @endif
+                       
 
                         <div class="flex flex-col">
                           <h2 class="font-PlusJakartaSans_Medium text-white text-lg xl:text-2xl 2xl:text-3xl flex flex-row justify-start items-center gap-2">
