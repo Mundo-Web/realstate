@@ -635,12 +635,14 @@
                     </div>
                     <div class="flex flex-col gap-4 p-6 justify-center items-center w-full">
                       
-                        @if ($product->staff->youtube)
-                            <img loading="lazy" src="{{ asset($product->staff->youtube)}}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
-                            class="object-cover rounded-full w-24 aspect-square" alt="Asesor icon" />
+                        @if ($product->staff && $product->staff->youtube)
+                            <img loading="lazy" src="{{ asset($product->staff->youtube) }}" 
+                                onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
+                                class="object-cover rounded-full w-24 aspect-square" alt="Asesor icon" />
                         @else
-                            <img loading="lazy" src="{{ asset('/images/img/noimagen.jpg')}}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
-                            class="object-cover rounded-full w-24 aspect-square" alt="Asesor icon" />
+                            <img loading="lazy" src="{{ asset('/images/img/noimagen.jpg') }}" 
+                                onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
+                                class="object-cover rounded-full w-24 aspect-square" alt="Asesor icon" />
                         @endif
                        
 
