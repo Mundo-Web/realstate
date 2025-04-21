@@ -650,7 +650,7 @@
                           <h2 class="font-PlusJakartaSans_Medium text-center text-white text-lg xl:text-2xl 2xl:text-3xl flex flex-row justify-start items-center gap-2">
                             {{$product->staff->nombre ?? "Agente"}}
                           </h2>
-                          <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
+                          <p class="font-PlusJakartaSans_Regular text-center text-white text-sm xl:text-base 2xl:text-xl">
                             {{$product->staff->cargo ?? "Agente Inmobiliario"}}
                           </p>
                         </div>
