@@ -646,7 +646,7 @@
                         @endif
                        
 
-                        <div class="flex flex-col">
+                        <div class="flex flex-col justify-center items-center">
                           <h2 class="font-PlusJakartaSans_Medium text-center text-white text-lg xl:text-2xl 2xl:text-3xl flex flex-row justify-start items-center gap-2">
                             {{$product->staff->nombre ?? "Agente"}}
                           </h2>
