@@ -634,7 +634,7 @@
                         <h2 class="text-center font-PlusJakartaSans_Semibold text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Contacta al Asesor</h2>
                     </div>
                     <div class="flex flex-col gap-4 p-6 justify-center items-center w-full">
-                        <img loading="lazy" src="{{ asset($product->staff->youtube) }}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
+                        <img loading="lazy" src="{{ asset($product->staff->youtube)}}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';"
                             class="object-cover rounded-full w-24 aspect-square" alt="Asesor icon" />
 
                         <div class="flex flex-col">
@@ -659,23 +659,27 @@
                               </p>
                           </div>
                           <div class="flex flex-row justify-end gap-3">
-                                <a onclick="copyPhone('{{$product->staff->facebook}}'); return false;">
-                                    <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
+                                @if ($product->staff->facebook)
+                                    <a onclick="copyPhone('{{$product->staff->facebook}}'); return false;">
+                                        <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                                    <path d="M4.85938 8.26986C4.85938 5.52 4.85937 4.14507 5.71365 3.2908C6.56792 2.43652 7.94285 2.43652 10.6927 2.43652C13.4425 2.43652 14.8175 2.43652 15.6718 3.2908C16.526 4.14507 16.526 5.52 16.526 8.26986V13.2699C16.526 16.0197 16.526 17.3946 15.6718 18.2489C14.8175 19.1032 13.4425 19.1032 10.6927 19.1032C7.94285 19.1032 6.56792 19.1032 5.71365 18.2489C4.85937 17.3946 4.85938 16.0197 4.85938 13.2699V8.26986Z" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
+                                                    <path d="M9.85938 16.6025H11.526" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M8.19238 2.43652L8.26655 2.88154C8.42728 3.84593 8.50765 4.32813 8.83837 4.62156C9.18338 4.92764 9.67247 4.93652 10.6924 4.93652C11.7123 4.93652 12.2014 4.92764 12.5464 4.62156C12.8771 4.32813 12.9575 3.84593 13.1182 2.88154L13.1924 2.43652" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
+                                                </svg>
+                                        </div>
+                                    </a>
+                                @endif
+                                @if ($product->staff->instagram)
+                                    <a onclick="copyEmail('{{$product->staff->instagram}}'); return false;">
+                                        <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                                <path d="M4.85938 8.26986C4.85938 5.52 4.85937 4.14507 5.71365 3.2908C6.56792 2.43652 7.94285 2.43652 10.6927 2.43652C13.4425 2.43652 14.8175 2.43652 15.6718 3.2908C16.526 4.14507 16.526 5.52 16.526 8.26986V13.2699C16.526 16.0197 16.526 17.3946 15.6718 18.2489C14.8175 19.1032 13.4425 19.1032 10.6927 19.1032C7.94285 19.1032 6.56792 19.1032 5.71365 18.2489C4.85937 17.3946 4.85938 16.0197 4.85938 13.2699V8.26986Z" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
-                                                <path d="M9.85938 16.6025H11.526" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M8.19238 2.43652L8.26655 2.88154C8.42728 3.84593 8.50765 4.32813 8.83837 4.62156C9.18338 4.92764 9.67247 4.93652 10.6924 4.93652C11.7123 4.93652 12.2014 4.92764 12.5464 4.62156C12.8771 4.32813 12.9575 3.84593 13.1182 2.88154L13.1924 2.43652" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
+                                                <path d="M6.89746 12.0192H13.5641M6.89746 7.85254H10.2308" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M5.31314 16.6025C4.22971 16.496 3.41809 16.1705 2.87377 15.6262C1.89746 14.65 1.89746 13.0785 1.89746 9.93587V9.51921C1.89746 6.37651 1.89746 4.80516 2.87377 3.82885C3.85009 2.85254 5.42143 2.85254 8.56413 2.85254H11.8975C15.0401 2.85254 16.6115 2.85254 17.5878 3.82885C18.5641 4.80516 18.5641 6.37651 18.5641 9.51921V9.93587C18.5641 13.0785 18.5641 14.65 17.5878 15.6262C16.6115 16.6025 15.0401 16.6025 11.8975 16.6025C11.4304 16.613 11.0584 16.6485 10.693 16.7317C9.69429 16.9616 8.76954 17.4726 7.85569 17.9183C6.55354 18.5532 5.90246 18.8707 5.49387 18.5735C4.7122 17.9913 5.47624 16.1875 5.64746 15.3525" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
                                             </svg>
-                                    </div>
-                                </a>
-                                <a onclick="copyEmail('{{$product->staff->instagram}}'); return false;">
-                                    <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                            <path d="M6.89746 12.0192H13.5641M6.89746 7.85254H10.2308" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M5.31314 16.6025C4.22971 16.496 3.41809 16.1705 2.87377 15.6262C1.89746 14.65 1.89746 13.0785 1.89746 9.93587V9.51921C1.89746 6.37651 1.89746 4.80516 2.87377 3.82885C3.85009 2.85254 5.42143 2.85254 8.56413 2.85254H11.8975C15.0401 2.85254 16.6115 2.85254 17.5878 3.82885C18.5641 4.80516 18.5641 6.37651 18.5641 9.51921V9.93587C18.5641 13.0785 18.5641 14.65 17.5878 15.6262C16.6115 16.6025 15.0401 16.6025 11.8975 16.6025C11.4304 16.613 11.0584 16.6485 10.693 16.7317C9.69429 16.9616 8.76954 17.4726 7.85569 17.9183C6.55354 18.5532 5.90246 18.8707 5.49387 18.5735C4.7122 17.9913 5.47624 16.1875 5.64746 15.3525" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
-                                        </svg>
-                                    </div>
-                                </a>
+                                        </div>
+                                    </a>
+                                @endif
                           </div>
                         </div>
 
