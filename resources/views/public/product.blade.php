@@ -668,7 +668,7 @@
                               </p>
                           </div>
                           <div class="flex flex-row justify-end gap-3">
-                                @if ($product->staff->facebook)
+                                @if ($product->staff && $product->staff->facebook)
                                     <a onclick="copyPhone('{{$product->staff->facebook}}'); return false;">
                                         <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -679,7 +679,7 @@
                                         </div>
                                     </a>
                                 @endif
-                                @if ($product->staff->instagram)
+                                @if ($product->staff && $product->staff->instagram)
                                     <a onclick="copyEmail('{{$product->staff->instagram}}'); return false;">
                                         <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
