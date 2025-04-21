@@ -15,9 +15,10 @@ class EstadiscticsSeeder extends Seeder
     {
         $beneficios = [
 
-            ['title' => '90%', 'description' => 'Tasa de Ocupación'],
-            ['title' => '95%', 'description' => 'Clientes Satisfechos'],
-            ['title' => '+20%', 'description' => 'Crecimiento Anual']
+            ['title' => 'Confianza', 'description' => ' La confianza es la piedra angular de toda transacción inmobiliaria exitosa.'],
+            ['title' => 'Excelencia', 'description' => 'Nos ponemos el listón muy alto. Desde las propiedades que  listamos hasta los servicios que brindamos.'],
+            ['title' => 'Centrado en el cliente', 'description' => 'Tus sueños y necesidades están en el centro de nuestro universo. Escuchamos, entendemos.'],
+            ['title' => 'Nuestro compromiso', 'description' => 'Estamos dedicados a brindarle el más alto nivel de servicio, profesionalismo y soporte.']
 
         ];
 

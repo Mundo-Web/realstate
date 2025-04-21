@@ -31,7 +31,6 @@
                 <div id='general' class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 ">
 
                   <div class="col-span-5 md:col-span-5">
-
                     <label for="producto">Producto 
                       <span class="text-red-500 font-bold">*</span>
                     </label>
@@ -43,14 +42,10 @@
                       <input type="text" id="producto" name="producto" value="{{ $product->producto }}"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Producto" required>
-
-
                     </div>
                   </div>
                   {{-- <div class="col-span-5 md:col-span-2">
-
                     <label for="color">Color <span class="text-red-500 font-bold">*</span></label>
-
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="text-lg text-gray-500 dark:text-gray-400 fas fa-pen"></i>
@@ -58,14 +53,10 @@
                       <input type="text" id="color" name="color" value="{{ $product->color }}"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Color">
-
-
                     </div>
                   </div> --}}
                   <div class="col-span-5 md:col-span-5 mt-2">
-
                     <label for="extract">Extracto</label>
-
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="text-lg text-gray-500 dark:text-gray-400 fas fa-pen"></i>
@@ -73,10 +64,9 @@
                       <input type="text" id="extract" name="extract" value="{{ $product->extract }}"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Extracto">
-
-
                     </div>
                   </div>
+
                   <div class="col-span-5 md:col-span-5">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
@@ -95,21 +85,21 @@
                     </div>
                   </div>
 
-                  <div class="col-span-5 md:col-span-5">
+                  <div class="col-span-5 md:col-span-5 hidden">
                     <label for="no_incluye">No Incluye (Inmueble)</label>
                     <div class="relative mb-2 mt-2">
                       <x-form.quill id="no_incluye" :value="$product->no_incluye" />
                     </div>
                   </div>
 
-                  <div class="col-span-5 md:col-span-5">
+                  <div class="col-span-5 md:col-span-5 hidden">
                     <label for="disponible">Disponible (Condominio)</label>
                     <div class="relative mb-2 mt-2">
                       <x-form.quill id="disponible" :value="$product->disponible" />
                     </div>
                   </div>
 
-                  <div class="col-span-5 md:col-span-5">
+                  <div class="col-span-5 md:col-span-5 hidden">
                     <label for="no_disponible">No Disponible (Condominio)</label>
                     <div class="relative mb-2 mt-2">
                       <x-form.quill id="no_disponible" :value="$product->no_disponible" />
@@ -433,7 +423,7 @@
                   </label>
                 </div>
                 <div class="md:col-span-5 flex justify-between gap-4">
-                  <div class="w-full hidden">
+                  <div class="w-full">
                     <label for="precio">Precio 
                       {{-- <span class="text-red-500 font-bold">*</span> --}}
                     </label>
@@ -462,7 +452,7 @@
                   </div>
                 </div>
 
-                <div class="md:col-span-5 flex justify-between gap-4">
+                <div class="md:col-span-5 justify-between gap-4 hidden">
                   <div class="w-full">
                     <label for="preciolimpieza">Taza de Limpieza</label>
                     <div class="relative mb-2  mt-2">
@@ -474,9 +464,8 @@
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Taza de limpieza">
                     </div>
-
                   </div>
-                  <div class="w-full hidden">
+                  <div class="w-full">
                     <label for="precioservicio">Taza de Servicio</label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -491,7 +480,7 @@
                 </div>
 
 
-                <div class="md:col-span-5 mt-1">
+                <div class="md:col-span-5 mt-1 hidden">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="services">Servicios extras (Borre contenido para eliminar)</label>
                     <button type="button" id="AddService"
@@ -527,7 +516,7 @@
                   @endforeach
                 </div>
 
-                <div class="md:col-span-5 mt-1">
+                <div class="md:col-span-5 mt-1 hidden">
                   <div class="w-full">
                     <label for="precioservicio">Limite de personas</label>
                     <div class="relative mb-2  mt-2">
@@ -747,6 +736,7 @@
                   </div>
                 </div>
               </div>
+
                 {{-- <div class="md:col-span-3">
                   <label for="precio_reseller">Precio para revendedor</label>
                   <div class="relative mb-2  mt-2">
@@ -805,7 +795,26 @@
                   </div>
                 </div>
 
-                <div class="md:col-span-5 mt-2">
+                <div class="md:col-span-5">
+                  <label for="staff_id">Agente Inmobiliario 
+                    {{-- <span class="text-red-500 font-bold">*</span> --}}
+                  </label>
+                  <div class="relative mb-2  mt-2">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <i class="text-lg text-gray-500 dark:text-gray-400 fas fa-folder"></i>
+                    </div>
+                    <select id="staff_id" name="staff_id"
+                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option value="">Seleccionar Agente </option>
+                      @foreach ($agentes as $item)
+                        <option value="{{ $item->id }}" @if ($item->id == $product->staff_id) selected @endif>
+                          {{ $item->nombre }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+
+                {{-- <div class="md:col-span-5 mt-2">
                   <label for="airbnb_url">Ical Calendario Airbnb</label>
                   <div class="relative mb-2">
                       <div
@@ -817,7 +826,7 @@
                           class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="Ical Calendario Airbnb">
                   </div>
-                </div>
+                </div> --}}
 
                 {{-- <div class="md:col-span-">
                   <label for="subcategory_id">Subcategoria</label>
@@ -837,7 +846,7 @@
                   </div>
                 </div> --}}
 
-                <div class="md:col-span-5 mt-2">
+                {{-- <div class="md:col-span-5 mt-2">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="specifications">Especificaciones (Borre contenido para eliminar)</label>
                     <button type="button" id="AddEspecifiacion"
@@ -871,7 +880,7 @@
                       </div>
                     </div>
                   @endforeach
-                </div>
+                </div> --}}
 
 
                 {{-- <div class="md:col-span-5">
@@ -927,7 +936,6 @@
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
                   Inventario</h4>
                 <div class="md:col-span-5 flex justify-between gap-4">
-
                   <div class="w-full">
                     <label for="stock">Existencias</label>
                     <div class="relative mb-2  mt-2">
@@ -951,7 +959,6 @@
                         placeholder="Peso">
                     </div>
                   </div>
-
                 </div>
               </div> --}}
 
@@ -973,7 +980,6 @@
                         </label>
                       </li>
                     @endforeach
-
                   </ul>
                   <div>
                     <div class="relative mb-2  mt-2">

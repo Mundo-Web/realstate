@@ -15,4 +15,9 @@ class Staff extends Model
     'youtube',
     'twitter',
     'status'];
+
+    public function agente()
+    {
+        return $this->hasMany(Products::class, 'staff_id');
+    }
 }

@@ -22,12 +22,12 @@
           <table id="tabladatos" class="display text-lg" style="width:100%">
             <thead>
               <tr>
+                <th>Imagen</th>
                 <th>Nombre </th>
-                <th>cargo</th>
-                <th>facebook</th>
-                <th>instagram</th>
-                <th>youtube</th>
-                <th>twitter</th>
+                <th>Cargo</th>
+                <th>Celular</th>
+                <th>Email</th>
+                {{-- <th>twitter</th> --}}
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>
@@ -36,12 +36,12 @@
 
               @foreach ($staff as $item)
                 <tr>
+                  <td><div> <img src="{{asset($item->youtube)}}" class="object-cover max-w-[80px]" alt="" ></div></td>
                   <td>{{ $item->nombre }}</td>
                   <td>{{ $item->cargo }}</td>
                   <td>{{ $item->facebook }}</td>
                   <td>{{ $item->instagram }}</td>
-                  <td>{{ $item->youtube }}</td>
-                  <td>{{ $item->twitter }}</td>
+                  {{-- <td>{{ $item->twitter }}</td> --}}
                   <td>
                     <form method="POST" action="">
                       @csrf
@@ -53,7 +53,7 @@
                                           before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
                                           before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
                         id='{{ 'v_' . $item->id }}' data-field='visible' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->title }}' {{ $item->status == 1 ? 'checked' : '' }}>
+                        data-titleService='{{ $item->nombre }}' {{ $item->status == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
 
@@ -80,12 +80,12 @@
             </tbody>
             <tfoot>
               <tr>
+                <th>Imagen</th>
                 <th>Nombre </th>
-                <th>cargo</th>
-                <th>facebook</th>
-                <th>instagram</th>
-                <th>youtube</th>
-                <th>twitter</th>
+                <th>Cargo</th>
+                <th>Celular</th>
+                <th>Email</th>
+                {{-- <th>twitter</th> --}}
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>

@@ -17,6 +17,7 @@ use App\Models\Province;
 use App\Models\Specifications;
 use App\Models\SubCategory;
 use App\Models\Tag;
+use App\Models\Staff;
 use App\Models\Events;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -245,7 +246,8 @@ class ProductsController extends Controller
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
     $tags = Tag::where("status", "=", true)->get();
-    $categoria = Category::all();
+    $categoria = Category::where("status", "=", true)->get();
+    $agentes = Staff::all();
     $subcategories = SubCategory::all();
     $galery = [];
     $especificacion = [json_decode('{"tittle":"", "specifications":""}', false)];
@@ -254,7 +256,7 @@ class ProductsController extends Controller
     $provincias = DB::select('select * from provinces where active = ? order by 3', [1]);
     $departamentos = DB::select('select * from departments where active = ? order by 2', [1]);
 
-    return view('pages.products.save', compact('servicios','product', 'atributos', 'valorAtributo', 'categoria', 'tags', 'especificacion', 'subcategories', 'galery', 'distritos', 'provincias', 'departamentos'));
+    return view('pages.products.save', compact('agentes','servicios','product', 'atributos', 'valorAtributo', 'categoria', 'tags', 'especificacion', 'subcategories', 'galery', 'distritos', 'provincias', 'departamentos'));
   }
 
   public function synchronization(Request $request)
@@ -346,7 +348,8 @@ class ProductsController extends Controller
     $servicios = ExtraService::where("product_id", "=", $id)->get();
     if ($servicios->count() == 0) $servicios = [json_decode('{"service":"", "price":""}', false)];
     $tags = Tag::where('status', 1)->get();
-    $categoria = Category::all();
+    $categoria = Category::where("status", "=", true)->get();
+    $agentes = Staff::all();
     $subcategories = SubCategory::all();
     $valoresdeatributo = AttributeProductValues::where("product_id", "=", $id)->get();
     $galery = Galerie::where("product_id", "=", $id)->get();
@@ -397,7 +400,7 @@ class ProductsController extends Controller
     $provincias = Province::where('active', '=', 1)->where('department_id', $product->departamento_id)->get();
     $distritos  = District::where('active', '=', 1)->where('province_id', $product->provincia_id)->get();
 
-    return view('pages.products.save', compact('disabledDates','servicios','product', 'atributos', 'valorAtributo', 'tags', 'categoria', 'especificacion', 'subcategories', 'galery', 'valoresdeatributo', 'departamentos', 'provincias', 'distritos'));
+    return view('pages.products.save', compact('agentes','disabledDates','servicios','product', 'atributos', 'valorAtributo', 'tags', 'categoria', 'especificacion', 'subcategories', 'galery', 'valoresdeatributo', 'departamentos', 'provincias', 'distritos'));
   }
 
   private function saveImg(Request $request, string $field)
@@ -454,7 +457,7 @@ class ProductsController extends Controller
       $atributos = null;
       $tagsSeleccionados = $request->input('tags_id');
       // $valorprecio = $request->input('precio') - 0.1;
-
+      
       $request->validate([
         'producto' => 'required',
         //'precio' => 'min:0|required|numeric',
@@ -465,8 +468,7 @@ class ProductsController extends Controller
       $data['descuento'] = $data['descuento'] ?? 0;
       $data['preciolimpieza'] = $data['preciolimpieza'] ?? 0;
       $data['precioservicio'] = $data['precioservicio'] ?? 0;
-
-     
+      
 
       if ($request->hasFile('imagen')) {
         $data['imagen'] = $this->saveImg($request, 'imagen');
@@ -489,10 +491,9 @@ class ProductsController extends Controller
       // $data['imagen_2'] = $this->saveImg($request, 'imagen_2');
       // $data['imagen_3'] = $this->saveImg($request, 'imagen_3');
       // $data['imagen_4'] = $this->saveImg($request, 'imagen_4');
-        
+      
       foreach ($data as $key => $value) {
         if (strstr($key, '-')) {
-          //strpos primera ocurrencia que enuentre
           if (strpos($key, 'tittle-') === 0 || strpos($key, 'title-') === 0) {
             $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
             $especificaciones[$num]['tittle'] = $value; // Agregar el título al array asociativo
@@ -505,7 +506,6 @@ class ProductsController extends Controller
 
       foreach ($data as $key => $value) {
         if (strstr($key, '-')) {
-          //strpos primera ocurrencia que enuentre
           if (strpos($key, 'service-') === 0) {
             $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
             $extraservice[$num]['service'] = $value; // Agregar el título al array asociativo
@@ -515,21 +515,21 @@ class ProductsController extends Controller
           }
         }
       }
-
+      
       if (array_key_exists('destacar', $data)) {
         if (strtolower($data['destacar']) == 'on') $data['destacar'] = 1;
       }
+
       if (array_key_exists('recomendar', $data)) {
         if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 1;
       }
 
-      
       if (array_key_exists('mascota', $data)) {
         if (strtolower($data['mascota']) == 'on') $data['mascota'] = 1;
       }else{
         $data['mascota'] = 0;
       }
-
+      
       if (array_key_exists('mobiliado', $data)) {
         if (strtolower($data['mobiliado']) == 'on') $data['mobiliado'] = 1;
       }else{
@@ -539,11 +539,11 @@ class ProductsController extends Controller
       $cleanedData = Arr::where($data, function ($value, $key) {
         return !is_null($value);
       });
-
+      
       if (!isset($cleanedData['stock'])) {
          $cleanedData['stock'] = 0 ;
       }
-
+      
        $cleanedData['description'] = $data['description'];
       // $cleanedData['order'] = $data['order'];
        $cleanedData['extract'] = $data['extract'];
@@ -553,6 +553,9 @@ class ProductsController extends Controller
        $cleanedData['area'] = $data['area'];
        $cleanedData['pisos'] = $data['pisos'];
        $cleanedData['cochera'] = $data['cochera'];
+      //  $cleanedData['ocupada'] = $data['ocupada'];
+      //  $cleanedData['construida'] = $data['construida'];
+      //  $cleanedData['medidas'] = $data['medidas'];
        $cleanedData['movilidad'] = $data['movilidad'];
        $cleanedData['incluye'] = $data['incluye'];
        $cleanedData['no_incluye'] = $data['no_incluye'];
@@ -564,8 +567,8 @@ class ProductsController extends Controller
        $cleanedData['sku'] = $data['sku'];
        $cleanedData['latitud'] = $data['latitud'];
        $cleanedData['longitud'] = $data['longitud'];
-
-      $slug = strtolower(str_replace(' ', '-', $request->producto . '-' . $request->color));
+        
+       $slug = strtolower(str_replace(' ', '-', $request->producto . '-' . $request->color));
 
       if (Category::where('slug', $slug)->exists()) {
         $slug .= '-' . rand(1, 1000);
@@ -574,28 +577,25 @@ class ProductsController extends Controller
       // Busca el producto, si existe lo actualiza, si no lo crea
       $producto = Products::find($request->id);
       if ($producto) {
-        
-          
-          if ($producto->sku !== $cleanedData['sku']) {
-            // Obtener la ruta actual del archivo iCal
-            $oldCalendarPath = public_path('storage/calendars/' . $producto->sku . '.ics');
-            $newCalendarPath = public_path('storage/calendars/' . $cleanedData['sku'] . '.ics');
-            // Renombrar el archivo iCal si existe
-            if (File::exists($oldCalendarPath)) {
-                File::move($oldCalendarPath, $newCalendarPath);
-            }
-            // Actualizar la URL del calendario en los datos limpios
-            $cleanedData['calendar_url'] = 'storage/calendars/' . $cleanedData['sku'] . '.ics';
+          // if ($producto->sku !== $cleanedData['sku']) {
+          //   // Obtener la ruta actual del archivo iCal
+          //   $oldCalendarPath = public_path('storage/calendars/' . $producto->sku . '.ics');
+          //   $newCalendarPath = public_path('storage/calendars/' . $cleanedData['sku'] . '.ics');
+          //   // Renombrar el archivo iCal si existe
+          //   if (File::exists($oldCalendarPath)) {
+          //       File::move($oldCalendarPath, $newCalendarPath);
+          //   }
+          //   // Actualizar la URL del calendario en los datos limpios
+          //   $cleanedData['calendar_url'] = 'storage/calendars/' . $cleanedData['sku'] . '.ics';
             
-            $tieneReservas = DB::table('events')->where('product_id', $producto->id)->exists();
+          //   $tieneReservas = DB::table('events')->where('product_id', $producto->id)->exists();
            
-            if ($tieneReservas) {
-              DB::table('events')
-                ->where('product_id', $producto->id)
-                ->update(['sku' => $cleanedData['sku']]);
-            }
-          }
-
+          //   if ($tieneReservas) {
+          //     DB::table('events')
+          //       ->where('product_id', $producto->id)
+          //       ->update(['sku' => $cleanedData['sku']]);
+          //   }
+          // }
           $cleanedData['max_stock'] = $this->gestionarMaxStock($producto->max_stock, $cleanedData['stock']);
           $producto->update($cleanedData);
       } else {
@@ -738,13 +738,6 @@ class ProductsController extends Controller
   //   $tagsSeleccionados = $request->input('tags_id');
   //   $data = $request->all();
   //   $atributos = null;
-
-
-
-
-
-
-
   //   $request->validate([
   //     'producto' => 'required',
   //   ]);

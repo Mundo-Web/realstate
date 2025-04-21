@@ -12,7 +12,7 @@
 
 
       <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-        <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Estadísticas</h2>
+        <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Valores</h2>
       </header>
       <div class="p-3">
 
@@ -38,8 +38,8 @@
                   <td>{{$logo->order}}</td>
                   {{-- <td class="dark:bg-slate-800"><img class="w-20 object-contain mx-auto" src="{{ asset($logo->url_image) }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"/></td>
                   <td class="dark:bg-slate-800"><img class="w-20 object-contain mx-auto" src="{{ asset($logo->url_image2) }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"/></td> --}}
-                  <td class="dark:bg-slate-800">{{ $logo->title }}</td>
-                  <td class="dark:bg-slate-800">{{ $logo->description }}</td>
+                  <td class="">{{ $logo->title }}</td>
+                  <td class="">{{ $logo->description }}</td>
                    {{-- <td class="">
                     <form method="POST" action="">
                       @csrf

@@ -41,6 +41,7 @@ use App\Models\TermsAndCondition;
 use App\Models\User;
 use App\Models\UserDetails;
 use App\Models\Wishlist;
+use App\Models\Staff;
 use Attribute;
 use Carbon\Carbon;
 use Culqi\Culqi;
@@ -98,7 +99,7 @@ class IndexController extends Controller
 
     $popups = Popup::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-   
+    $personal = Staff::where('status', '=', 1)->get();
     $benefit = Strength::where('status', '=', 1)->get();
     $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
     $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -118,7 +119,7 @@ class IndexController extends Controller
       return $precio > 0; // Excluir valores no válidos
     });
     $limite = $limitepersonas->max();
-  return view('public.index', compact('distritosParaFiltro','limite','distritosfiltro','textoshome','general','url_env', 'popups', 'banners', 'blogs', 'categoriasAll', 'productosPupulares', 'ultimosProductos', 'productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'categoriasindex','estadisticas'));
+  return view('public.index', compact('personal', 'distritosParaFiltro','limite','distritosfiltro','textoshome','general','url_env', 'popups', 'banners', 'blogs', 'categoriasAll', 'productosPupulares', 'ultimosProductos', 'productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'categoriasindex','estadisticas'));
   }
 
   public function catalogo(Request $request, string $id_cat = null)
@@ -422,10 +423,10 @@ class IndexController extends Controller
     ])->rootView('app');
   }
   public function nosotros(){
-    $nosotros = AboutUs::all();
+    $destacados = AboutUs::where('status', '=', 1)->get();
     $nosotrostextos = NosotrosView::first();
     $estadisticas = ClientLogos::where('status', '=', 1)->where('visible', '=', 1)->get();
-    return view('public.nosotros' , compact('nosotros','nosotrostextos','estadisticas'));
+    return view('public.nosotros' , compact('destacados','nosotrostextos','estadisticas'));
   }
 
 

@@ -14,12 +14,9 @@ class StrengthSeeder extends Seeder
     public function run(): void
     {
         $beneficios = [
-
-            ['titulo' => 'Cuidamos tu departamento como si fuese  nuestro', 'descripcionshort' => '¡Somos aliados confiables!'],
-            ['titulo' => 'Creación de anuncios', 'descripcionshort' => 'Publicamos y  optimizamos tu propiedad en distintas  plataformas de alquiler.'],
-            ['titulo' => 'Captación y contacto con huéspedes', 'descripcionshort' => 'Gestionamos las reservas y la comunicación  con los huéspedes.'],
-            ['titulo' => 'Limpieza y mantenimiento', 'descripcionshort' => 'Nos encargamos  de que todo esté en perfecto estado para  recibir al siguiente huésped.']
-
+            ['titulo' => 'Beneficio o valor tres', 'descripcionshort' => 'Donec vehicula purus at diam facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec.'],
+            ['titulo' => 'Beneficio o valor tres', 'descripcionshort' => 'Donec vehicula purus at diam facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec.'],
+            ['titulo' => 'Beneficio o valor tres', 'descripcionshort' => 'Donec vehicula purus at diam facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec.']
         ];
 
         foreach ($beneficios as $key => $beneficio) {

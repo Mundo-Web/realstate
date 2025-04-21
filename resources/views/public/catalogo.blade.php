@@ -2,7 +2,101 @@
 @section('title', 'Productos | ' . config('app.name', 'Laravel'))
 
 @section('css_importados')
+<style>
+    .customselect + .select2-container--default .select2-selection--single {
+        border: 1px solid #262626 !important;
+        border-radius: 0.5rem !important;
+        padding: 15px 15px !important;
+        background-color: #1A1A1A !important;
+        color: white !important;
+        
+        
+    }
 
+    .customselect + .select2-container--default .select2-selection--single {
+        box-shadow: none !important;
+    }
+
+
+    .customselect + .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: white !important;
+        font-family: "PlusJakartaSans_Medium" !important;
+        line-height: inherit !important;
+    }
+
+    .customselect + .select2-container--default .select2-selection--single .select2-selection__arrow b {
+        display: none;
+    }
+
+    .typedepart .customselect + .select2-container--default .select2-selection--single .select2-selection__arrow::after {
+        font-family: 'Font Awesome 5 Free';
+        content: '\f078'; 
+        font-weight: 900;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        /* Color */    
+        background: linear-gradient(90deg, #C8A049 0%, #E9D151 55.42%, #BE913E 93.5%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent; 
+    }
+
+    .location .customselect + .select2-container--default .select2-selection--single .select2-selection__arrow::after {
+        font-family: 'Font Awesome 5 Free';
+        content: '\f0ac'; 
+        font-weight: 900;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        /* Color */    
+        background: linear-gradient(90deg, #C8A049 0%, #E9D151 55.42%, #BE913E 93.5%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent; 
+    }
+
+    .select2-dropdown--below{
+        background-color: #1A1A1A !important;
+        border: 1px solid #262626 !important;
+        border-radius: 0.5rem !important;
+        padding: 15px !important;
+    }
+
+    .select2-results__option{
+        color: white !important;
+        font-family: "PlusJakartaSans_Medium" !important;
+        font-size: 14px !important;
+    }
+    .select2-search__field{
+        background-color: #1A1A1A !important;
+        border: 1px solid #262626 !important;
+        border-radius: 0.5rem !important;
+        padding: 15px !important;
+        margin-bottom: 10px !important;
+    }
+    .select2-search__field:focus{
+        border: 1px solid #262626 !important;
+        border-radius: 0.5rem !important;
+        outline: none !important;
+        color: white !important;
+        font-family: "PlusJakartaSans_Medium" !important;
+        font-size: 14px !important;
+    }
+
+    .select2-results__option{
+        padding: 10px 10px !important;
+    }
+
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
+        background: linear-gradient(90deg, #C8A049 0%, #E9D151 55.42%, #BE913E 93.5%);
+        color: #141414 !important;
+    }
+</style>
 
 @stop
 
@@ -121,15 +215,62 @@
 
         </section> --}}
         <section class="px-[5%] xl:px-[8%] pt-10 lg:pt-16 ">
-            <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-[#191919] rounded-3xl overflow-hidden">
+            <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-[#191919] rounded-3xl overflow-hidden py-8">
                 
-                <div class="h-full w-full md:w-3/5  bg-opacity-70 rounded-3xl py-8 px-10 ">
+                <div class="h-full w-full md:w-1/2 bg-opacity-70 rounded-3xl px-5 lg:px-10 2xl:px-14">
                     <div class="max-w-lg 2xl:max-w-none flex flex-col gap-5">
                         <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-[44px] leading-tight 2xl:text-5xl">Alquila o vende tu propiedad <span class="text-[#C8A049]">fácilmente</span> </h2>
                         <p class="font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Una gran plataforma para vender o incluso alquilar tus propiedades sin comisiones.</p>
                     </div>
                 </div>
                 
+                <div class="w-full md:w-1/2 max-w-xl 2xl:max-w-2xl px-3 lg:px-10 2xl:px-14">
+                    <div class="bg-[#141414] rounded-xl overflow-hidden">
+                        
+                        <div class="grid grid-cols-2 text-center text-base xl:text-lg 2xl:text-xl font-PlusJakartaSans_Medium">
+                            <a class="py-4 px-6 bg-[#141414] border-b border-b-[#C8A049] tab active" data-tab="venta">
+                                <p class="bg-gradient-to-r  from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Venta</p>
+                            </a>
+                            <a class="py-4 px-6 bg-[#141414] text-white" data-tab="alquiler">
+                                <p class="bg-gradient-to-r  from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Alquiler</p>
+                            </a>
+                        </div>
+
+                       
+                        <div class="p-4 lg:p-6 space-y-6">
+
+                            <form id="formbusqueda" class="space-y-4">
+                                <input type="hidden" id="tipoOperacion" name="tipoOperacion" value="venta">
+                                
+                                <div class="flex flex-col gap-1 typedepart">
+                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione el tipo de propiedad</label>
+                                    <select class="customselect w-full focus:ring-0" name="type">
+                                        <option value="1">Casa</option>
+                                        <option value="2">Departamento</option>
+                                        <option value="3">Terreno</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex flex-col gap-1 location">
+                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Ubicación</label>
+                                    <select class="customselect w-full focus:ring-0" name="type">
+                                        <option value="1">Lima, Lima Metropolitana - Ate</option>
+                                        <option value="2">Lima, Lima Metropolitana - Miraflores</option>
+                                        <option value="3">Lima, Lima Metropolitana - La Molina</option>
+                                        <option value="3">Lima, Lima Metropolitana - La Montes</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="flex flex-col gap-3 pt-2">
+                                    <button type="submit" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
+                                        Buscar propiedad
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -180,7 +321,37 @@
 
 
   <script src="{{ asset('js/storage.extend.js') }}"></script>
+  <script>
+        const $select = $(".customselect");
+            
+        $select.select2({
+            placeholder: "Selecciona un tipo de propiedad",
+            width: '100%',
+            dropdownAutoWidth: true,
+            language: {
+                 noResults: function() {
+                    return "No se encontró el tipo de propiedad";
+                 }
+            }
+        });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabVenta = document.querySelector('[data-tab="venta"]');
+            const tabAlquiler = document.querySelector('[data-tab="alquiler"]');
+            const tipoOperacionInput = document.getElementById('tipoOperacion');
+            
+            function cambiarPestaña(event) {
+                event.preventDefault();
+                tabVenta.classList.remove('active', 'border-b', 'border-b-[#C8A049]');
+                tabAlquiler.classList.remove('active', 'border-b', 'border-b-[#C8A049]');
+                this.classList.add('active', 'border-b', 'border-b-[#C8A049]');
+                tipoOperacionInput.value = this.dataset.tab;
+            }
+            
+            tabVenta.addEventListener('click', cambiarPestaña);
+            tabAlquiler.addEventListener('click', cambiarPestaña);
+        });
+  </script>
   <script>
     $(document).ready(function () {
         // Supongamos que tienes las fechas de llegada y salida como variables, por ejemplo, de PHP o JavaScript

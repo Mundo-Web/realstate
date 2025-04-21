@@ -100,6 +100,18 @@
             }
 
         }
+
+        .swiper-principal .swiper-pagination-bullet {
+            width: 14px;
+            height: 6px;
+            border-radius: 6px;
+            background-color: #4D4D4D!important;
+            
+        }
+
+        .swiper-principal .swiper-pagination-bullet-active {
+            background: linear-gradient(90deg, #C8A049 0%, #E9D151 55.42%, #BE913E 93.5%) !important;   
+        }
     </style>
 
     @php
@@ -127,7 +139,7 @@
     {{-- @component('components.breadcrumbs', ['breadcrumbs' => $breadcrumbs])
   @endcomponent --}}
 
-    <main class="font-PlusJakartaSans_Regular py-10 bg lg:py-16 bg-cover" id="mainSection" style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
+    <main class="font-PlusJakartaSans_Regular py-10 bg lg:py-12 bg-cover" id="mainSection" style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
         @csrf
 
         {{-- <section class="w-full px-[5%] ">
@@ -285,9 +297,84 @@
             </div>
         </section> --}}
 
-        <section class="flex flex-row gap-1 lg:gap-3 w-full px-[5%] relative" aria-label="Image Gallery">
+        <section class="w-full px-[5%]" aria-label="Image Gallery">
 
-            <div class="w-1/3 galeriatotal ">
+            <div>
+                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper principal">
+                    <div class="swiper-wrapper">
+                            
+                        @foreach ($product->galeria as $image)
+                            <div class="swiper-slide">
+                                <img class="w-full h-full rounded-2xl xl:rounded-3xl max-h-[450px] 2xl:max-h-[600px] object-cover" src="{{asset($image->imagen)}}" />
+                            </div>
+                        @endforeach
+                            <div class="swiper-slide">
+                                <img class="w-full h-full rounded-2xl xl:rounded-3xl max-h-[450px] 2xl:max-h-[600px] object-cover" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';" src="{{asset($product->imagen)}}" />
+                            </div>
+                    </div>
+                </div>
+
+                <div thumbsSlider="" class="swiper cards mt-7">
+                    <div class="swiper-wrapper">
+                       
+                      @foreach ($product->galeria as $image)
+                        <div class="swiper-slide">
+                            <img class="cursor-pointer rounded-[6px] sm:rounded-xl w-full h-full max-h-[80px] object-cover" src="{{asset($image->imagen)}}" />
+                        </div>
+                      @endforeach
+                        <div class="cursor-pointer swiper-slide">
+                            <img class="rounded-[6px] sm:rounded-xl w-full h-full max-h-[80px] object-cover" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';" src="{{asset($product->imagen)}}" /> />
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-row gap-2 items-center justify-center mt-5">
+                    <div class="flex flex-row items-center justify-center gap-1">
+                        <div class="swiper-principal-prev">
+                            <div class="p-1 rounded-full aspect-square border border-[#4d4d4d]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4004 11.9998C20.4004 12.4969 19.9974 12.8998 19.5004 12.8998L6.73489 12.8998L11.7242 17.6511C12.0825 17.9956 12.0937 18.5653 11.7491 18.9236C11.4046 19.2819 10.8349 19.2931 10.4766 18.9486L3.87659 12.6486C3.70012 12.4789 3.60039 12.2446 3.60039 11.9998C3.60039 11.755 3.70012 11.5207 3.87659 11.3511L10.4766 5.05106C10.8349 4.70654 11.4046 4.71771 11.7491 5.07601C12.0937 5.4343 12.0825 6.00404 11.7242 6.34856L6.73489 11.0998L19.5004 11.0998C19.9974 11.0998 20.4004 11.5027 20.4004 11.9998Z" fill="#808080"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="swiper-principal -mt-1"></div>
+                        <div class="swiper-principal-next">
+                            <div class="p-1 rounded-full aspect-square border border-[#4d4d4d]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.59961 12.0002C3.59961 11.5031 4.00255 11.1002 4.49961 11.1002L17.2651 11.1002L12.2758 6.34894C11.9175 6.00443 11.9063 5.43469 12.2509 5.0764C12.5954 4.7181 13.1651 4.70693 13.5234 5.05144L20.1234 11.3514C20.2999 11.5211 20.3996 11.7554 20.3996 12.0002C20.3996 12.245 20.2999 12.4793 20.1234 12.6489L13.5234 18.9489C13.1651 19.2935 12.5954 19.2823 12.2509 18.924C11.9063 18.5657 11.9175 17.996 12.2758 17.6514L17.2651 12.9002L4.49961 12.9002C4.00255 12.9002 3.59961 12.4973 3.59961 12.0002Z" fill="#808080"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <script>
+                var swiperf = new Swiper(".cards", {
+                  loop: true,
+                  spaceBetween: 10,
+                  slidesPerView: 7,
+                  freeMode: true,
+                  watchSlidesProgress: true,
+                });
+                var swiper2 = new Swiper(".principal", {
+                  loop: true,
+                  spaceBetween: 10,
+                  navigation: {
+                    nextEl: ".swiper-principal-next",
+                    prevEl: ".swiper-principal-prev",
+                  },
+                  pagination: {
+                    el: ".swiper-principal",
+                    clickable: true,
+                  },
+                  thumbs: {
+                    swiper: swiperf,
+                  },
+                });
+            </script>
+
+            {{-- <div class="w-1/3 galeriatotal ">
                 @if ($product->imagen_2)
                     <img id="collage1_previewer" loading="lazy" src="{{ asset($product->imagen_2) }}"
                         class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 1" />
@@ -295,9 +382,9 @@
                     <img id="collage1_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
                         class="object-cover w-full rounded-xl aspect-[0.7]" />
                 @endif
-            </div>
+            </div> --}}
 
-            <div class="flex flex-col  w-1/3 gap-1 lg:gap-3 galeriatotal ">
+            {{-- <div class="flex flex-col  w-1/3 gap-1 lg:gap-3 galeriatotal ">
                 @if ($product->imagen_3)
                     <img id="collage2_previewer" loading="lazy" src="{{ asset($product->imagen_3) }}"
                         class="cursor-pointer object-cover flex-1 w-full rounded-xl aspect-[1.45]" alt="Gallery image 2" />
@@ -313,9 +400,9 @@
                     <img id="collage3_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
                         class="object-cover flex-1 w-full rounded-xl aspect-[1.45]" />
                 @endif
-            </div>
+            </div> --}}
 
-            <div class="w-1/3 galeriatotal">
+            {{-- <div class="w-1/3 galeriatotal">
                 @if ($product->image_texture)
                     <img id="collage4_previewer" loading="lazy" src="{{ asset($product->image_texture) }}"
                         class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 4" />
@@ -323,12 +410,7 @@
                     <img id="collage4_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
                         class="object-cover w-full rounded-xl aspect-[0.7]" />
                 @endif
-            </div>
-        </section>
-
-        <section class="galeriatotal flex flex-row justify-start w-full px-[5%] mt-5 relative">
-            <div><a class="bg-[#006258] text-white px-6 py-3 md:py-4 rounded-3xl text-sm font-FixelText_Semibold">Ver todas
-                    las imágenes</a></div>
+            </div> --}}
         </section>
 
         <section class="flex flex-col lg:flex-row gap-10 justify-between items-start px-[5%] mt-8 lg:mt-16">
@@ -339,7 +421,7 @@
                         <nav
                             class="flex flex-wrap gap-10 justify-between items-start w-full text-base whitespace-nowrap min-h-[24px]">
                             <ul class="flex overflow-hidden items-center list-none gap-1 font-PlusJakartaSans_Regular">
-                                <li class="self-stretch my-auto text-white">Lima, Lima, Los Olivos</li>
+                                <li class="self-stretch my-auto text-white normal-case">{{$departamento->description ?? "S/Region"}}, {{$provincia->description ?? "S/Provincia"}}, {{$distrito->description ?? "S/Distrito"}}</li>
                             </ul>
                             <button onclick="copiarEnlace()" class="flex items-center justify-center">
                                <i class="fa-solid fa-share object-contain text-xl aspect-square text-white"></i>
@@ -376,7 +458,7 @@
 
                             <div class="flex flex-col md:flex-row gap-3 md:gap-6 md:items-center">
                               <div>
-                                  <h2 class="font-PlusJakartaSans_Medium text-lg lg:text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">S/. 878,400.00 - USD 240,000.00</h2>
+                                  <h2 class="font-PlusJakartaSans_Medium text-lg lg:text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">S/. {{$product->precio}} - USD {{$product->precio * 3.5}}</h2>
                               </div>
                               @if ($product->sku)
                                   <div
@@ -516,26 +598,31 @@
                             </div>
                         @endif
 
-                        <div class="flex flex-col gap-1 items-center min-w-[70px]">
-                            <img loading="lazy" src="{{ asset('images/svg/rs_ocupada.svg') }}"
-                                class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
-                            <p class="text-[13px]">Área Ocupada</p>    
-                            <p class="text-base">60.00 m²</p>
-                        </div>
+                        @if (!empty($product->ocupada))
+                            <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_ocupada.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                                <p class="text-[13px]">Área Ocupada</p>    
+                                <p class="text-base">{{$product->ocupada}} m²</p>
+                            </div>
+                        @endif
 
-                        <div class="flex flex-col gap-1 items-center min-w-[70px]">
-                            <img loading="lazy" src="{{ asset('images/svg/rs_construida.svg') }}"
-                                class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
-                            <p class="text-[13px]">Área Construida</p>    
-                            <p class="text-base">60.00 m²</p>
-                        </div>
-
-                        <div class="flex flex-col gap-1 items-center min-w-[70px]">
-                            <img loading="lazy" src="{{ asset('images/svg/rs_medidas.svg') }}"
-                                class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
-                            <p class="text-[13px]">Medidas</p>    
-                            <p class="text-base">0x0</p>
-                        </div>
+                        @if (!empty($product->construida))
+                            <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_construida.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                                <p class="text-[13px]">Área Construida</p>    
+                                <p class="text-base">{{$product->construida}} m²</p>
+                            </div>
+                        @endif
+                        @if (!empty($product->medidas))
+                            <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_medidas.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                                <p class="text-[13px]">Medidas</p>    
+                                <p class="text-base">{{$product->medidas}}</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -552,36 +639,36 @@
 
                         <div class="flex flex-col">
                           <h2 class="font-PlusJakartaSans_Medium text-white text-lg xl:text-2xl 2xl:text-3xl flex flex-row justify-start items-center gap-2">
-                            Carlos Soria 
+                            {{$product->staff->nombre ?? "Agente"}}
                           </h2>
                           <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
-                              Agente inmobiliario
+                            {{$product->staff->cargo ?? "Agente Inmobiliario"}}
                           </p>
                         </div>
 
                         <div class="w-full flex flex-col justify-center items-center gap-5 p-5 rounded-xl border border-[#333131]">
                           <div class="flex flex-col justify-center items-center">
                               <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
-                                ID. 45467757
+                                ID. {{$product->staff->twitter ?? "STAFF ID"}}
                               </p>
                               <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
-                                csoria@mprealstate.com.pe
+                                {{$product->staff->instagram ?? "STAFF EMAIL"}}
                               </p>
                               <p class="font-PlusJakartaSans_Regular text-white text-sm xl:text-base 2xl:text-xl">
-                                Celular: 995 402 072
+                                Celular: {{$product->staff->facebook ?? "STAFF PHONE"}}
                               </p>
                           </div>
                           <div class="flex flex-row justify-end gap-3">
-                                <a href="#">
-                                <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                            <path d="M4.85938 8.26986C4.85938 5.52 4.85937 4.14507 5.71365 3.2908C6.56792 2.43652 7.94285 2.43652 10.6927 2.43652C13.4425 2.43652 14.8175 2.43652 15.6718 3.2908C16.526 4.14507 16.526 5.52 16.526 8.26986V13.2699C16.526 16.0197 16.526 17.3946 15.6718 18.2489C14.8175 19.1032 13.4425 19.1032 10.6927 19.1032C7.94285 19.1032 6.56792 19.1032 5.71365 18.2489C4.85937 17.3946 4.85938 16.0197 4.85938 13.2699V8.26986Z" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
-                                            <path d="M9.85938 16.6025H11.526" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.19238 2.43652L8.26655 2.88154C8.42728 3.84593 8.50765 4.32813 8.83837 4.62156C9.18338 4.92764 9.67247 4.93652 10.6924 4.93652C11.7123 4.93652 12.2014 4.92764 12.5464 4.62156C12.8771 4.32813 12.9575 3.84593 13.1182 2.88154L13.1924 2.43652" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
-                                        </svg>
-                                </div>
+                                <a onclick="copyPhone('{{$product->staff->facebook}}'); return false;">
+                                    <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                                <path d="M4.85938 8.26986C4.85938 5.52 4.85937 4.14507 5.71365 3.2908C6.56792 2.43652 7.94285 2.43652 10.6927 2.43652C13.4425 2.43652 14.8175 2.43652 15.6718 3.2908C16.526 4.14507 16.526 5.52 16.526 8.26986V13.2699C16.526 16.0197 16.526 17.3946 15.6718 18.2489C14.8175 19.1032 13.4425 19.1032 10.6927 19.1032C7.94285 19.1032 6.56792 19.1032 5.71365 18.2489C4.85937 17.3946 4.85938 16.0197 4.85938 13.2699V8.26986Z" stroke="#141414" stroke-width="1.25" stroke-linecap="round"/>
+                                                <path d="M9.85938 16.6025H11.526" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8.19238 2.43652L8.26655 2.88154C8.42728 3.84593 8.50765 4.32813 8.83837 4.62156C9.18338 4.92764 9.67247 4.93652 10.6924 4.93652C11.7123 4.93652 12.2014 4.92764 12.5464 4.62156C12.8771 4.32813 12.9575 3.84593 13.1182 2.88154L13.1924 2.43652" stroke="#141414" stroke-width="1.25" stroke-linejoin="round"/>
+                                            </svg>
+                                    </div>
                                 </a>
-                                <a href="#">
+                                <a onclick="copyEmail('{{$product->staff->instagram}}'); return false;">
                                     <div class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center"> 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                                             <path d="M6.89746 12.0192H13.5641M6.89746 7.85254H10.2308" stroke="#141414" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -672,7 +759,55 @@
     </div>
 
 @section('scripts_importados')
+<script>
+    function copyEmail(email) {
+        navigator.clipboard.writeText(email).then(function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Correo copiado',
+                text: email,
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                toast: true,
+                position: 'top-end'
+            });
+        }, function(err) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo copiar el correo',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            console.error('Error al copiar el correo: ', err);
+        });
+    }
 
+    function copyPhone(phone) {
+        navigator.clipboard.writeText(phone).then(function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Telefono copiado',
+                text: phone,
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                toast: true,
+                position: 'top-end'
+            });
+        }, function(err) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo copiar el telefono',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            console.error('Error al copiar el telefono: ', err);
+        });
+    }
+</script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const latitude = parseFloat("{{ $product->latitud }}") ?? 0;

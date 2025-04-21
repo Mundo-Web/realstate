@@ -52,145 +52,83 @@
         </section>
 
 
-        {{-- @if ($benefit->count() > 0) --}}
-        <section
-            class="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:items-start justify-center px-[5%] xl:px-[8%] py-8 lg:py-16 w-full bg-[#141414]">
+        @if ($estadisticas->count() > 0)
+            <section
+                class="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:items-start justify-center px-[5%] xl:px-[8%] py-8 lg:py-16 w-full bg-[#141414]">
 
-            <div class="flex flex-col w-full lg:w-1/2">
-                <div class="flex flex-col relative gap-3 w-full items-start">
+                <div class="flex flex-col w-full lg:w-1/2">
+                    <div class="flex flex-col relative gap-3 w-full items-start">
+                        <h2
+                            class="font-PlusJakartaSans_Medium text-white text-3xl md:text-4xl md:text-[44px] leading-tight 2xl:text-5xl">
+                            Revisa nuestros <span class="text-[#C8A049]">valores</span> </h2>
+                        <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
+                            facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec. Donec vehicula purus
+                            at diam facilisis.</p>
+                        <div class="flex flex-col justify-start mt-3">
+                            <a href="/catalogo"
+                                class="max-w-[250px] text-center text-sm 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 2xl:px-6 py-3 leading-normal rounded-xl">
+                                Explorar propiedades
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col w-full lg:w-1/2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 2xl:gap-10  items-start w-full">
+                        @foreach ($estadisticas as $estadistica)
+                            <article class="flex flex-col gap-3 p-4 bg-[#1E1E1E] rounded-xl">
+                                <img loading="lazy" src="{{ asset('images/svg/icono_c.svg') }}" class="object-contain w-14" />
+                                <div class="flex flex-col gap-2 2xl:gap-4 w-full">
+                                    <h3
+                                        class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
+                                        {{$estadistica->title}}
+                                    </h3>
+                                    <p
+                                        class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal xl:h-24 2xl:h-28">
+                                        {{$estadistica->description}}
+                                    </p>
+                                </div>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
+
+        @if ($destacados->count() > 0)
+            <section class="px-[5%] xl:px-[8%] pb-8 lg:pb-16 flex flex-col gap-10 bg-[#141414]">
+                <div
+                    class="flex flex-col gap-3 md:gap-5 items-center justify-center text-center max-w-3xl 2xl:max-w-4xl mx-auto">
                     <h2
-                        class="font-PlusJakartaSans_Medium text-white text-3xl md:text-4xl md:text-[44px] leading-tight 2xl:text-5xl">
-                        Revisa nuestros <span class="text-[#C8A049]">valores</span> </h2>
-                    <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
-                        facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec. Donec vehicula purus
-                        at diam facilisis.</p>
-                    <div class="flex flex-col justify-start mt-3">
-                        <a href="/nosotros"
-                            class="max-w-[200px] text-center text-sm 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 2xl:px-6 py-3 leading-normal rounded-xl">
-                            Explorar propiedades
-                        </a>
-                    </div>
+                        class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] lg:text-5xl 2xl:text-6xl leading-tight">
+                        Revisa nuestros  <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> valores </span> 
+                    </h2>
+                    <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">
+                        Nuestra historia es de continuo crecimiento y evolución. Comenzamos como un pequeño equipo con grandes sueños, decididos a crear una plataforma inmobiliaria que trascendiera lo común.
+                    </p>
                 </div>
-            </div>
 
-            <div class="flex flex-col w-full lg:w-1/2">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 2xl:gap-10  items-start w-full">
-
-                    <article class="flex flex-col gap-3 p-4 bg-[#1E1E1E] rounded-xl">
-                        <img loading="lazy" src="{{ asset('images/svg/icono_c.svg') }}" class="object-contain w-14" />
-                        <div class="flex flex-col gap-2 2xl:gap-4 w-full">
-                            <h3
-                                class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                                Confianza
-                            </h3>
-                            <p
-                                class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal xl:h-24 2xl:h-28">
-                                La confianza es la piedra angular de toda transacción inmobiliaria exitosa.
-                            </p>
-                        </div>
-                    </article>
-
-                    <article class="flex flex-col gap-3 p-4 bg-[#1E1E1E] rounded-xl">
-                        <img loading="lazy" src="{{ asset('images/svg/icono_c.svg') }}" class="object-contain w-14" />
-                        <div class="flex flex-col gap-2 2xl:gap-4 w-full">
-                            <h3
-                                class="text-xl md:text-2xl 2xl:text-3xl font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                                Excelencia
-                            </h3>
-                            <p
-                                class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal xl:h-24 2xl:h-28">
-                                Nos ponemos el listón muy alto. Desde las propiedades que  listamos hasta los servicios que brindamos.
-                            </p>
-                        </div>
-                    </article>
-
-                    <article class="flex flex-col gap-3 p-4 bg-[#1E1E1E] rounded-xl">
-                        <img loading="lazy" src="{{ asset('images/svg/icono_c.svg') }}" class="object-contain w-14" />
-                        <div class="flex flex-col gap-2 2xl:gap-4 w-full">
-                            <h3
-                                class="text-xl md:text-2xl 2xl:text-3xl font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                                Centrado en el cliente
-                            </h3>
-                            <p
-                                class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal xl:h-24 2xl:h-28">
-                                Tus sueños y necesidades están en el centro de nuestro universo. Escuchamos, entendemos.
-                            </p>
-                        </div>
-                    </article>
-
-                    <article class="flex flex-col gap-3 p-4 bg-[#1E1E1E] rounded-xl">
-                        <img loading="lazy" src="{{ asset('images/svg/icono_c.svg') }}" class="object-contain w-14" />
-                        <div class="flex flex-col gap-2 2xl:gap-4 w-full">
-                            <h3
-                                class="text-xl md:text-2xl 2xl:text-3xl font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                                Nuestro compromiso
-                            </h3>
-                            <p
-                                class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal xl:h-24 2xl:h-28">
-                                Estamos dedicados a brindarle el más alto nivel de servicio, profesionalismo y soporte.
-                            </p>
-                        </div>
-                    </article>
-
-
-                </div>
-            </div>
-        </section>
-        {{-- @endif --}}
-
-
-        <section class="px-[5%] xl:px-[8%] pb-8 lg:pb-16 flex flex-col gap-10 bg-[#141414]">
-            <div
-                class="flex flex-col gap-3 md:gap-5 items-center justify-center text-center max-w-3xl 2xl:max-w-4xl mx-auto">
-                <h2
-                    class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] lg:text-5xl 2xl:text-6xl leading-tight">
-                    Revisa nuestros  <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> valores </span> 
-                </h2>
-                <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">
-                    Nuestra historia es de continuo crecimiento y evolución. Comenzamos como un pequeño equipo con grandes sueños, decididos a crear una plataforma inmobiliaria que trascendiera lo común.
-                </p>
-            </div>
-
-            <div class="w-full">
-                <div class="swiper valores">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-6">
-                                <img loading="lazy" src="{{ asset('images/img/rs_valores.png') }}" class="rounded-xl overflow-hidden h-full w-full object-cover aspect-[4/3]" />
-                                 <h2 class="font-PlusJakartaSans_Medium text-white text-xl lg:text-2xl 2xl:text-3xl leading-tight text-center">
-                                    Más de 3 años de excelencia
-                                 </h2>
-                                <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-lg 3xl:text-xl text-center line-clamp-5">
-                                       Con más de 3 años en la industria, hemos acumulado una gran cantidad de conocimiento y experiencia, convirtiéndonos en un recurso de referencia...
-                                </p>
-                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-6">
-                                <img loading="lazy" src="{{ asset('images/img/rs_valores.png') }}" class="rounded-xl overflow-hidden h-full w-full object-cover aspect-[4/3]" />
-                                 <h2 class="font-PlusJakartaSans_Medium text-white text-xl lg:text-2xl 2xl:text-3xl leading-tight text-center">
-                                    Más de 3 años de excelencia
-                                 </h2>
-                                <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-lg 3xl:text-xl text-center line-clamp-5">
-                                       Con más de 3 años en la industria, hemos acumulado una gran cantidad de conocimiento y experiencia, convirtiéndonos en un recurso de referencia...
-                                </p>
-                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-6">
-                                <img loading="lazy" src="{{ asset('images/img/rs_valores.png') }}" class="rounded-xl overflow-hidden h-full w-full object-cover aspect-[4/3]" />
-                                 <h2 class="font-PlusJakartaSans_Medium text-white text-xl lg:text-2xl 2xl:text-3xl leading-tight text-center">
-                                    Más de 3 años de excelencia
-                                 </h2>
-                                <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-lg 3xl:text-xl text-center line-clamp-5">
-                                       Con más de 3 años en la industria, hemos acumulado una gran cantidad de conocimiento y experiencia, convirtiéndonos en un recurso de referencia...
-                                </p>
-                             </div>
+                <div class="w-full">
+                    <div class="swiper valores">
+                        <div class="swiper-wrapper">
+                            @foreach ($destacados as $destacado)
+                            <div class="swiper-slide">
+                                <div class="flex flex-col gap-6">
+                                    <img loading="lazy" src="{{ asset($destacado->imagen) }}" onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';" class="rounded-xl overflow-hidden h-full w-full object-cover aspect-[4/3]" />
+                                    <h2 class="font-PlusJakartaSans_Medium text-white text-xl lg:text-2xl 2xl:text-3xl leading-tight text-center">
+                                        {{$destacado->titulo}}
+                                    </h2>
+                                    <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-lg 3xl:text-xl text-center line-clamp-5">
+                                        {{$destacado->descripcion}}
+                                    </p>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] w-full" style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">

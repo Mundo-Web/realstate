@@ -6,7 +6,7 @@
       <div
         class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Agregar nuevo personal
+          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Agregar Agente
           </h2>
         </header>
 
@@ -54,7 +54,7 @@
                 </div>
               </div>
               <div class="md:col-span-5">
-                <label for="facebook">Facebook</label>
+                <label for="facebook">Whatsapp (Anteponga +51 al numero)</label>
                 <div class="relative mb-2  mt-2">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -70,11 +70,11 @@
                   </div>
                   <input type="text" id="facebook" name="facebook" value=""
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Facebook">
+                    placeholder="Whatsapp">
                 </div>
               </div>
               <div class="md:col-span-5">
-                <label for="instagram">Instagram</label>
+                <label for="instagram">Correo</label>
                 <div class="relative mb-2  mt-2">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -88,12 +88,22 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="instagram" name="instagram" value=""
+                  <input type="email" id="instagram" name="instagram" value=""
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Instagram">
+                    placeholder="Correo electronico">
                 </div>
               </div>
+              
               <div class="md:col-span-5">
+                <label for="youtube">Imagen Agente</label>
+                <div class="relative mb-2  mt-2">
+                  <input id="youtube" name="youtube"
+                    class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                </div>
+              </div>
+
+              {{-- <div class="md:col-span-5">
                 <label for="youtube">Youtube</label>
                 <div class="relative mb-2  mt-2">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -112,9 +122,10 @@
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Youtube">
                 </div>
-              </div>
+              </div> --}}
+              
               <div class="md:col-span-5">
-                <label for="twitter">Twitter</label>
+                <label for="twitter">Codigo</label>
                 <div class="relative mb-2  mt-2">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -130,19 +141,13 @@
                   </div>
                   <input type="text" id="twitter" name="twitter" value=""
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Twitter">
+                    placeholder="Codigo">
                 </div>
               </div>
 
-
-
-
-
-
-
               <div class="md:col-span-5 text-right mt-6 flex justify-between">
                 <div class="inline-flex items-end">
-                  <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+                  <a href="{{ route('staff.index') }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
                 </div>
                 <div class="inline-flex items-end">
                   <button type="submit"

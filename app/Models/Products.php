@@ -69,19 +69,22 @@ class Products extends Model
     'meta_keywords',
     'latitud',
     'longitud',
-
+    'staff_id',
+    'ocupada',
+    'construida',
+    'medidas',
   ];
   
   public function events()
   {
     return $this->hasMany(Event::class);
   }
-
   
   public function categoria()
   {
     return Category::find($this->categoria_id);
   }
+
   public function category()
   {
     return $this->belongsTo(Category::class, 'categoria_id');
@@ -127,5 +130,8 @@ class Products extends Model
     return $this->belongsTo(District::class, 'distrito_id');
   }
 
- 
+  public function staff()
+  {
+    return $this->belongsTo(Staff::class, 'staff_id');
+  }
 }

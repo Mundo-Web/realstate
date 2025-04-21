@@ -99,10 +99,10 @@
         {{-- <x-menu.item id="servicios" href="{{ route('servicios.index') }}"
           icon="fas fa-wrench">Servicios</x-menu.item> --}}
         <x-menu.item id="blog" href="{{ route('blog.index') }}" icon="fas fa-pencil-alt">Blog</x-menu.item>
-        <x-menu.item id="logos" href="{{ route('logos.index') }}" icon="fas fa-shapes">Estadísticas</x-menu.item>
-        {{-- <x-menu.item id="staff" href="{{ route('staff.index') }}" icon="fas fa-users">Personal</x-menu.item> --}}
+        <x-menu.item id="logos" href="{{ route('logos.index') }}" icon="fas fa-shapes">Valores</x-menu.item>
+        <x-menu.item id="staff" href="{{ route('staff.index') }}" icon="fas fa-users">Personal</x-menu.item>
         <x-menu.item id="strength" href="{{ route('strength.index') }}">Beneficios</x-menu.item>
-        {{-- <x-menu.item id="aboutus" href="{{ route('aboutus.index') }}">Nosotros</x-menu.item> --}}
+        <x-menu.item id="aboutus" href="{{ route('aboutus.index') }}">Destacados</x-menu.item>
         {{-- <x-menu.item id="attributes" href="{{ route('attributes.index') }}">Atributos</x-menu.item>
         <x-menu.item id="valoresattributes" href="{{ route('valoresattributes.index') }}">
           Valor de atributo

@@ -2,11 +2,20 @@
 
 @section('content')
 
-<div class="flex flex-col md:flex-row gap-3 md:gap-10 justify-center items-center px-[5%] md:pl-[5%] md:pr-0">
+<div class="flex flex-col md:flex-row gap-3 md:gap-10 justify-center items-center px-[5%] xl:px-[8%]">
 
-    <!-- Primer div -->
+
+    <!-- Primer  div -->
+    <div class="w-full md:w-[45%] ">
+        <div class="bg-contain bg-center bg-no-repeat w-full h-full">
+            <img src="{{ asset('images/img/loginimg.png') }}" class="min-h-[500px] object-contain xl:h-[700px]" />
+        </div>
+    </div>
+
+    <!-- Segundo div -->
     <div class="w-full md:w-[55%] text-[#151515] flex flex-col justify-center items-center">
         <div class="w-full flex flex-col gap-5 p-[5%] max-w-xl shadow-lg">
+            
             <div class="flex flex-col gap-5 text-center">
                 @if (session('status'))
                     <div class="mb-4 font-medium text-sm text-green-600">
@@ -18,6 +27,7 @@
                     Inicia sesión utilizando los detalles de la cuenta a continuación
                 </p>
             </div>
+
             <div class="">
                 <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-5">
                     @csrf
@@ -68,16 +78,12 @@
                 </form>
                 <x-validation-errors class="mt-4" />
             </div>
+
         </div>
     </div>
 
 
-    <!-- Segundo div -->
-    <div class="w-full md:w-[45%] ">
-        <div class="bg-contain bg-center bg-no-repeat w-full h-full">
-            <img src="{{ asset('images/img/loginimg.png') }}" class="min-h-[500px] object-contain xl:h-[700px]" />
-        </div>
-    </div>
+    
 
 </div>
 
