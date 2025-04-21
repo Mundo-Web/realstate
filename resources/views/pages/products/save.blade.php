@@ -188,7 +188,7 @@
                     </div>
                   </div>
 
-                  <section class="col-span-5 flex flex-row gap-1 lg:gap-3 w-full mt-8">
+                  {{-- <section class="col-span-5 flex flex-row gap-1 lg:gap-3 w-full mt-8">
                     <div class="w-1/3">
                       <label for="collage1">
                         @if ($product->imagen_2)
@@ -253,7 +253,7 @@
                               id="collage4" name="image_texture" type="file" accept="image/*"
                               title="Cargar imagen de ambiente">
                     </div>
-                  </section>
+                  </section> --}}
 
 
                   
@@ -1013,13 +1013,6 @@
             </div>
           </div>
 
-
-          <div class="grid grid-cols-1 md:grid-cols-5 gap-2 p-3 ">
-              <div class="col-span-5">
-                <div id='calendar'></div>
-              </div>
-          </div>  
-
         </div>
       </div>
     </form>
@@ -1044,26 +1037,6 @@
         calendar.render();
       });
   </script> --}}
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      let disabledDates = @json($disabledDates);
-     
-      let disabledEvents = disabledDates.map(date => {
-            return {
-                title: 'Fecha bloqueada',
-                start: date, 
-                allDay: true
-            };
-        });
-      
-      let calendarEl = document.getElementById('calendar');
-      let calendar =  new FullCalendar.Calendar(calendarEl, {
-        events: disabledEvents
-      });
-      calendar.render();
-    });
-  </script>
 
   <script>
     $('#tags_id').select2({

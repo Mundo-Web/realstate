@@ -172,20 +172,20 @@
                                     
                                     <div class="flex flex-col gap-1 typedepart">
                                         <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione el tipo de propiedad</label>
-                                        <select class="customselect w-full focus:ring-0" name="type">
-                                            <option value="1">Casa</option>
-                                            <option value="2">Departamento</option>
-                                            <option value="3">Terreno</option>
+                                        <select class="customselect w-full focus:ring-0" name="type" id="type">
+                                            @foreach ($categoriasAll as $cat)
+                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="flex flex-col gap-1 location">
                                         <label class="text-white text-sm font-PlusJakartaSans_Regular">Ubicación</label>
-                                        <select class="customselect w-full focus:ring-0" name="type">
-                                            <option value="1">Lima, Lima Metropolitana - Ate</option>
-                                            <option value="2">Lima, Lima Metropolitana - Miraflores</option>
-                                            <option value="3">Lima, Lima Metropolitana - La Molina</option>
-                                            <option value="3">Lima, Lima Metropolitana - La Montes</option>
+                                        <select class="customselect w-full focus:ring-0" name="ubicacion" id="ubicacion">
+                                            <option value="1">Seleccione ubicación</option>
+                                            @foreach($distritosParaFiltro as $distrito)
+                                                <option value="{{ $distrito['id'] }}">{{ $distrito['text'] }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -206,9 +206,9 @@
                                     </div>
 
                                     <div class="flex flex-col gap-3 pt-2">
-                                        <button type="submit" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
+                                        <a id="linkExplirarAlquileres" type="submit" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
                                             Buscar propiedad
-                                        </button>
+                                        </a>
                                         <button type="button" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] bg-clip-text text-transparent  px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
                                             Buscar propiedad alrededor mío
                                         </button>
@@ -1173,83 +1173,39 @@
     <script>
         $(document).ready(function() {
 
-            $('#arrival-date').daterangepicker({
-                locale: {
-                    format: 'DD/MM/YYYY',
-                    cancelLabel: 'Cancelar',
-                    applyLabel: 'Aplicar'
-                },
-                startDate: false, // No establecer fecha inicial
-                endDate: false, // No establecer fecha final
-                minDate: moment(), // Bloquear fechas anteriores
-                maxDate: moment().add(9, 'months'),
-                autoUpdateInput: false, // Evita que se autocomplete
-                opens: 'right',
-                drops: 'down',
-                autoApply: true, // Cierra el calendario y aplica automáticamente al seleccionar
-            });
-
-            // Establecer placeholder inicial
-            $('#arrival-date').val('Seleccione fecha');
-
-            // Actualizar el campo cuando se selecciona un rango
-            $('#arrival-date').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(
-                    picker.startDate.format('DD/MM/YYYY') +
-                    ' - ' +
-                    picker.endDate.format('DD/MM/YYYY')
-                );
-            });
-
-            // Restablecer placeholder si se cancela
-            $('#arrival-date').on('cancel.daterangepicker', function(ev, picker) {
-                $(this).val('Seleccione fechas');
-            });
-
-
             $('#linkExplirarAlquileres').click(function(e) {
                 e.preventDefault();
 
                 // Capturar valores de los filtros
-                const lugar = $('#lugar').val();
-                const rangoFechas = $('#arrival-date').val();
-                const cantidadPersonas = $('#cantidad_personas').val();
-
-                let fechaLlegada = '';
-                let fechaSalida = '';
-                if (rangoFechas.includes(" - ")) {
-                    [fechaLlegada, fechaSalida] = rangoFechas.split(" - ");
-                }
+                const tipoBusqueda = $('#tipoOperacion').val();
+                const tipoPropiedad = $('#type').val();
+                const ubicacion = $('#ubicacion').val();
+                const montominimo = $('#minprice').val();
+                const montomaximo = $('#maxprice').val();
+                
 
                 // Validación (opcional)
-                if (!lugar && !rangoFechas && !cantidadPersonas) {
+                if (!tipoBusqueda && !tipoPropiedad && !ubicacion && !montominimo && !montomaximo) {
                     alert("Por favor, selecciona al menos un filtro para realizar la búsqueda.");
                     return;
                 }
 
-                // Guardar fechas en localStorage
-                if (fechaLlegada && fechaSalida) {
-                    localStorage.setItem('fechasBusqueda', JSON.stringify({
-                        llegada: fechaLlegada,
-                        salida: fechaSalida
-                    }));
-                } else {
-                    localStorage.removeItem('fechasBusqueda');
-                }
-
                 const params = new URLSearchParams();
-                // Redirigir a Catalogo.jsx con parámetros
-                if (lugar) {
-                    params.append('lugar', lugar);
+
+                if (tipoBusqueda) {
+                    params.append('tipo', tipoBusqueda);
                 }
-                if (fechaLlegada) {
-                    params.append('fecha_llegada', fechaLlegada);
+                if (tipoPropiedad) {
+                    params.append('propiedad', tipoPropiedad);
                 }
-                if (fechaSalida) {
-                    params.append('fecha_salida', fechaSalida);
+                if (ubicacion) {
+                    params.append('ubicacion', ubicacion);
                 }
-                if (cantidadPersonas) {
-                    params.append('cantidad_personas', cantidadPersonas);
+                if (montominimo) {
+                    params.append('montominimo', montominimo);
+                }
+                if (montomaximo) {
+                    params.append('montomaximo', montomaximo);
                 }
 
                 window.location.href = `/catalogo?${params.toString()}`;
