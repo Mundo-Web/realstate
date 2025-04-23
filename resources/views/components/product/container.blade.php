@@ -1,8 +1,8 @@
 <div x-data="{ showAmbiente: false }" @mouseenter="showAmbiente = true" @mouseleave="showAmbiente = false"
-  class="flex flex-col relative w-full md:{{ $width }} {{ $bgcolor }} md:min-h-[425px] bg-[#1D1D1D] rounded-2xl">
+  class="flex flex-col relative w-full md:{{ $width }} {{ $bgcolor }} md:min-h-[425px] bg-[#1A1A1A] rounded-2xl">
   
-  <div class="{{ $bgcolor }} product_container flex flex-col justify-center relative bg-[#1D1D1D]">
-      <a href="{{ route('producto', $item->id) }}" class="flex flex-col bg-[#1D1D1D]">
+  <div class="{{ $bgcolor }} product_container flex flex-col justify-center relative bg-[#1A1A1A]">
+      <a href="{{ route('producto', $item->id) }}" class="flex flex-col bg-[#1A1A1A]">
         <div class="relative flex justify-center items-center h-full w-full aspect-[5/4] rounded-xl overflow-hidden">
           @php
             $category = $item->categoria();
@@ -30,14 +30,14 @@
       </a>
   </div>
 
-  <div class="p-4 md:p-6 flex flex-col gap-2 bg-[#1D1D1D] rounded-b-xl">
+  <div class="p-4 md:p-6 flex flex-col gap-2 bg-[#1A1A1A] rounded-b-xl">
     
     
     <h2 id="h2Container" class="text-lg xl:text-xl 2xl:text-2xl text-left line-clamp-2 text-white text-ellipsis font-PlusJakartaSans_Medium tracking-tight  cortartexto tippy max-h-12 md:min-h-12 mt-3 md:mt-0"
       title="{{ $item->producto }}">
       {{$item->producto}}
     </h2>
-
+    
     <div class="text-sm xl:text-base 2xl:text-lg text-left overflow-hidden font-PlusJakartaSans_Regular text-white cortartexto">
       {!! mb_strimwidth($item->extract ?: $item->description, 0, 90, '...') !!}
     </div> 

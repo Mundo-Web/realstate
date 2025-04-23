@@ -714,7 +714,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-4 lg:gap-8 mt-12 md:mt-7 w-full ">
             @foreach ($ProdComplementarios->take(3) as $item)
-                <x-product.container width="col-span-1 " bgcolor="bg-[#FFFFFF]" :item="$item" />
+                <x-product.container width="col-span-1 " bgcolor="bg-[#1D1D1D]" :item="$item" />
             @endforeach
         </div>
     </section>

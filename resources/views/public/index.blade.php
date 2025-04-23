@@ -95,6 +95,47 @@
             background: linear-gradient(90deg, #C8A049 0%, #E9D151 55.42%, #BE913E 93.5%);
             color: #141414 !important;
         }
+
+        .gm-style-iw-d{
+            border-radius: 16px !important;
+            background: #1A1A1A !important;
+            overflow: hidden!important;
+        }
+
+        .gm-style-iw, .gm-style-iw-c{
+            padding: 0px !important;
+            background: #1A1A1A !important;
+
+        }
+
+        .gm-style-iw{
+            position: relative;
+        }
+
+        .gm-style-iw-chr{
+            position: relative;
+        }
+
+        .gm-style-iw-chr button{
+            margin-bottom: -50px !important;
+            z-index: 20 !important;
+            }
+
+        .gm-style-iw-ch{
+            display: none !important;
+        }
+
+        .gm-ui-hover-effect>span{
+            background: #ffffff !important;
+        }
+
+        .gm-ui-hover-effect{
+            opacity: 1 !important;
+        }
+
+        .gm-style .gm-style-iw-tc::after{
+            background: #1A1A1A !important;
+        }
     </style>
 @stop
 
@@ -273,155 +314,6 @@
         @endif
        
 
-
-        {{-- <section
-            class="flex flex-col lg:flex-row gap-3 lg:gap-10 justify-center items-center px-[5%] lg:pl-[5%] lg:pr-0 bg-[#5BE3A4]">
-
-            <div class="w-full lg:w-[55%] text-[#151515] flex flex-col justify-center items-center gap-2 md:gap-5">
-                <div class="w-full flex flex-col gap-5 px-0 lg:pr-[5%] pt-8 lg:pt-0 xl:max-w-3xl">
-                    <h1 class="text-[#F8FCFF] font-Homie_Bold text-4xl lg:text-5xl">
-                        {{$textoshome->title1section ?? 'Ingrese un texto'}}
-                    </h1>
-                    <p class="text-[#F8FCFF] text-lg font-FixelText_Regular">
-                        {{$textoshome->description1section ?? 'Ingrese un texto'}}
-                    </p>
-                </div>
-
-                <div class="w-full flex flex-col gap-5 px-0 lg:pr-[5%] pt-8 md:pt-0 relative">
-                    <!--  -->
-                    <div class="px-0 w-full z-10">
-                        
-                       
-                        <div class="bg-white rounded-t-lg inline-block w-auto md:max-w-[400px]">
-                            <div class="flex justify-between items-center">
-                                <button
-                                    class="px-10 py-3 text-[#009A84] font-FixelText_Semibold border-b-[2.5px] border-[#009A84] focus:outline-none tab-button flex-1"
-                                    >
-                                    Elige unas Fechas 
-                                </button>
-                            </div>
-                        </div>
-                        
-                       
-                        <div id="tab1" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 py-4 px-4 tab-content bg-white justify-between items-center gap-3 rounded-b-lg md:rounded-tr-lg w-full">
-                        
-                            <div class="w-full md:col-span-2">
-                                <div class="relative w-full text-left">
-                                <div class="group">
-                                    <div>
-                                    <select name="departamento_id" id="lugar"
-                                        class="w-full min-w-36 py-3 text-sm border-0  font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30">
-                                                <option class="line-clamp-1" value="">Ubicación</option>
-                                            @foreach ($distritosParaFiltro as $distrito_id => $productos)
-                                                @php
-                                                    $distrito = $productos->first()->distrito; // Obtén el distrito del primer producto del grupo
-                                                @endphp
-                                                @if (!empty($distrito->description))
-                                                    <option class="line-clamp-1" value="{{$distrito_id}}">{{$distrito->description}}</option>
-                                                @endif  
-                                            @endforeach
-                                    </select>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="w-full md:col-span-3">
-                                <div class="relative w-full text-left md:text-center">
-                                <div class="group">
-                                    <div>
-                                        <input type="text" id="arrival-date" class="text-left md:text-center w-full py-3 text-sm flex-1 shrink font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30" value="2024-07-13" aria-label="Fecha de llegada" />
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-
-
-                            <div class="w-full md:col-span-2">
-                                <div class="relative w-full text-left">
-                                <div class="group">
-                                    <div>
-                                        
-                                        <select name="cantidad_personas" id="cantidad_personas" class="w-full text-sm font-FixelText_Medium self-stretch my-auto basis-0 bg-transparent focus:ring-0 focus:border-0 border-none selection:text-[#000929] text-[#006258] placeholder:text-opacity-30">
-                                             <option value=""># Personas</option>
-                                                @for ($i = 1; $i <= $limite; $i++)
-                                                   <option value="{{ $i }}">{{ $i }}</option>
-                                                @endfor
-                                        </select>
-                                        
-                                    </div>
-                                </div>
-                                </div>
-                            </div>    
-                
-
-                            <div class="flex justify-center items-center w-full md:col-span-1">
-                                    <div class="flex justify-start items-center">
-                                        <button id="linkExplirarAlquileres"
-                                            class="bg-[#009A84] rounded-xl font-FixelText_Semibold text-base text-white px-3 py-3 text-center">
-                                            <span class="hidden md:flex"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                            <span class="flex md:hidden px-7">Buscar</span>
-                                        </button>
-                                    </div>
-                            </div>
-
-                        </div>
-                        
-                        
-                        <p class="font-FixelText_Regular underline text-sm text-white mt-2">
-                            Propietario, anuncia tu propiedad gratis
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="w-full lg:w-[45%] ">
-                <div class="w-full h-full -mb-20 flex flex-row items-center justify-center">
-                    <img src="{{asset($textoshome->url_image1section)}}" onerror="this.src='{{ asset('images/img/portadavt.png') }}';" class="min-h-[500px] object-contain xl:h-[700px]" />
-                </div>
-            </div>
-
-        </section> --}}
-
-        {{-- @if ($estadisticas->count() > 0)
-            <section
-                class="flex flex-col md:flex-row gap-10 lg:gap-20 items-center justify-center px-[5%] xl:px-[8%] py-8 lg:py-16 mt-20 lg:mt-14">
-
-                <div class="w-full lg:w-1/2 flex flex-col items-start justify-center gap-5 xl:max-w-xl mx-auto">
-                    <h2 class="text-4xl lg:text-5xl font-Homie_Bold text-[#006258]">
-                        {{$textoshome->title2section ?? 'Ingrese un texto'}}
-                    </h2>
-                    <p class="text-lg text-[#000929] font-FixelText_Regular">
-                        {{$textoshome->description2section ?? 'Ingrese un texto'}}
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-5 sm:gap-10 mt-5">
-                        @foreach ($estadisticas as $estadistica)
-                            <div class="flex flex-col gap-2">
-                                <h2 class="text-4xl lg:text-5xl font-FixelText_Bold text-[#002677]">
-                                    {{ $estadistica->title }}
-                                </h2>
-                                <p class="text-sm text-[#009A84] font-FixelText_Medium">{{ $estadistica->description }}</p>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-10 mt-2">
-                        <a href="{{ route('nosotros') }}"
-                            class="bg-[#00897B] text-[#73F7AD] px-4 py-3 rounded-xl font-FixelText_Semibold">
-                            Sobre Nosotros
-                        </a>
-                    </div>
-                </div>
-
-                <div class="w-full lg:w-1/2 flex flex-col items-center justify-center">
-                    <img class="h-full w-full py-[5%] lg:py-[10%] object-contain"
-                        src="{{asset($textoshome->url_image2section)}}" onerror="this.src='{{ asset('images/img/portada_vt4.png') }}';" />
-                </div>
-
-            </section>
-        @endif --}}
-
         @if ($ultimosProductos->count() > 0)
             <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
@@ -446,7 +338,17 @@
                 </div>
             </section>
         @endif
-
+        
+        <section class="flex flex-col gap-4 lg:gap-8 px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-cover bg-[#141414]">
+            <div class="flex flex-col gap-4">
+                <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-5xl 2xl:text-6xl">Proyectos inmobiliarios en <span class="text-[#C8A049]">todo Lima</span></h2>
+                <p class="font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl lg:w-3/5">Ubica tu depa ideal aquí</p>
+            </div>
+            
+            <div class="h-[500px]" id="map"></div>
+       
+        </section>    
+        
         @if (count($personal) > 0)
             <section class="w-full px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-[#141414]">
                 <div class="flex flex-col gap-6">
@@ -533,6 +435,7 @@
                 </div>
             </section>
         @endif
+        
         <section class="flex flex-col lg:flex-row w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]"
             style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
             <div class="flex flex-col gap-5 lg:w-1/2">
@@ -1212,7 +1115,199 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var latitude = -12.05404779772475;
+            var longitude = -76.96939793901277;
 
+            var location = [
+                ['center', latitude, longitude, 'Contenido del popup aquí<br>Puedes usar HTML' ],
+            ];
+
+            var mylatlng= {
+                lat:location[0][1],
+                lng: location[0][2]
+            };
+
+            var darkModeStyle = [
+            { elementType: "geometry", stylers: [{ color: "#212121" }] },
+            { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+            { elementType: "labels.text.fill", stylers: [{ color: "#757575" }] },
+            { elementType: "labels.text.stroke", stylers: [{ color: "#212121" }] },
+            {
+                featureType: "administrative",
+                elementType: "geometry",
+                stylers: [{ color: "#757575" }]
+            },
+            {
+                featureType: "administrative.country",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#9e9e9e" }]
+            },
+            {
+                featureType: "administrative.land_parcel",
+                stylers: [{ visibility: "off" }]
+            },
+            {
+                featureType: "administrative.locality",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#bdbdbd" }]
+            },
+            {
+                featureType: "poi",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#757575" }]
+            },
+            {
+                featureType: "poi.park",
+                elementType: "geometry",
+                stylers: [{ color: "#181818" }]
+            },
+            {
+                featureType: "poi.park",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#616161" }]
+            },
+            {
+                featureType: "poi.park",
+                elementType: "labels.text.stroke",
+                stylers: [{ color: "#1b1b1b" }]
+            },
+            {
+                featureType: "road",
+                elementType: "geometry.fill",
+                stylers: [{ color: "#2c2c2c" }]
+            },
+            {
+                featureType: "road",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#8a8a8a" }]
+            },
+            {
+                featureType: "road.arterial",
+                elementType: "geometry",
+                stylers: [{ color: "#373737" }]
+            },
+            {
+                featureType: "road.highway",
+                elementType: "geometry",
+                stylers: [{ color: "#3c3c3c" }]
+            },
+            {
+                featureType: "road.highway.controlled_access",
+                elementType: "geometry",
+                stylers: [{ color: "#4e4e4e" }]
+            },
+            {
+                featureType: "road.local",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#616161" }]
+            },
+            {
+                featureType: "transit",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#757575" }]
+            },
+            {
+                featureType: "water",
+                elementType: "geometry",
+                stylers: [{ color: "#000000" }]
+            },
+            {
+                featureType: "water",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#3d3d3d" }]
+            }
+            ];
+            
+
+            var map= new google.maps.Map(document.getElementById("map"),{
+                zoom:13,
+                center: mylatlng,
+                styles: darkModeStyle
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                maxWidth: 300
+            });
+
+            google.maps.event.addListener(map, 'click', function() {
+                infowindow.close();
+            });
+
+            function generatePopupContent(property) {
+                return `
+                    <div class="flex flex-col w-full bg-[#1A1A1A] rounded-2xl overflow-hidden">
+                        <div class="relative flex justify-center items-center w-full h-[150px] rounded-t-xl overflow-hidden">
+                            <img src="${property.imagen || '/images/img/noimagen.jpg'}" 
+                                alt="${property.producto}" 
+                                class="w-full h-full object-cover absolute inset-0" />
+                        </div>
+
+                        <div class="p-4 flex flex-col gap-2 bg-[#1A1A1A]">
+                            <h2 class="text-base text-left line-clamp-2 text-white font-medium">
+                                ${property.producto}
+                            </h2>
+                            
+                            <div class="border my-1 border-[#262626] w-full"></div>
+
+                            <div class="flex justify-between items-end w-full gap-3">
+                                ${property.precio > 0 ? `
+                                <div class="flex flex-col gap-1 text-white">
+                                    <span class="text-sm">Precio</span>
+                                    <span class="text-lg font-bold">$ ${property.precio}</span>
+                                </div>` : ''}
+                                
+                                <a href="/producto/${property.id}" class="text-sm font-medium bg-gradient-to-r from-[#C8A049] to-[#BE913E] text-[#141414] px-5 py-2.5 rounded-xl">
+                                    Ver
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        
+            // for(var i=0; i< location.length; i++){
+                
+            //     var marker = new google.maps.Marker({
+            //         position: new google.maps.LatLng(location[i][1], location[i][2]),
+            //         map: map,
+            //         icon: {
+            //             url: "images/img/rsicono.png", 
+            //             scaledSize: new google.maps.Size(60, 60), 
+            //             anchor: new google.maps.Point(20, 40) 
+            //         }
+            //     });
+
+            //     google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            //     return function() {
+            //             infowindow.setContent(location[i][3]); // El contenido está en el cuarto elemento del array
+            //             infowindow.open(map, marker);
+            //         }
+            //     })(marker, i));
+            // }
+
+            $.get('/getlocations', function(properties) {
+                properties.forEach(function(property) {
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(property.latitud, property.longitud),
+                        map: map,
+                        icon: {
+                            url: "images/img/rsicono.png",
+                            scaledSize: new google.maps.Size(50, 50),
+                            anchor: new google.maps.Point(20, 40)
+                        }
+                    });
+
+                    // Evento click para el popup
+                    marker.addListener('click', function() {
+                        infowindow.setContent(generatePopupContent(property));
+                        infowindow.open(map, marker);
+                    });
+                });
+            });
+        });   
+    </script>
 @stop
 
 @stop

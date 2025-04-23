@@ -65,6 +65,8 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 
+  <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries" ></script>
+  
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="{{ asset('js/functions.js') }}?v={{ uniqid() }}"></script>
   
