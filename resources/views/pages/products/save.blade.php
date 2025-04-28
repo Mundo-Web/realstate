@@ -438,7 +438,7 @@
                     </div>
 
                   </div>
-                  <div class="w-full hidden">
+                  <div class="w-full">
                     <label for="descuento">Precio con descuento</label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

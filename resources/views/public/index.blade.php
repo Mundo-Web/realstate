@@ -275,7 +275,6 @@
                 </div>
                 <div class="flex flex-col md:flex-row gap-10 lg:gap-20 items-center justify-center">
                     <div class="w-full lg:w-1/2 flex flex-col items-start justify-center">
-
                         <div class="flex flex-col gap-5 2xl:gap-7 w-full">
                             @foreach ($benefit as $beneficios)
                                 <div class="flex flex-row gap-3 2xl:gap-5 p-4 2xl:p-6 rounded-xl bg-[#1E1E1E]">
@@ -319,8 +318,8 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
 
                     <div class="flex flex-col gap-3 max-w-2xl">
-                        <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-6xl 2xl:text-7xl">Encuentra tu
-                            nuevo <span class="text-[#C8A049]">hogar</span> ideal</h2>
+                        <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-6xl 2xl:text-7xl">Ultimas 
+                             <span class="text-[#C8A049]">propiedades</span> </h2>
                     </div>
 
                     <div>
@@ -338,6 +337,31 @@
                 </div>
             </section>
         @endif
+
+        @if ($productosDescuentos->count() > 0)
+            <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
+
+                    <div class="flex flex-col gap-3 max-w-2xl">
+                        <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-6xl 2xl:text-7xl">Propiedades 
+                            en<span class="text-[#C8A049]"> descuento</span> </h2>
+                    </div>
+
+                    <div>
+                        <a href="/catalogo"
+                            class="flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">
+                            Ver todas
+                        </a>
+                    </div>
+
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-5 xl:gap-8 mt-7 w-full">
+                    @foreach ($productosDescuentos as $item)
+                        <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
+                    @endforeach
+                </div>
+            </section>
+        @endif
         
         <section class="flex flex-col gap-4 lg:gap-8 px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-cover bg-[#141414]">
             <div class="flex flex-col gap-4">
@@ -350,7 +374,7 @@
         </section>    
         
         @if (count($personal) > 0)
-            <section class="w-full px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-[#141414]">
+            <section class="w-full px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-[#141414]" id="agentes">
                 <div class="flex flex-col gap-6">
                     <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] 2xl:text-5xl">Comunícate con
                         nuestros <span class="text-[#C8A049]">agentes</span> </h2>
@@ -452,6 +476,38 @@
                 </a>
             </div>
         </section>
+
+
+        <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-10 w-full" style="background-image: url({{ asset('images/img/texturasuscribirse.png') }})">
+            <div class="flex flex-col max-w-xl">
+      
+                <div class="flex flex-col w-full text-center gap-5 text-[#006258]">
+                  <h2 class="font-PlusJakartaSans_Semibold text-[#141414] text-3xl md:text-[40px] 2xl:text-5xl leading-tight">Suscribete y enterate lo último del mundo inmobiliario</h2>
+                  <p class="font-PlusJakartaSans_Regular text-[#141414] text-base 2xl:text-xl">Descubra formas de aumentar el valor de su casa y cotizar en la lista.
+                    No es Spam.</p>
+                </div>
+      
+                <div class="flex flex-col mt-8 w-full gap-4">
+                    <div class="flex flex-col w-full rounded-lg">
+                        <form id="subsEmail"
+                            class="flex flex-row gap-5 justify-end px-5 py-2.5 w-full bg-[#141414] rounded-2xl">
+                            @csrf
+                            <input placeholder="Introduce tu correo electrónico" type="email" id="email"
+                                name="email"
+                                class="w-full px-4 py-2 bg-[#141414] text-sm font-PlusJakartaSans_Regular focus:border-0 focus:ring-0 text-white placeholder:text-white placeholder:text-opacity-50 border border-transparent rounded-xl"
+                                aria-label="Introduce tu correo electrónico" required>
+                            <input type="hidden" name="tipo" value="Inicio" />
+                            <button type="submit"
+                                class="self-end px-10 py-3 text-base font-PlusJakartaSans_Medium text-center text-[#141414] bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] rounded-lg">Enviar</button>
+                        </form>
+                    </div>
+                    <p class="text-base text-center font-PlusJakartaSans_Regular text-[#141414]">
+                          Únese a +1.000 </span> propietarios en nuestra comunidad inmobiliaria.
+                    </p>
+                </div>
+      
+            </div>
+          </section>
 
         {{-- @if ($testimonie->count() > 0)    
           <section

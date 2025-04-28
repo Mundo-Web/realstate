@@ -106,6 +106,16 @@
             </li>
 
             <li>
+                <a href="/#agentes"
+                    class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    <span class="underline-this">
+                        <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
+                        Agentes
+                    </span>
+                </a>
+            </li>
+
+            <li>
                 <a href="/nosotros"
                     class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
@@ -219,16 +229,12 @@
 </div>
 
 
-<header class="bg-[#191919]">
+<header class="bg-[#191919] sticky top-0 z-50">
    
     <div>
         <div class="px-[5%] xl:px-[8%] flex flex-wrap justify-center md:justify-between bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] py-3">
             <div class="flex flex-row gap-2 items-center font-PlusJakartaSans_Regular text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M11.3481 17.8062C10.9867 18.1445 10.5037 18.3337 10.0009 18.3337C9.49817 18.3337 9.01517 18.1445 8.65375 17.8062C5.34418 14.6887 0.908967 11.2061 3.07189 6.15004C4.24136 3.41629 7.04862 1.66699 10.0009 1.66699C12.9532 1.66699 15.7605 3.41629 16.93 6.15004C19.0902 11.1997 14.6658 14.6994 11.3481 17.8062Z" stroke="#141414" stroke-width="1.25"/>
-                    <path d="M12.9163 9.16667C12.9163 10.7775 11.6105 12.0833 9.99967 12.0833C8.38884 12.0833 7.08301 10.7775 7.08301 9.16667C7.08301 7.55583 8.38884 6.25 9.99967 6.25C11.6105 6.25 12.9163 7.55583 12.9163 9.16667Z" stroke="#141414" stroke-width="1.25"/>
-                </svg>
-                <h3>Av. Javier Prado 2156 San Isidro</h3>
+                <h3>Trabaja con nosotros</h3><span class="px-1">|</span> Vende o Alquila</h3>
             </div>
 
             <div class="md:flex flex-wrap gap-6 items-center font-PlusJakartaSans_Regular text-sm hidden">
@@ -248,10 +254,7 @@
             </div>
         </div>
         <div id="header-menu" class="py-3.5 flex justify-between gap-3 w-full px-[5%] xl:px-[8%] text-[17px] relative items-center">
-            <div id="menu-burguer" class="lg:hidden z-10 w-max">
-                <img class="h-10 w-10 cursor-pointer" src="{{ asset('images/img/menu_hamburguer.png') }}"
-                  alt="menu hamburguesa" onclick="show()" />
-            </div>
+            
 
             <div class="w-auto flex flex-col justify-center items-center">
                 <a href="{{route('index')}}">
@@ -260,7 +263,7 @@
                 </a>
             </div>
 
-            <div class="hidden lg:flex items-center justify-center">
+            <div class="hidden lg:flex items-center justify-end">
                 <div>
                   <nav id="menu-items"
                     class=" text-white text-base 2xl:text-lg font-PlusJakartaSans_Regular flex gap-5 xl:gap-10 items-center justify-center">
@@ -272,7 +275,11 @@
                     <a id="productos-link" href="{{ route('catalogo.all') }}" class="font-medium">
                       <span class="underline-this tracking-wide">Propiedades</span>
                     </a>
-        
+                    
+                    <a href="/#agentes" class="font-medium">
+                        <span class="underline-this tracking-wide">Agentes</span>
+                      </a>
+
                     <a href="/nosotros" class="font-medium">
                       <span class="underline-this tracking-wide">Nosotros</span>
                     </a>
@@ -289,7 +296,11 @@
                 </div>
             </div>
 
-            <div class="flex justify-end md:w-auto md:justify-center items-center gap-1 md:gap-4">
+            <div id="menu-burguer" class="lg:hidden z-10 w-max">
+                <img class="h-10 w-10 cursor-pointer" src="{{ asset('images/img/menu_hamburguer.png') }}"
+                  alt="menu hamburguesa" onclick="show()" />
+            </div>
+            {{-- <div class="flex justify-end md:w-auto md:justify-center items-center gap-1 md:gap-4"> --}}
                     
                     {{-- @if (Auth::user() == null)
                       <a class="text-sm font-FixelText_Semibold tracking-wide border-2 text-white px-2.5 md:px-4 py-2 md:py-3.5 leading-none rounded-full md:rounded-2xl" href="{{ route('login') }}">
@@ -375,7 +386,7 @@
                       </div>
                     @endif --}}
 
-                    <a href="/contacto" class="hidden md:flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">Contacto</a>
+                    {{-- <a href="/contacto" class="hidden md:flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">Contacto</a> --}}
                 
                     {{-- <div class="flex justify-center items-center">
                         <div id="open-cart" class="relative inline-block cursor-pointer pr-3">
@@ -385,7 +396,7 @@
                                 class="bg-white rounded-lg p-1 max-w-full h-auto cursor-pointer" />
                         </div>
                     </div> --}}
-            </div>
+            {{-- </div> --}}
         </div>
     </div>    
     <div class="flex justify-end relative">

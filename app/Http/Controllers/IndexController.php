@@ -77,15 +77,26 @@ class IndexController extends Controller
     // $productos = Products::all();
     $url_env = env('APP_URL');
     $productos =  Products::with('tags')->get();
-    $ultimosProductos = Products::select('products.*')->join('categories', 'products.categoria_id', '=', 'categories.id')->where('categories.visible', 1)->where('categories.status', 1)->where('products.status', '=', 1)->where('products.visible', '=', 1)->where('products.destacar', '=', 1)->orderBy('products.id', 'desc')->get();
-    $productosPupulares = Products::select('products.*')
+    $ultimosProductos = Products::select('products.*')
           ->join('categories', 'products.categoria_id', '=', 'categories.id')
+          ->where('categories.status', 1)
           ->where('categories.visible', 1)
           ->where('products.status', '=', 1)
           ->where('products.visible', '=', 1)
           ->where('products.destacar', '=', 1)
           ->orderBy('products.id', 'desc')
-          ->take(8)
+          ->take(12)
+          ->get();
+
+    $productosDescuentos = Products::select('products.*')
+          ->join('categories', 'products.categoria_id', '=', 'categories.id')
+          ->where('categories.status', 1)
+          ->where('categories.visible', 1)
+          ->where('products.status', '=', 1)
+          ->where('products.visible', '=', 1)
+          ->where('products.descuento', '>', 0)
+          ->orderBy('products.id', 'desc')
+          ->take(12)
           ->get();
     $blogs = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('id', 'desc')->take(3)->get();
     $banners = Banners::where('status',  1)->where('visible',  1)->get()->toArray();
@@ -139,7 +150,7 @@ class IndexController extends Controller
       return $precio > 0; // Excluir valores no válidos
     });
     $limite = $limitepersonas->max();
-  return view('public.index', compact('personal', 'distritosParaFiltro','limite','distritosfiltro','textoshome','general','url_env', 'popups', 'banners', 'blogs', 'categoriasAll', 'productosPupulares', 'ultimosProductos', 'productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'categoriasindex','estadisticas'));
+  return view('public.index', compact('productosDescuentos','personal', 'distritosParaFiltro','limite','distritosfiltro','textoshome','general','url_env', 'popups', 'banners', 'blogs', 'categoriasAll', 'ultimosProductos', 'productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'categoriasindex','estadisticas'));
   }
 
   public function catalogo(Request $request, string $id_cat = null)

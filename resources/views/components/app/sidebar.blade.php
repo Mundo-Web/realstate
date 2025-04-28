@@ -21,7 +21,7 @@
       </button>
       <!-- Logo -->
       <a class="block" href="{{ route('dashboard') }}">
-        <img src="{{asset('images/svg/venturalogo.svg')}}" />
+        <img src="{{asset('images/svg/rs_logorealstate.svg')}}" />
       </a>
     </div>
 
