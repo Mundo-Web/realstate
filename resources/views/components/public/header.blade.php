@@ -76,20 +76,20 @@
     }
 </style>
 
-<div class="navigation shadow-xl px-5 overflow-y-auto" style="z-index: 9999; background-color: #fff !important ">
+<div class="navigation shadow-xl px-5 overflow-y-auto !bg-[#191919]" style="z-index: 9999;">
     <button aria-label="hamburguer" type="button" class="hamburger" id="position" onclick="show()">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 2L2 18M18 18L2 2" stroke="#272727" stroke-width="2.66667" stroke-linecap="round" />
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2L2 18M18 18L2 2" stroke="#FFFFFF" stroke-width="2.66667" stroke-linecap="round" />
         </svg>
     </button>
 
-    <nav class="w-full h-full overflow-y-auto py-8" x-data="{ openCatalogo: true, openSubMenu: null }">
+    <nav class="w-full h-full overflow-y-auto py-8 text-white font-PlusJakartaSans_Regular" x-data="{ openCatalogo: true, openSubMenu: null }">
         <ul class="space-y-1">
             <li>
                 <a href="/"
-                    class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    class="font-medium text-base py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
-                        <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
+                        <i class="fa-solid fa-circle-arrow-right  text-[#BE913E] inline-block w-3 h-3 mb-0.5 me-2"></i>
                         Inicio
                     </span>
                 </a>
@@ -97,9 +97,9 @@
 
             <li>
                 <a href="/catalogo"
-                    class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    class="font-medium text-base py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
-                        <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
+                        <i class="fa-solid fa-circle-arrow-right  text-[#BE913E] inline-block w-3 h-3 mb-0.5 me-2"></i>
                         Propiedades
                     </span>
                 </a>
@@ -107,9 +107,9 @@
 
             <li>
                 <a href="/#agentes"
-                    class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    class="font-medium text-base py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
-                        <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
+                        <i class="fa-solid fa-circle-arrow-right  text-[#BE913E] inline-block w-3 h-3 mb-0.5 me-2"></i>
                         Agentes
                     </span>
                 </a>
@@ -117,9 +117,9 @@
 
             <li>
                 <a href="/nosotros"
-                    class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    class="font-medium text-base py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
-                        <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
+                        <i class="fa-solid fa-circle-arrow-right  text-[#BE913E] inline-block w-3 h-3 mb-0.5 me-2"></i>
                         Nosotros
                     </span>
                 </a>
@@ -194,9 +194,9 @@
 
             <li>
                 <a href="/blog/0"
-                    class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    class="font-medium text-base py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
-                        <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
+                        <i class="fa-solid fa-circle-arrow-right  text-[#BE913E] inline-block w-3 h-3 mb-0.5 me-2"></i>
                         Blog
                     </span>
                 </a>
@@ -204,26 +204,14 @@
 
             <li>
                 <a href="/contacto"
-                    class="text-[#272727] font-medium font-FixelText_Bold text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    class="font-medium text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
-                        <i class="fa-solid fa-circle-arrow-right  text-[#006258] inline-block w-3 h-3 mb-0.5 me-2"></i>
+                        <i class="fa-solid fa-circle-arrow-right  text-[#BE913E] inline-block w-3 h-3 mb-0.5 me-2"></i>
                         Contacto
                     </span>
                 </a>
             </li>
 
-            {{-- @if ($tags->count() > 0)
-                @foreach ($tags as $item)
-                    <li>
-                        <a href="/catalogo?tag={{ $item->id }}"
-                            class="text-[#272727] font-medium font-poppins text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300 {{ $pagina == 'contacto' ? 'text-[#FF5E14]' : '' }}">
-                            <span class="underline-this  ">
-                                {{ $item->name }} </span>
-                        </a>
-
-                    </li>
-                @endforeach
-            @endif --}}
         </ul>
     </nav>
 </div>
