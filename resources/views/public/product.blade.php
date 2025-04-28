@@ -414,7 +414,7 @@
         </section>
 
         <section class="flex flex-col lg:flex-row gap-10 justify-between items-start px-[5%] mt-8 lg:mt-16">
-            <div class="flex flex-col min-w-[240px] w-full max-w-4xl 2xl:max-w-6xl order-2 lg:order-1">
+            <div class="flex flex-col min-w-[240px] w-full max-w-4xl 2xl:max-w-6xl">
                 
                 <div class="flex flex-col justify-center rounded-2xl">
                     <div class="flex flex-col w-full">
@@ -628,7 +628,7 @@
 
             </div>
 
-            <div class="flex flex-col lg:sticky lg:top-0 justify-center rounded-2xl w-full lg:w-[500px] 2xl:min-w-[500px] order-1 lg:order-2">
+            <div class="flex flex-col lg:sticky lg:top-0 justify-center rounded-2xl w-full lg:w-[500px] 2xl:min-w-[500px]">
                 <section class="flex flex-col rounded-xl bg-[#262626]">
                     <div class="border-b border-b-[#C8A049] py-4 lg:py-6">
                         <h2 class="text-center font-PlusJakartaSans_Semibold text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Contacta al Asesor</h2>
