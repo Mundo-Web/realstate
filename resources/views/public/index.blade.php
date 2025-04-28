@@ -262,6 +262,56 @@
                 </div>
             </div>
         </section>
+
+        @if ($ultimosProductos->count() > 0)
+        <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
+
+                <div class="flex flex-col gap-3 max-w-2xl">
+                    <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-6xl 2xl:text-7xl">Ultimas 
+                         <span class="text-[#C8A049]">propiedades</span> </h2>
+                </div>
+
+                <div>
+                    <a href="/catalogo"
+                        class="flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">
+                        Ver todas
+                    </a>
+                </div>
+
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-5 xl:gap-8 mt-7 w-full">
+                @foreach ($ultimosProductos as $item)
+                    <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
+                @endforeach
+            </div>
+        </section>
+    @endif
+
+    @if ($productosDescuentos->count() > 0)
+        <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
+
+                <div class="flex flex-col gap-3 max-w-2xl">
+                    <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-6xl 2xl:text-7xl">Propiedades 
+                        en<span class="text-[#C8A049]"> descuento</span> </h2>
+                </div>
+
+                <div>
+                    <a href="/catalogo"
+                        class="flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">
+                        Ver todas
+                    </a>
+                </div>
+
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-5 xl:gap-8 mt-7 w-full">
+                @foreach ($productosDescuentos as $item)
+                    <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
+                @endforeach
+            </div>
+        </section>
+    @endif
        
         @if (count($benefit) > 0)
             <section class="flex flex-col gap-3 px-[5%] xl:px-[8%] py-8 lg:py-16 bg-cover"
@@ -313,55 +363,7 @@
         @endif
        
 
-        @if ($ultimosProductos->count() > 0)
-            <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
-
-                    <div class="flex flex-col gap-3 max-w-2xl">
-                        <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-6xl 2xl:text-7xl">Ultimas 
-                             <span class="text-[#C8A049]">propiedades</span> </h2>
-                    </div>
-
-                    <div>
-                        <a href="/catalogo"
-                            class="flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">
-                            Ver todas
-                        </a>
-                    </div>
-
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-5 xl:gap-8 mt-7 w-full">
-                    @foreach ($ultimosProductos as $item)
-                        <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
-                    @endforeach
-                </div>
-            </section>
-        @endif
-
-        @if ($productosDescuentos->count() > 0)
-            <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
-
-                    <div class="flex flex-col gap-3 max-w-2xl">
-                        <h2 class="font-PlusJakartaSans_Medium text-white text-4xl md:text-6xl 2xl:text-7xl">Propiedades 
-                            en<span class="text-[#C8A049]"> descuento</span> </h2>
-                    </div>
-
-                    <div>
-                        <a href="/catalogo"
-                            class="flex text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3 leading-normal rounded-xl">
-                            Ver todas
-                        </a>
-                    </div>
-
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-5 xl:gap-8 mt-7 w-full">
-                    @foreach ($productosDescuentos as $item)
-                        <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
-                    @endforeach
-                </div>
-            </section>
-        @endif
+      
         
         <section class="flex flex-col gap-4 lg:gap-8 px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-cover bg-[#141414]">
             <div class="flex flex-col gap-4">
