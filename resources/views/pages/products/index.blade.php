@@ -375,10 +375,6 @@
           container.addClass('!px-3 !py-2 !text-center')
           container.css('vertical-align', 'middle')
           container.html(`
-          <a href="#" data-link="${APP_URL}/storage/calendars/${data.sku}.ics"
-            class="inline-block bg-green-400 px-3 py-2 rounded text-white btn-copy-link">
-            <i class="fa-solid fa-link"></i>
-          </a>
           <a href="/admin/products/${data.id}/edit"
             class="inline-block bg-yellow-400 px-3 py-2 rounded text-white">
             <i class="fa-regular fa-pen-to-square"></i>
