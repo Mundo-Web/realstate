@@ -281,7 +281,7 @@
         width: '60%'
       },
       {
-        dataField: 'distrito.nombre',
+        dataField: 'distrito.description',
         caption: 'DISTRITO'
       },
       {
