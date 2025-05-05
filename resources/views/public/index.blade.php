@@ -250,9 +250,9 @@
                                         <a id="linkExplirarAlquileres" type="submit" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
                                             Buscar propiedad
                                         </a>
-                                        <button type="button" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] bg-clip-text text-transparent  px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
+                                        {{-- <button type="button" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] bg-clip-text text-transparent  px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
                                             Buscar propiedad alrededor mío
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </form>
                             </div>
