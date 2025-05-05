@@ -30,14 +30,14 @@
       <!-- Pages group -->
       <x-menu.group title="Sistema">
         <x-menu.item id="dashboard" href="{{ route('dashboard') }}" icon="fas fa-home">Dashboard</x-menu.item>
-        <x-menu.item id="pedidos" href="{{ route('pedidos.index') }}" icon="fa fa-solid fa-cart-shopping">
+        {{-- <x-menu.item id="pedidos" href="{{ route('pedidos.index') }}" icon="fa fa-solid fa-cart-shopping">
           Reservas
           @if ($salesCount !== 0)
             <x-slot name="tag">
               {{ $salesCount }}
             </x-slot>
           @endif
-        </x-menu.item>
+        </x-menu.item> --}}
         <x-menu.item id="mensajes" href="{{ route('mensajes.index') }}" icon="fas fa-comments">
           Mensajes
           @if ($mensajes !== 0)
@@ -54,9 +54,9 @@
             </x-slot>
           @endif
         </x-menu.item>
-        <x-menu.item id="testimonios" href="{{ route('testimonios.index') }}" icon="fas fa-star">
+        {{-- <x-menu.item id="testimonios" href="{{ route('testimonios.index') }}" icon="fas fa-star">
           Testimonios
-        </x-menu.item>
+        </x-menu.item> --}}
         <x-menu.item id="suscripciones" href="{{ route('subscripciones') }}" icon="fa-solid fa-check-double">
           Suscripciones
         </x-menu.item>

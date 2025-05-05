@@ -327,7 +327,7 @@
       },
       {
         dataField: 'recomendar',
-        caption: 'ES ALQUILER',
+        caption: '¿ES ALQUILER?',
         cellTemplate: (container, {
           data
         }) => {
