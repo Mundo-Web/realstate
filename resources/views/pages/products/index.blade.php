@@ -280,14 +280,14 @@
         caption: 'PRODUCTO',
         width: '60%'
       },
-      // {
-      //   dataField: 'precio',
-      //   caption: 'PRECIO'
-      // },
-      // {
-      //   dataField: 'descuento',
-      //   caption: 'DESCUENTO'
-      // },
+      {
+        dataField: 'distrito.nombre',
+        caption: 'DISTRITO'
+      },
+      {
+        dataField: 'precio',
+        caption: 'PRECIO'
+      },
       // {
       //   dataField: 'stock',
       //   caption: 'STOCK'
@@ -325,9 +325,9 @@
           </form>`)
         }
       },
-      /* {
+      {
         dataField: 'recomendar',
-        caption: 'RECOMENDAR',
+        caption: 'ES ALQUILER',
         cellTemplate: (container, {
           data
         }) => {
@@ -345,7 +345,7 @@
             <label for="r_${data.id}"></label>
           </form>`)
         }
-      }, */
+      },
       {
         dataField: 'visible',
         caption: 'VISIBLE',
