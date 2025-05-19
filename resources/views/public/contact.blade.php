@@ -437,7 +437,7 @@
                         icon: "success",
                     });
 
-                    window.location.href = '/gracias-por-registrarte';
+                    window.location.href = '/contacto/gracias';
 
                     btnEnviar.prop('disabled', false);
                     btnEnviar.text('Enviar Mensaje');
