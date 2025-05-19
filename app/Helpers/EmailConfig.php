@@ -11,15 +11,15 @@ class EmailConfig
         $mail = new PHPMailer(true);
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
-        $mail->Host = 'mail.venturabnb.pe';
+        $mail->Host = 'mail.mprealstate.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'info@venturabnb.pe';
-        $mail->Password = 'ventura2025#';
+        $mail->Username = 'info@mprealstate.com';
+        $mail->Password = 'mprealstate2025';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
         $mail->Subject = '' . $name . ', '.$mensaje. '';
         $mail->CharSet = 'UTF-8';
-        $mail->setFrom('info@venturabnb.pe', 'Ventura');
+        $mail->setFrom('info@mprealstate.com', 'MP Real State');
         return $mail;
     }
 }
