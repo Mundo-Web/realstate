@@ -1388,7 +1388,7 @@ class IndexController extends Controller
                     "
                   >
                     ¡Gracias
-                    <span style="color: #354273">por escribirnos!</span>
+                    <span style="color: #ffffff">por escribirnos!</span>
                   </p>
                 </td>
               </tr>
