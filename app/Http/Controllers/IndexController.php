@@ -452,6 +452,7 @@ class IndexController extends Controller
     $general = General::first();
     $textoshome = HomeView::first();
     $categorias = Category::all();
+    $categoriasAll = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
     $url_env = env('APP_URL');
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
       ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
@@ -469,7 +470,7 @@ class IndexController extends Controller
        $paises = [];
   }
 
-    return view('public.jobabout', compact('paises','textoshome', 'general', 'url_env', 'categorias', 'destacados'));
+    return view('public.jobabout', compact('paises','textoshome', 'general', 'url_env', 'categorias', 'destacados','categoriasAll'));
   }
 
   public function agentes()
@@ -1261,18 +1262,32 @@ class IndexController extends Controller
   {
 
     $data = $request->all();
-    $data['full_name'] = $request->name . ' ' . $request->last_name;
+    
+    $iso2 = $request->code_country;
+
+    $json = file_get_contents(public_path('phone/countries_phone.json'));
+    $countries = json_decode($json, true);
+    $country = collect($countries)->firstWhere('iso2', $iso2);
+
+    if (!$country) {
+      return back()->withErrors(['code_country' => 'País no válido']);
+    }
+
+    $data['phone'] = '+' . $country['phoneCode'] . $request->phone;
+    $data['comunication'] = $request->doc_number;
 
     try {
       $reglasValidacion = [
-        'name' => 'required|string|max:255',
+        'full_name' => 'required|string|max:255',
         'email' => 'required|email|max:255',
+        'phone' => 'required',
       ];
       $mensajes = [
-        'name.required' => 'El campo nombre es obligatorio.',
+        'full_name.required' => 'El campo nombre es obligatorio.',
         'email.required' => 'El campo correo electrónico es obligatorio.',
         'email.email' => 'El formato del correo electrónico no es válido.',
         'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+        'phone.required' => 'El campo telefono es obligatorio.',
       ];
       $request->validate($reglasValidacion, $mensajes);
       $formlanding = Message::create($data);
@@ -1298,173 +1313,164 @@ class IndexController extends Controller
 
   private function envioCorreo($data)
   {
-    $appUrl = env('APP_URL');
+    $general = General::first();
     $name = $data['full_name'];
-    $mensaje = "Gracias por comunicarte con Ventura";
+    $appUrl = env('APP_URL');
+    $mensaje = 'Gracias por comunicarte con MP Real State, en breve nos pondremos en contacto contigo.';
     $mail = EmailConfig::config($name, $mensaje);
-    // dd($mail);
+
     try {
       $mail->addAddress($data['email']);
-      $mail->Body = '<html lang="es">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Mundo web</title>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet"
-          />
-          <style>
-            * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-            }
-          </style>
-        </head>
-        <body>
-          <main>
-            <table
-              style="
-                width: 600px;
-                height: 800px;
-                margin: 0 auto;
-                text-align: center;
-                background-image:url(' . $appUrl . '/images/Ellipse_18.png),  url(' . $appUrl . '/images/Tabpanel.png);
-                background-repeat: no-repeat, no-repeat;
-                background-position: center bottom , center bottom;;
-                background-size: fit , fit;
-                background-color: #f9f9f9;
-              "
-            >
-              <thead>
-                <tr>
-                  <th
+      $mail->Body = '<html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MP Real State</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+        </style>
+      </head>
+      <body>
+        <main>
+          <table
+            style="
+              width: 600px;
+              margin: 0 auto;
+              text-align: center;
+              background-image: url(' .
+                    $appUrl .
+                    '/mail/fondo.png);
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <thead>
+              <tr>
+                <th
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 40px;
+                    padding: 0 200px;
+                  "
+                >
+                    <a href="' .
+                    $appUrl .
+                    '" target="_blank" style="text-align:center" ><img src="' .
+                    $appUrl .
+                    '/mail/logo.png" alt="hpi" /></a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p
                     style="
-                      display: flex;
-                      flex-direction: row;
-                      justify-content: center;
-                      align-items: center;
-                      margin: 40px;
+                      color: #6486CD;
+                      font-size: 40px;
+                      line-height: normal;
+                      font-family: Google Sans;
+                      font-weight: bold;
                     "
                   >
-                    <img src="' . $appUrl . '/images/Group1.png" alt="Boost_Peru"  style="
-                    margin: auto;
-                  "/>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="height: 10px">
-                    <p
-                      style="
-                        
-                        font-weight: 500;
-                        font-size: 18px;
-                        text-align: center;
-                        width: 500px;
-                        margin: 0 auto;
-                        font-family: Montserrat, sans-serif;
-                        line-height: 30px;
-                      "
-                    >
-                      <span style="display: block">Hola </span>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="height: 10px">
-                    <p
-                      style="
-                        
-                        font-size: 40px;
-                        font-family: Montserrat, sans-serif;
-                        line-height: 60px;
-                      "
-                    >
-                      <span style="display: block">' . $name . ' </span>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="height: 10px">
-                    <p
-                      style="
-                        color: #006bf6;
-                        font-size: 40px;
-                        font-family: Montserrat, sans-serif;
-                        font-weight: bold;
-                        line-height: 60px;
-                      "
-                    >
-                      !Gracias
-                      <span >por escribirnos!</span>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="height: 10px">
-                    <p
-                      style="
-                        
-                        font-weight: 500;
-                        font-size: 18px;
-                        text-align: center;
-                        width: 250px;
-                        margin: 0 auto;
-                        font-family: Montserrat, sans-serif;
-                        line-height: 30px;
-                      "
-                    >
-                      En breve estaremos comunicandonos contigo.
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td
+                    ¡Gracias
+                    <span style="color: #354273">por escribirnos!</span>
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p
                     style="
-                    text-align: center;
-                  "
+                      color: #354273;
+                      font-weight: 500;
+                      font-size: 18px;
+                      text-align: center;
+                      width: 500px;
+                      margin: 0 auto;
+                      padding: 20px 0 5px 0;
+                      font-family: Google Sans;
+                    "
                   >
-                    <a
-                      href="' . $appUrl . '"
-                      style="
-                        text-decoration: none;
-                        background-color: #006bf6;
-                        color: white;
-                        padding: 10px 16px;
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px;
-                        font-weight: 600;
-                        font-family: Montserrat, sans-serif;
-                        font-size: 16px;
-                        border-radius: 30px;
-                      "
-                    >
-                      <span>Visita nuestra web</span>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </main>
-        </body>
-      </html>
+                    <span style="display: block">Hola ' . $name . '</span>
+                  </p>
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  <p
+                    style="
+                      color: #354273;
+                      font-weight: 500;
+                      font-size: 18px;
+                      text-align: center;
+                      width: 500px;
+                      margin: 0 auto;
+                      padding: 0px 10px 5px 0px;
+                      font-family: Google Sans;
+                    "
+                  >
+                    En breve estaremos comunicandonos contigo.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                      target="_blank"
+                    href="' .
+                    $appUrl .
+                    '"
+                    style="
+                      text-decoration: none;
+                      background: linear-gradient(90deg, #C8A049 0%, #E9D151 55.42%, #BE913E 93.5%);
+                      color: #141414;
+                      padding: 13px 20px;
+                      display: inline-flex;
+                      justify-content: center;
+                      border-radius: 32px;
+                      align-items: center;
+                      gap: 10px;
+                      font-weight: 600;
+                      font-family: Google Sans;
+                      font-size: 16px;
+                      margin-bottom: 350px;
+                    "
+                  >
+                    <span>Visita nuestra web</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </body>
+    </html>
       ';
-      // $mail->addBCC('atencionalcliente@boostperu.com.pe', 'Atencion al cliente', );
-      // $mail->addBCC('jefecomercial@boostperu.com.pe', 'Jefe Comercial', );
+      $mail->addBCC($general->email, 'Atencion al cliente' );
       $mail->isHTML(true);
       $mail->send();
     } catch (\Throwable $th) {
       //throw $th;
     }
   }
-
+    
   public function envioCorreoCompra($data)
   {
 

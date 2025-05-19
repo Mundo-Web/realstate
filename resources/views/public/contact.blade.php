@@ -83,6 +83,9 @@
                         <div id="form1" class=" rounded-2xl flex flex-col gap-4 formulariocontacto font-PlusJakartaSans_Regular">
                             <form class="flex flex-col gap-2 xl:gap-4" id="formContactos">
                               @csrf
+
+                                <input type="hidden" name="source" value="contacto">
+
                                 <div class="relative">
                                     <input type="text" name="full_name" id="full_name" placeholder=" " 
                                         class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]">
@@ -113,9 +116,9 @@
 
                                 
                                 <div class="relative">
-                                    <textarea rows="4" name="email" id="email" placeholder="" 
+                                    <textarea rows="4" name="message" id="message" placeholder="" 
                                         class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]"></textarea>
-                                    <label for="email" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Escribe un mensaje</label>
+                                    <label for="message" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Escribe un mensaje</label>
                                 </div>
                     
                                  
@@ -380,7 +383,7 @@
         function alerta(message) {
             Swal.fire({
                 title: message,
-                icon: "error",
+                icon: "info",
             });
         }
 
@@ -412,8 +415,6 @@
                 return;
             };
 
-
-            /* console.log(formDataArray); */
             $.ajax({
                 url: '{{ route('guardarContactos') }}',
                 method: 'POST',
@@ -440,6 +441,7 @@
                         window.location.href = window.location.href.split('#')[0] +
                             '#formularioenviado';
                     }
+
                     btnEnviar.prop('disabled', false);
                     btnEnviar.text('Enviar Mensaje');
                     btnEnviar.css('cursor', 'pointer');
@@ -455,7 +457,7 @@
                             Swal.fire({
                                 title: error.message,
                                 text: e,
-                                icon: "error",
+                                icon: "info",
                             });
                             flag = true; // Marcar como mostrado
                         }
@@ -470,8 +472,6 @@
 
     <script>
         $(document).ready(function() {
-
-
             function capitalizeFirstLetter(string) {
                 string = string.toLowerCase()
                 return string.charAt(0).toUpperCase() + string.slice(1);

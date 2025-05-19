@@ -83,6 +83,9 @@
                         <div id="form1" class=" rounded-2xl flex flex-col gap-4 formulariocontacto font-PlusJakartaSans_Regular">
                             <form class="flex flex-col gap-2 xl:gap-4" id="formContactos">
                               @csrf
+
+                                <input type="hidden" name="source" value="trabajaconnosotros">
+
                                 <div class="relative">
                                     <input type="text" name="full_name" id="full_name" placeholder=" " 
                                         class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]">
@@ -100,6 +103,16 @@
                                         class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]">
                                     <label for="email" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Correo electrónico</label>
                                 </div>
+
+                                {{-- <div class="flex flex-row">
+                                    <select class="js-phone-select-two w-full" name="comunication">
+                                        @foreach($categoriasAll as $cat)
+                                            <option value="{{ $cat->name }}">
+                                                {{ $cat->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div> --}}
                                 
                                 <div class="flex flex-row">
                                     <select class="js-phone-select !max-w-[120px]" name="code_country">
@@ -111,17 +124,17 @@
                                         @endforeach
                                     </select>
                                     <div class="relative w-full">
-                                        <input type="text" name="phone" id="telefonoContacto" placeholder=" " 
+                                        <input type="text" name="phone" id="phone" placeholder=" " 
                                             class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg rounded-l-none text-base 2xl:text-xl text-white bg-[#141414]">
-                                        <label for="telefonoContacto" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Teléfono</label>
+                                        <label for="phone" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Teléfono</label>
                                     </div>
                                 </div>
 
                                 
                                 <div class="relative">
-                                    <textarea rows="4" name="email" id="email" placeholder="" 
+                                    <textarea rows="4" name="message" id="message" placeholder="" 
                                         class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#141414]"></textarea>
-                                    <label for="email" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Escribe un mensaje</label>
+                                    <label for="message" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#141414] peer-[:not(:placeholder-shown)]:bg-[#141414] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Escribe un mensaje</label>
                                 </div>
                     
                                  
@@ -156,66 +169,20 @@
 
             </div>
         </section>
-
-        <section class="px-[5%] xl:px-[8%] py-8 lg:py-16 flex flex-col bg-[#1E1E1E]">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 lg:gap-10">
-                <h2 class="md:col-span-2 lg:col-span-3 font-PlusJakartaSans_Semibold text-white text-3xl lg:text-4xl 2xl:text-5xl leading-tight">
-                    Hablemos <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> hoy... </span>
-                </h2>
-                
-                <article class="flex flex-col gap-3 p-4 lg:p-6 bg-[#141414] rounded-xl">
-                    <img loading="lazy" src="{{ asset('images/svg/sms.svg') }}" class="object-contain w-14" />
-                    <div class="flex flex-col gap-2 2xl:gap-4 w-full">
-                        <h3
-                            class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                            Correo electrónico
-                        </h3>
-                        <p
-                            class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
-                            Escríbenos para recibir atención personalizada y resolver tus dudas.
-                        </p>
-                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">mo-realstate@mail.com</p>
-                    </div>
-                </article>
-
-                <article class="flex flex-col gap-3 p-4 lg:p-6 bg-[#141414] rounded-xl">
-                    <img loading="lazy" src="{{ asset('images/svg/phone.svg') }}" class="object-contain w-14" />
-                    <div class="flex flex-col gap-2 2xl:gap-4 w-full">
-                        <h3
-                            class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                            Teléfono
-                        </h3>
-                        <p
-                            class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
-                            Llámanos para obtener soporte inmediato y asistencia profesional.
-                        </p>
-                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">(+51) 000-000-000</p>
-                    </div>
-                </article>
-
-                <article class="flex flex-col gap-3 p-4 lg:p-6 bg-[#141414] rounded-xl">
-                    <img loading="lazy" src="{{ asset('images/svg/address.svg') }}" class="object-contain w-14" />
-                    <div class="flex flex-col gap-2 2xl:gap-4 w-full">
-                        <h3
-                            class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                            Oficina
-                        </h3>
-                        <p
-                            class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
-                            Visítanos en nuestra oficina para conocer nuestras soluciones.
-                        </p>
-                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">Av. Javier Prado 2156 San Isidro</p>
-                    </div>
-                </article>
-
-            </div>
-        </section>
     </main>
 
 @section('scripts_importados')
     
     <script>
-       
+        $(document).ready(function() {
+            // Inicializar Select2 para el campo de selección de país
+            $('.js-phone-select-two').select2({
+                width: '100%',
+                dropdownAutoWidth: true,
+                placeholder: "Selecciona una categoría",
+            });
+        });
+
         function formatState(state) {
             if (!state.id) return state.text;
             
@@ -308,7 +275,7 @@
         function alerta(message) {
             Swal.fire({
                 title: message,
-                icon: "error",
+                icon: "info",
             });
         }
 
@@ -340,8 +307,6 @@
                 return;
             };
 
-
-            /* console.log(formDataArray); */
             $.ajax({
                 url: '{{ route('guardarContactos') }}',
                 method: 'POST',
@@ -368,6 +333,7 @@
                         window.location.href = window.location.href.split('#')[0] +
                             '#formularioenviado';
                     }
+
                     btnEnviar.prop('disabled', false);
                     btnEnviar.text('Enviar Mensaje');
                     btnEnviar.css('cursor', 'pointer');
@@ -383,7 +349,7 @@
                             Swal.fire({
                                 title: error.message,
                                 text: e,
-                                icon: "error",
+                                icon: "info",
                             });
                             flag = true; // Marcar como mostrado
                         }
