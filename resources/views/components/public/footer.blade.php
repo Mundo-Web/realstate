@@ -18,15 +18,11 @@
         }
     </style>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 lg:gap-10 md:justify-center w-full px-[5%] xl:px-[8%] py-8 lg:py-16 ">
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 sm:gap-10 md:justify-center w-full px-[5%] xl:px-[8%] py-8 lg:py-16 ">
 
         <div class="flex flex-col text-white text-base justify-start items-start gap-5">
-            <img class="w-auto max-h-28 object-contain" src="{{ asset('images/svg/rs_logofooter.svg') }}" />
+            <img class="w-auto max-h-32 object-contain" src="{{ asset('images/svg/rs_logofooter.svg') }}" />
         </div>
-
-        <div class="hidden lg:flex"></div>
-
-        <div class="hidden xl:flex"></div>
 
         {{-- <div class="flex flex-col text-sm font-FixelText_Light text-white gap-2 pl-0 md:pl-[10%]">
             <h3 class="text-xl text-white font-Homie_Bold pb-3">Enlaces</h3>
@@ -52,11 +48,8 @@
             <a href="{{ route('librodereclamaciones') }}">Libro de reclamaciones</a>
         </div>
 
-        <div class="hidden sm:flex"></div>
-        <div class="hidden lg:flex"></div>
-        <div class="hidden lg:hidden xl:flex"></div>
 
-        <div class="flex flex-col text-sm font-PlusJakartaSans_Regular text-white gap-1.5">
+        <div class="sm:col-span-2 lg:col-span-1 flex flex-col text-sm font-PlusJakartaSans_Regular text-white gap-1.5">
             <h3 class="text-lg 2xl:text-xl text-white font-PlusJakartaSans_Semibold pb-3">Horario de atención</h3>
             <p id="schedule" class="leading-normal">{{ $datosgenerales->schedule }}</p>
         </div>
@@ -155,7 +148,7 @@
                     </svg>
                   </a>
                 @endif
-              </div>
+            </div>
         </div>
 
     </div>

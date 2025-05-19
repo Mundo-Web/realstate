@@ -174,20 +174,20 @@
 
     <main>
 
-        <section class="sm:px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]">
+        <section class="sm:px-[5%] md:py-8 lg:py-14 bg-[#141414]">
             <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-cover bg-center bg-no-repeat sm:rounded-3xl overflow-hidden"
                 style="background-image: url({{ asset('images/img/rs_portada.png') }})">
-                <div class="min-h-[800px] h-full w-full md:w-3/5 bg-[#141414] bg-opacity-70 sm:rounded-3xl py-6 px-3 lg:px-10 2xl:px-14">
+                <div class="flex flex-col gap-5 xl:gap-8 min-h-[800px] h-full w-full md:w-4/5 lg:w-3/5 bg-[#141414] bg-opacity-70 sm:rounded-3xl py-8 md:py-12 px-4 md:px-6 lg:px-10 2xl:px-14">
                     
-                    <div class="max-w-lg 2xl:max-w-2xl flex flex-col gap-5">
+                    <div class="order-2 md:order-1 max-w-lg 2xl:max-w-2xl  flex-col gap-5">
                         <h2 class="font-PlusJakartaSans_Medium text-white text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">Encuentra tu
                             nuevo <span class="text-[#C8A049]">hogar</span> ideal</h2>
-                        <p class="font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Desde la
+                        <p class=" font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Desde la
                             exploración hasta la celebración de tu nuevo hogar o local, nuestra tecnología hace el proceso
                             más claro y accesible.</p>
                     </div>
 
-                    <div class="w-full max-w-xl 2xl:max-w-2xl mt-5 xl:mt-8">
+                    <div class="order-1 md:order-2 w-full max-w-xl 2xl:max-w-2xl mx-auto md:mx-0">
                         <div class="bg-[#1A1A1A] rounded-xl overflow-hidden ">
                             
                             <div class="grid grid-cols-2 text-center text-base xl:text-lg 2xl:text-xl font-PlusJakartaSans_Medium">
@@ -264,7 +264,7 @@
         </section>
 
         @if ($ultimosProductos->count() > 0)
-        <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
+        <section class="w-full px-[5%]   py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
 
                 <div class="flex flex-col gap-3 max-w-2xl">
@@ -280,7 +280,7 @@
                 </div>
 
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-5 xl:gap-8 mt-7 w-full">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:flex-row gap-5 2xl:gap-8 mt-7 w-full">
                 @foreach ($ultimosProductos as $item)
                     <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
                 @endforeach
@@ -289,7 +289,7 @@
     @endif
 
     @if ($productosDescuentos->count() > 0)
-        <section class="w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
+        <section class="w-full px-[5%]   py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
 
                 <div class="flex flex-col gap-3 max-w-2xl">
@@ -305,7 +305,7 @@
                 </div>
 
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:flex-row gap-5 xl:gap-8 mt-7 w-full">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:flex-row gap-5 2xl:gap-8 mt-7 w-full">
                 @foreach ($productosDescuentos as $item)
                     <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
                 @endforeach
@@ -314,7 +314,7 @@
     @endif
        
         @if (count($benefit) > 0)
-            <section class="flex flex-col gap-3 px-[5%] xl:px-[8%] py-8 lg:py-16 bg-cover"
+            <section class="flex flex-col gap-3 px-[5%]   py-8 lg:py-16 bg-cover"
                 style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
                 <div class="flex flex-col gap-4">
                     <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-6xl 2xl:text-7xl">Ayudar a las personas a
@@ -365,7 +365,7 @@
 
       
         
-        <section class="flex flex-col gap-4 lg:gap-8 px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-cover bg-[#141414]">
+        <section class="flex flex-col gap-4 lg:gap-8 px-[5%]   pb-8 lg:pb-16 bg-cover bg-[#141414]">
             <div class="flex flex-col gap-4">
                 <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-5xl 2xl:text-6xl">Proyectos inmobiliarios en <span class="text-[#C8A049]">todo Lima</span></h2>
                 <p class="font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl lg:w-3/5">Ubica tu depa ideal aquí</p>
@@ -376,7 +376,7 @@
         </section>    
         
         @if (count($personal) > 0)
-            <section class="w-full px-[5%] xl:px-[8%] pb-8 lg:pb-16 bg-[#141414]" id="agentes">
+            <section class="w-full px-[5%]   pb-8 lg:pb-16 bg-[#141414]" id="agentes">
                 <div class="flex flex-col gap-6">
                     <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] 2xl:text-5xl">Comunícate con
                         nuestros <span class="text-[#C8A049]">agentes</span> </h2>
@@ -462,7 +462,7 @@
             </section>
         @endif
         
-        <section class="flex flex-col lg:flex-row w-full px-[5%] xl:px-[8%] py-8 lg:py-16 bg-[#141414]"
+        <section class="flex flex-col lg:flex-row w-full px-[5%]   py-8 lg:py-16 bg-[#141414]"
             style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
             <div class="flex flex-col gap-5 lg:w-1/2">
                 <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] 2xl:text-5xl leading-tight">
@@ -480,7 +480,7 @@
         </section>
 
 
-        <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-10 w-full" style="background-image: url({{ asset('images/img/texturasuscribirse.png') }})">
+        <section class="flex flex-col justify-center items-center px-[5%]   py-10 w-full" style="background-image: url({{ asset('images/img/texturasuscribirse.png') }})">
             <div class="flex flex-col max-w-xl">
       
                 <div class="flex flex-col w-full text-center gap-5 text-[#006258]">
@@ -513,7 +513,7 @@
 
         {{-- @if ($testimonie->count() > 0)    
           <section
-              class="flex flex-col md:flex-row md:gap-10 lg:gap-20 items-center justify-center px-[5%] xl:px-[8%] w-full bg-[#009A84]">
+              class="flex flex-col md:flex-row md:gap-10 lg:gap-20 items-center justify-center px-[5%]   w-full bg-[#009A84]">
 
               <div class="flex flex-col w-full md:w-1/2 pt-10 lg:py-10">
                   <div class="flex flex-col w-full text-center max-w-2xl gap-5 mx-auto">
@@ -565,7 +565,7 @@
 
         {{-- @if ($benefit->count() > 0)
             <section
-                class="flex flex-col lg:flex-row md:gap-10 lg:gap-20 items-center justify-center px-[5%] xl:px-[8%] py-10 lg:py-20 w-full">
+                class="flex flex-col lg:flex-row md:gap-10 lg:gap-20 items-center justify-center px-[5%]   py-10 lg:py-20 w-full">
 
                 <div class="flex overflow-hidden flex-col min-w-[240px] w-full lg:w-2/5">
                     <div class="flex relative flex-col w-full rounded-3xl overflow-hidden">
@@ -623,7 +623,7 @@
             </section>
         @endif --}}
 
-        {{-- <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-14 w-full bg-[#73F7AD]">
+        {{-- <section class="flex flex-col justify-center items-center px-[5%]   py-14 w-full bg-[#73F7AD]">
             <div class="flex flex-col max-w-xl">
 
                 <div class="flex flex-col w-full text-center gap-5 text-[#006258]">

@@ -74,6 +74,9 @@ Route::get('/servicios', [IndexController::class, 'servicios'])->name('servicios
 Route::get('/comentario', [IndexController::class, 'comentario'])->name('comentario');
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'])->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'])->name('contacto');
+Route::get('/trabaja-con-nosotros', [IndexController::class, 'trabaja'])->name('trabaja');
+Route::get('/agentes', [IndexController::class, 'agentes'])->name('agentes');
+Route::get('/vende-o-alquila', [IndexController::class, 'vendeoalquila'])->name('vendeoalquila');
 Route::get('/libro-de-reclamaciones', [IndexController::class, 'librodereclamaciones'])->name('librodereclamaciones');
 Route::get('/blog/{filtro}', [IndexController::class, 'blog'])->name('blog');
 Route::get('/post/{id}', [IndexController::class, 'detalleBlog'])->name('detalleBlog');

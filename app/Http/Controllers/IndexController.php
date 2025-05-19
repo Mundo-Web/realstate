@@ -447,6 +447,83 @@ class IndexController extends Controller
     return view('public.contact', compact('paises','textoshome', 'general', 'url_env', 'categorias', 'destacados'));
   }
 
+  public function trabaja()
+  {
+    $general = General::first();
+    $textoshome = HomeView::first();
+    $categorias = Category::all();
+    $url_env = env('APP_URL');
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
+      ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+
+  try {
+     $json = file_get_contents(public_path('phone/countries_phone.json'));
+     $paises = json_decode($json, true);
+     if (json_last_error() !== JSON_ERROR_NONE) {
+         throw new \Exception('Error al decodificar JSON');
+     }
+     usort($paises, function($a, $b) {
+         return strcmp($a['nameES'], $b['nameES']);
+     });
+  } catch (\Exception $e) {
+       $paises = [];
+  }
+
+    return view('public.jobabout', compact('paises','textoshome', 'general', 'url_env', 'categorias', 'destacados'));
+  }
+
+  public function agentes()
+  {
+    $general = General::first();
+    $textoshome = HomeView::first();
+    $personal = Staff::where('status', '=', 1)->get();
+    $categorias = Category::all();
+    $url_env = env('APP_URL');
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
+      ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+
+  try {
+     $json = file_get_contents(public_path('phone/countries_phone.json'));
+     $paises = json_decode($json, true);
+     if (json_last_error() !== JSON_ERROR_NONE) {
+         throw new \Exception('Error al decodificar JSON');
+     }
+     usort($paises, function($a, $b) {
+         return strcmp($a['nameES'], $b['nameES']);
+     });
+  } catch (\Exception $e) {
+       $paises = [];
+  }
+
+    return view('public.agentes', compact('paises','textoshome', 'general', 'url_env', 'categorias', 'destacados', 'personal'));
+  }
+
+  public function vendeoalquila()
+  {
+    $general = General::first();
+    $textoshome = HomeView::first();
+    $personal = Staff::where('status', '=', 1)->get();
+    $categorias = Category::all();
+    $url_env = env('APP_URL');
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
+      ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+
+  try {
+     $json = file_get_contents(public_path('phone/countries_phone.json'));
+     $paises = json_decode($json, true);
+     if (json_last_error() !== JSON_ERROR_NONE) {
+         throw new \Exception('Error al decodificar JSON');
+     }
+     usort($paises, function($a, $b) {
+         return strcmp($a['nameES'], $b['nameES']);
+     });
+  } catch (\Exception $e) {
+       $paises = [];
+  }
+
+    return view('public.vendeoalquila', compact('paises','textoshome', 'general', 'url_env', 'categorias', 'destacados', 'personal'));
+  }
+
   public function carrito()
   {
     //
