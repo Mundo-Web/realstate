@@ -56,12 +56,12 @@
                                 <label for="remember_me" class="text-white text-sm font-PlusJakartaSans_Regular">Recuérdame</label>
                             </div>
 
-                            @if (Route::has('password.request'))
+                            {{-- @if (Route::has('password.request'))
                                 <div>
                                     <a href="{{ route('password.request') }}"
                                         class="text-white text-sm font-PlusJakartaSans_Semibold">¿Olvidaste tu contraseña?</a>
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
 
                         <div class="px-4">
