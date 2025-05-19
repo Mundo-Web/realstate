@@ -1380,7 +1380,7 @@ class IndexController extends Controller
                 <td>
                   <p
                     style="
-                      color: #6486CD;
+                      color: #ffffff;
                       font-size: 40px;
                       line-height: normal;
                       font-family: Google Sans;
@@ -1397,7 +1397,7 @@ class IndexController extends Controller
                 <td>
                   <p
                     style="
-                      color: #354273;
+                      color: #ffffff;
                       font-weight: 500;
                       font-size: 18px;
                       text-align: center;
@@ -1416,7 +1416,7 @@ class IndexController extends Controller
                 <td>
                   <p
                     style="
-                      color: #354273;
+                      color: #ffffff;
                       font-weight: 500;
                       font-size: 18px;
                       text-align: center;
