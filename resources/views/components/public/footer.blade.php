@@ -21,7 +21,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 sm:gap-10 md:justify-center w-full px-[5%] xl:px-[8%] py-8 lg:py-16 ">
 
         <div class="flex flex-col text-white text-base justify-start items-start gap-5">
-            <img class="w-auto max-h-32 object-contain" src="{{ asset('images/svg/rs_logofooter.svg') }}" />
+            <img class="w-auto max-h-40 object-contain" src="{{ asset('images/svg/rs_logofooter.svg') }}" />
         </div>
 
         {{-- <div class="flex flex-col text-sm font-FixelText_Light text-white gap-2 pl-0 md:pl-[10%]">

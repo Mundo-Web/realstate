@@ -111,7 +111,10 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-row justify-end gap-3">
-                                        <a onclick="copyPhone('{{$persona->facebook}}'); return false;">
+                                        @php
+                                            $numeroWhatsapp = preg_replace('/[^0-9]/', '', $persona->facebook);
+                                        @endphp
+                                        <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $numeroWhatsapp }}">
                                             <div
                                                 class="cursor-pointer bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
@@ -127,7 +130,7 @@
                                                 </svg>
                                             </div>
                                         </a>
-                                        <a onclick="copyEmail('{{$persona->instagram}}'); return false;">
+                                        {{-- <a onclick="copyEmail('{{$persona->instagram}}'); return false;">
                                             <div
                                                 class="cursor-pointer bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
@@ -140,7 +143,7 @@
                                                         stroke="#141414" stroke-width="1.25" stroke-linecap="round" />
                                                 </svg>
                                             </div>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
                             @endforeach  

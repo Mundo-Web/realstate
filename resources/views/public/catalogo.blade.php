@@ -112,7 +112,7 @@
 
     <div class="bg-center bg-cover" style="background-image: url({{ asset('images/img/rs_textura.png') }})">
         
-        <section class="px-[5%] xl:px-[8%] pt-10 lg:pt-16 ">
+        <section class="px-[5%] pt-10 lg:pt-16 ">
             <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-[#191919] rounded-3xl overflow-hidden py-8">
                 
                 <div class="h-full w-full md:w-1/2 bg-opacity-70 rounded-3xl px-5 lg:px-10 2xl:px-14">
@@ -172,7 +172,7 @@
             </div>
         </section>
 
-        <section id="productosf" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 px-[5%] xl:px-[8%] py-10 lg:py-16">
+        <section id="productosf" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 2xl:gap-8 px-[5%] py-10 lg:py-16">
             @foreach ($products as $item)
                     <x-product.container width="col-span-1 " bgcolor="" :item="$item" />
             @endforeach

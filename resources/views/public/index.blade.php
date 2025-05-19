@@ -177,17 +177,17 @@
         <section class="sm:px-[5%] md:py-8 lg:py-14 bg-[#141414]">
             <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-cover bg-center bg-no-repeat sm:rounded-3xl overflow-hidden"
                 style="background-image: url({{ asset('images/img/rs_portada.png') }})">
-                <div class="flex flex-col gap-5 xl:gap-8 min-h-[800px] h-full w-full md:w-4/5 lg:w-3/5 bg-[#141414] bg-opacity-70 sm:rounded-3xl py-8 md:py-12 px-4 md:px-6 lg:px-10 2xl:px-14">
+                <div class="flex flex-col gap-5 xl:gap-8 min-h-[700px] h-full w-full md:w-4/5 lg:w-3/5 bg-[#141414] bg-opacity-70 sm:rounded-3xl py-8 md:py-12 px-4 md:px-6 lg:px-10 2xl:px-14">
                     
-                    <div class="order-2 md:order-1 max-w-lg 2xl:max-w-2xl  flex-col gap-5">
+                    <div class="max-w-lg 2xl:max-w-2xl flex flex-col gap-5">
                         <h2 class="font-PlusJakartaSans_Medium text-white text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">Encuentra tu
                             nuevo <span class="text-[#C8A049]">hogar</span> ideal</h2>
-                        <p class=" font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Desde la
+                        <p class="hidden md:flex font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Desde la
                             exploración hasta la celebración de tu nuevo hogar o local, nuestra tecnología hace el proceso
                             más claro y accesible.</p>
                     </div>
 
-                    <div class="order-1 md:order-2 w-full max-w-xl 2xl:max-w-2xl mx-auto md:mx-0">
+                    <div class="w-full max-w-xl 2xl:max-w-2xl mx-auto md:mx-0">
                         <div class="bg-[#1A1A1A] rounded-xl overflow-hidden ">
                             
                             <div class="grid grid-cols-2 text-center text-base xl:text-lg 2xl:text-xl font-PlusJakartaSans_Medium">
@@ -365,7 +365,7 @@
 
       
         
-        <section class="flex flex-col gap-4 lg:gap-8 px-[5%]   pb-8 lg:pb-16 bg-cover bg-[#141414]">
+        <section class="flex flex-col gap-4 lg:gap-8 px-[5%] py-8 lg:py-16 bg-cover bg-[#141414]">
             <div class="flex flex-col gap-4">
                 <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-5xl 2xl:text-6xl">Proyectos inmobiliarios en <span class="text-[#C8A049]">todo Lima</span></h2>
                 <p class="font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl lg:w-3/5">Ubica tu depa ideal aquí</p>
@@ -375,7 +375,7 @@
        
         </section>    
         
-        @if (count($personal) > 0)
+        {{-- @if (count($personal) > 0)
             <section class="w-full px-[5%]   pb-8 lg:pb-16 bg-[#141414]" id="agentes">
                 <div class="flex flex-col gap-6">
                     <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] 2xl:text-5xl">Comunícate con
@@ -460,7 +460,7 @@
                     </div>
                 </div>
             </section>
-        @endif
+        @endif --}}
         
         <section class="flex flex-col lg:flex-row w-full px-[5%]   py-8 lg:py-16 bg-[#141414]"
             style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
