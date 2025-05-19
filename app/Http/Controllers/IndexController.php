@@ -1730,5 +1730,17 @@ class IndexController extends Controller
 
     return response()->json($properties);
   }
+
+  public function agradecimientocontacto(){
+    return view('public.agradecimientocontacto');
+  }
+
+  public function agradecimientojob(){
+    return view('public.agradecimientojob');
+  }
+
+  public function agradecimientoventa(){
+    return view('public.agradecimientoventa');
+  }
 }
 

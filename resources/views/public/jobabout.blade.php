@@ -329,10 +329,7 @@
                         icon: "success",
                     });
 
-                    if (!window.location.href.includes('#formularioenviado')) {
-                        window.location.href = window.location.href.split('#')[0] +
-                            '#formularioenviado';
-                    }
+                    window.location.href = '/trabaja-con-nosotros/gracias';
 
                     btnEnviar.prop('disabled', false);
                     btnEnviar.text('Enviar Mensaje');

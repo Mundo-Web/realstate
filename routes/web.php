@@ -117,6 +117,11 @@ Route::post('guardarUserNewsLetter', [NewsletterSubscriberController::class, 'gu
 Route::get('/confirm-email/{token}', [AuthController::class, 'confirmEmailView'])->name('ConfirmEmail.jsx');
 Route::get('/confirmation/{token}', [AuthController::class, 'loginView']);
 
+/* Agradecimiento */
+Route::get('/contacto/gracias', [IndexController::class, 'agradecimientocontacto'])->name('agradecimientocontacto');
+Route::get('/trabaja-con-nosotros/gracias', [IndexController::class, 'agradecimientojob'])->name('agradecimientojob');
+Route::get('/vende-o-alquila/gracias', [IndexController::class, 'agradecimientoventa'])->name('agradecimientoventa');
+
 
 Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () {
 
