@@ -152,7 +152,7 @@
                 <div class="flex flex-row justify-center items-center">
                     {{-- @if ($general[0]->htop && $general[0]->ig_token) --}}
                         <div class="h-[600px] w-full rounded-2xl overflow-hidden" id="map">
-                            <img src="{{ asset('images/img/mapafinal.png') }}" alt="Imagen de fondo del mapa" class="w-full h-full object-cover">
+                            <img src="{{ asset('images/img/vendeoalquila.png') }}" alt="Imagen de fondo del mapa" class="w-full h-full object-cover">
                         </div>
                     {{-- @endif --}}
                 </div>
