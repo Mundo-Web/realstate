@@ -117,7 +117,7 @@
                                         <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $numeroWhatsapp }}">
                                             <div
                                                 class="cursor-pointer w-10 h-10 rounded-full flex flex-col items-center justify-center">
-                                                <img loading="lazy" src="{{ asset('images/img/wspico.png') }}" class="object-cover w-6 h-6" />
+                                                <img loading="lazy" src="{{ asset('images/img/wspico.png') }}" class="object-cover w-10 h-10" />
                                             </div>
                                         </a>
                                         {{-- <a onclick="copyEmail('{{$persona->instagram}}'); return false;">
