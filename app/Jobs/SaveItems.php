@@ -50,7 +50,6 @@ class SaveItems implements ShouldQueue
 
     try {
       Category::where('visible', 1)->update(['visible' => 0]);
-      SubCategory::where('visible', 1)->update(['visible' => 0]);
     } catch (\Throwable $th) {
       dump($th->getMessage());
     }
@@ -59,14 +58,14 @@ class SaveItems implements ShouldQueue
       Specifications::whereNotNull('id')->delete();
       Galerie::whereNotNull('id')->delete();
       Staff::whereNotNull('id')->delete();
-      Category::whereNotNull('id')->delete();
+     
       Products::truncate();
 
       $spCount = Specifications::count();
       $glCount = Galerie::count();
       $prCount = Products::count();
       $stCount = Staff::count();
-      $stCount = Category::count();
+      
 
       dump("Specifications: {$spCount}
       Galerie: {$glCount}
@@ -78,7 +77,7 @@ class SaveItems implements ShouldQueue
       DB::statement('ALTER TABLE galeries AUTO_INCREMENT = 1');
       DB::statement('ALTER TABLE products AUTO_INCREMENT = 1');
       DB::statement('ALTER TABLE staff AUTO_INCREMENT = 1');
-      DB::statement('ALTER TABLE categories AUTO_INCREMENT = 1');
+     
 
     } catch (\Throwable $th) {
       dump('Error: ' . $th->getMessage());

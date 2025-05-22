@@ -24,9 +24,9 @@
               <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th class="w-32">Destacar</th>
+                {{-- <th class="w-32">Destacar</th> --}}
                 <th class="w-32">Visible</th>
-                <th class="w-32">Menu</th>
+              
 
                 <th class="w-32">Acciones</th>
               </tr>
@@ -37,7 +37,7 @@
                 <tr>
                   <td class="">{{ $item->name }}</td>
                   <td class="">{{ $item->description }}</td>
-                  <td class="">
+                  {{-- <td class="">
                     <form method="POST" action="">
                       @csrf
                       <input type="checkbox" id="hs-basic-usage"
@@ -54,7 +54,7 @@
 
 
 
-                  </td>
+                  </td> --}}
                   <td class="">
                     <form method="POST" action="">
                       @csrf
@@ -73,7 +73,7 @@
 
 
                   </td>
-                  <td class="">
+                  {{-- <td class="">
                     <form method="POST" action="">
                       @csrf
                       <input type="checkbox" id="hs-basic-usage"
@@ -90,7 +90,7 @@
 
 
 
-                  </td>
+                  </td> --}}
                   <td class="flex flex-row justify-end items-center gap-5 ">
 
                     <a href="{{ route('categorias.edit', $item->id) }}"
@@ -114,7 +114,7 @@
               <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Destacar</th>
+                {{-- <th>Destacar</th> --}}
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>
