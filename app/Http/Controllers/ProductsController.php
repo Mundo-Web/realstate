@@ -462,8 +462,8 @@ class ProductsController extends Controller
                 throw new \Exception("El archivo debe ser un PDF");
             }
 
-            $route = "storage/images/cotizaciones/{$request->categoria_id}/";
-            $nombreArchivo = Str::random(10) . '_' . $field . '.pdf';
+            $route = "storage/images/cotizaciones/";
+            $nombreArchivo = Str::random(10) . '_' . '.pdf';
 
             // Crear directorio si no existe
             if (!file_exists($route)) {
@@ -490,6 +490,14 @@ class ProductsController extends Controller
   public function store(Request $request)
   {
     
+    $request->validate([
+      'producto' => 'required',
+      'imagen_ambiente' => 'mimes:pdf',
+  ], [
+      'producto.required' => 'El campo producto es obligatorio.',
+      'imagen_ambiente.mimes' => 'La imagen de ambiente debe ser un archivo PDF.',
+  ]);
+    
     try {
       $especificaciones = [];
       $extraservice = [];
@@ -499,15 +507,10 @@ class ProductsController extends Controller
       $tagsSeleccionados = $request->input('tags_id');
       // $valorprecio = $request->input('precio') - 0.1;
       
-      $request->validate([
-        'producto' => 'required',
-        'imagen_ambiente' => 'mimes:pdf'
-        //'precio' => 'min:0|required|numeric',
-        // 'descuento' => 'lt:' . $request->input('precio'),
-      ]);
-
+     
       // Imagenes
       $data['descuento'] = $data['descuento'] ?? 0;
+      $data['precio'] = $data['precio'] ?? 0;
       $data['preciomin'] = $data['preciomin'] ?? 0;
       $data['preciolimpieza'] = $data['preciolimpieza'] ?? 0;
       $data['precioservicio'] = $data['precioservicio'] ?? 0;
@@ -595,7 +598,7 @@ class ProductsController extends Controller
        $cleanedData['banios'] = $data['banios'];
        $cleanedData['area'] = $data['area'];
        $cleanedData['ocupada'] = $data['ocupada'];
-       $cleanedData['contruida'] = $data['contruida'];
+       $cleanedData['construida'] = $data['construida'];
        $cleanedData['medidas'] = $data['medidas'];
        $cleanedData['pisos'] = $data['pisos'];
        $cleanedData['cochera'] = $data['cochera'];

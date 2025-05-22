@@ -42,6 +42,9 @@
                       <input type="text" id="producto" name="producto" value="{{ $product->producto }}"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Producto" required>
+                        @error('producto')
+                            <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                   </div>
                   {{-- <div class="col-span-5 md:col-span-2">
@@ -872,10 +875,6 @@
                 </div>
 
                 <div class="md:col-span-5">
-                  {{-- <label class="block mb-1" for="imagen">Imagen del producto</label>
-                  <input id="imagen" name="imagen"
-                    class="mb-2 p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    aria-describedby="user_avatar_help" id="user_avatar" type="file"> --}}
                   <label class="block mb-1" for="imagen_ambiente">Cotizacion</label>
                   @if($product->imagen_ambiente)
                     <span><a class="font-bold"
@@ -902,6 +901,9 @@
                   <input id="imagen_ambiente" name="imagen_ambiente"
                     class="mt-2 mb-2 p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                    @error('imagen_ambiente')
+                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- <div class="md:col-span-5 mt-2">
