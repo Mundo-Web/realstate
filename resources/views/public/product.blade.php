@@ -636,13 +636,13 @@
                     use Illuminate\Support\Facades\File;
                 @endphp
             
-                @if ($product->image_texture && File::exists(public_path($product->image_texture)))
+                @if ($product->image_ambiente && File::exists(public_path($product->image_ambiente)))
                     <div class="flex flex-col justify-center gap-4 pt-8 text-center rounded-2xl text-white">
                         <div class="flex items-center">
                             <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Descargar cotización</h2>
                         </div>
                         <div class="flex flex-row items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
-                            <a href="{{ asset($product->image_texture) }}" download>
+                            <a href="{{ asset($product->image_ambiente) }}" download>
                                 <img class="w-10" src="{{ asset('/images/img/pdf.png') }}" />
                             </a>
                         </div>
