@@ -34,6 +34,7 @@ export default {
                 PlusJakartaSans_Medium: ["PlusJakartaSans_Medium"],
                 PlusJakartaSans_Regular: ["PlusJakartaSans_Regular"],
                 PlusJakartaSans_Semibold: ["PlusJakartaSans_Semibold"],
+                PlusJakartaSans_Light: ["PlusJakartaSans_Light"],
             },
 
             screens: {

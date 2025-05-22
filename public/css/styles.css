@@ -1226,6 +1226,11 @@ font-family: "PlusJakartaSans_Semibold";
 src: url("/fonts/PlusJakartaSans-SemiBold.woff") format("woff");
 }
 
+@font-face {
+    font-family: "PlusJakartaSans_Light";
+    src: url("/fonts/PlusJakartaSans-Light.woff") format("woff");
+}
+
 
 .react-daterange-picker__calendar{
     background-color: white;

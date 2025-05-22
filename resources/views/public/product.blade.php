@@ -541,7 +541,7 @@
                             <div class="flex items-center">
                                 <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Acerca de esta propiedad</h2>
                             </div>
-                            <div class="w-full font-PlusJakartaSans_Regular flex flex-col gap-3 text-white text-base lg:text-lg 2xl:text-xl leading-6">
+                            <div class="w-full font-PlusJakartaSans_Light font-light flex flex-col gap-3 text-white text-base lg:text-lg 2xl:text-xl !leading-loose">
                                 {!! $product->description !!}
                             </div>
                         </div>
