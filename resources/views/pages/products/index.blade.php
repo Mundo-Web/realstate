@@ -18,46 +18,56 @@
   </style> --}}
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
-    <section class="py-4 border-b border-slate-100 dark:border-slate-700">
+    <section class="flex flex-row gap-2 py-4 border-b border-slate-100 dark:border-slate-700">
+      
       <a href="{{ route('products.create') }}"
         class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">
         Crear nuevo
       </a>
+
+      <button id="file-excel-button"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">
+        <i class="fas fa-cloud-upload-alt me-1"></i>
+        Cargar productos
+      </button>
+
     </section>
 
-<script>
-  
-  $('#sincronizar').on('click', function(event) {
-      event.preventDefault();
-      console.log('Sincronizando departamentos...');
+    
 
-      $.ajax({
-          url: "{{ route('products.synchronization') }}",
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': '{{ csrf_token() }}',
+  <script>
+    
+    $('#sincronizar').on('click', function(event) {
+        event.preventDefault();
+        console.log('Sincronizando departamentos...');
 
-          },
-          success: function() {
-              // Mostrar mensaje de éxito usando SweetAlert
-              Swal.fire({
-                  title: 'Departamentos sincronizados exitosamente',
-                  icon: 'success',
-              });
-          },
-          error: function(xhr) {
-              // Mostrar mensaje de error usando SweetAlert
-              Swal.fire({
-                  title: 'Error',
-                  text: 'Ocurrió un error inesperado.',
-                  icon: 'error',
-              });
-          }
-      });
-  });
+        $.ajax({
+            url: "{{ route('products.synchronization') }}",
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
 
-</script>
+            },
+            success: function() {
+                // Mostrar mensaje de éxito usando SweetAlert
+                Swal.fire({
+                    title: 'Departamentos sincronizados exitosamente',
+                    icon: 'success',
+                });
+            },
+            error: function(xhr) {
+                // Mostrar mensaje de error usando SweetAlert
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Ocurrió un error inesperado.',
+                    icon: 'error',
+                });
+            }
+        });
+    });
+
+  </script>
 
     <div
       class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
@@ -196,12 +206,56 @@
 
   </div>
 
+  <form id="file-excel-modal" class="modal !py-6">
+    <p class="mb-2">
+      <b>Carga un zip (Imagenes sueltas)</b>
+    </p>
+    <input
+      class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+      aria-describedby="images_input_help" id="image_input" type="file" accept=".zip">
+    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300 mb-4" id="images_input_help">
+      Los nombres deben ir en formato: <br>
+      <code>
+        <span class="mention">Código Interno</span><span class="mention"></span>*.jpg/wepb
+      </code>
+    </p>
 
+    <p class="mb-2">
+      <b>Carga un archivo excel</b>
+      (<a href="/templates/Items.xlsx" download="Items" class="text-blue-500 underline">Descargar formato</a>)
+    </p>
+    <input
+      class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+      aria-describedby="file_input_help" id="file_input" type="file" accept=".xlsx,.xls">
+    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300 mb-4" id="file_input_help">XLSX o XLS (Solo archivo Excel)
+    </p>
+
+    {{-- <div class="mb-2">
+      <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruta de
+        imagen</label>
+      <div id="image_route_pattern_editor" class="rounded-lg"></div>
+    </div> --}}
+
+    <div id="progress-container" class="mt-4 hidden">
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+      </div>
+      <p id="progress-text" class="mt-2 text-sm text-gray-600 dark:text-gray-400">0%</p>
+    </div>
+
+    <button
+      class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+      type="submit">
+      Cargar
+    </button>
+  </form>
 
 </x-app-layout>
+
 <script>
   const APP_URL = "{{ config('app.url') }}";
 </script>
+
 <script>
   const salesDataGrid = $('#gridContainer').dxDataGrid({
     language: "es",
@@ -537,6 +591,7 @@
 
   })
 </script>
+
 <script>
   document.addEventListener('click', function (e) {
       if (e.target.closest('.btn-copy-link')) {
@@ -554,5 +609,90 @@
         });
       }
   });
+</script>
+
+<script>
+  $(document).on('click', '#file-excel-button', () => {
+    $('#file-excel-modal').modal('show');
+  });
+
+  $(document).on('submit', '#file-excel-modal', (e) => {
+    e.preventDefault();
+
+    const fileInput = $('#file_input')[0];
+    const file = fileInput.files[0];
+
+    const zipInput = $('#image_input')[0];
+    const zip = zipInput.files[0];
+
+    if (!file) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Archivo requerido',
+        text: 'Por favor, selecciona un archivo Excel.'
+      });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    if (zip) formData.append('zip', zip)
+
+    // const element = $('<div>' + structuredClone(quill.root.innerHTML) + '</div>');
+    // element.find('.mention').each(function(e) {
+    //   this.textContent = '{' + this.getAttribute('data-id') + '}'
+    // })
+
+    // formData.append('image_route_pattern', element.text().trim());
+    formData.append('image_route_pattern', '{1}');
+
+    $.ajax({
+      url: "/api/upload/items",
+      type: 'POST',
+      headers: {
+        'X-Xsrf-Token': decodeURIComponent(Cookies.get('XSRF-TOKEN'))
+      },
+      data: formData,
+      processData: false,
+      contentType: false,
+      timeout: 240000,
+      xhr: function() {
+        const xhr = new window.XMLHttpRequest();
+        xhr.upload.addEventListener("progress", function(evt) {
+          if (evt.lengthComputable) {
+            const percentComplete = evt.loaded / evt.total * 100;
+            $('#progress-container').removeClass('hidden');
+            $('#progress-bar').css('width', percentComplete + '%');
+            $('#progress-text').text(Math.round(percentComplete) + '%');
+          }
+        }, false);
+        return xhr;
+      },
+      success: function(response) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Éxito',
+          text: 'Archivo cargado exitosamente.'
+        });
+        $('#file-excel-modal').modal('hide');
+        // Aquí puedes agregar código adicional para manejar la respuesta del servidor
+      },
+      error: function(xhr, status, error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Error al cargar el archivo: ' + error
+        });
+      },
+      complete: function() {
+        $('#progress-container').addClass('hidden');
+        $('#progress-bar').css('width', '0%');
+        $('#progress-text').text('0%');
+        $('#file_input').val('');
+        $('#image_input').val('');
+      }
+    });
+  });
+
 </script>
 

@@ -413,7 +413,7 @@
             </div> --}}
         </section>
 
-        <section class="flex flex-col lg:flex-row gap-10 justify-between items-start px-[5%] mt-8 lg:mt-16">
+        <section class="flex flex-col lg:flex-row gap-10 xl:gap-16 justify-between items-start px-[5%] mt-8 lg:mt-16">
             <div class="flex flex-col min-w-[240px] w-full max-w-4xl 2xl:max-w-6xl">
                 
                 <div class="flex flex-col justify-center rounded-2xl">
@@ -458,7 +458,7 @@
 
                             <div class="flex flex-col md:flex-row gap-3 md:gap-6 md:items-center">
                               <div>
-                                  <h2 class="font-PlusJakartaSans_Medium text-lg lg:text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">S/. {{$product->precio}} - USD {{$product->precio * 3.5}}</h2>
+                                  <h2 class="font-PlusJakartaSans_Medium text-lg lg:text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">S/. {{$product->precio}} - USD {{$product->preciomin}}</h2>
                               </div>
                               @if ($product->sku)
                                   <div
@@ -476,7 +476,7 @@
                   <div class="flex items-center">
                       <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Características</h2>
                   </div>
-                  <div class="flex flex-wrap justify-between sm:justify-normal gap-8 2xl:gap-10 items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
+                  <div class="flex flex-wrap justify-between  gap-8 2xl:gap-10 items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
                         @if (!empty($product->cuartos))
                             <div class="flex flex-col items-center min-w-[70px]">
                                 <img loading="lazy" src="{{ asset('images/svg/rs_cama.svg') }}"
@@ -560,9 +560,14 @@
                                 <ul class="flex flex-col gap-2">
                                   @if (!is_null($product->incluye) && $incluyef !== '')
                                     @php
-                                        $dom = new DOMDocument();
-                                        @$dom->loadHTML($product->incluye);
-                                        $paragraphs = $dom->getElementsByTagName('p');
+                                    // Configurar DOMDocument para UTF-8
+                                    $dom = new DOMDocument();
+                                    $dom->loadHTML('<?xml encoding="UTF-8">' . $product->incluye);
+                                    
+                                    // Eliminar advertencias de HTML mal formado
+                                    libxml_use_internal_errors(true);
+                                    $paragraphs = $dom->getElementsByTagName('p');
+                                    libxml_clear_errors();
                                     @endphp
                                     @foreach ($paragraphs as $paragraph)
                                       <li>
@@ -572,7 +577,7 @@
                                                   class="object-contain min-w-8 aspect-square" alt="Beneficio icon" />
                                             </div>
                                             <div class="flex flex-col">
-                                              <p>{{ $paragraph->nodeValue }}</p>
+                                              <p>{!! $paragraph->nodeValue !!}</p>
                                             </div>
                                           </div>
                                       </li>
@@ -588,22 +593,13 @@
                     <div class="flex items-center">
                       <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Medidas</h2>
                     </div>
-                    <div class="flex flex-wrap gap-8 2xl:gap-10 items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
+                    <div class="flex flex-wrap gap-8 xl:gap-16 2xl:gap-20 items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
                         @if (!empty($product->area))
                             <div class="flex flex-col gap-1 items-center min-w-[70px]">
                                 <img loading="lazy" src="{{ asset('images/svg/rs_libre.svg') }}"
                                     class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
-                                <p class="text-[13px]">Área Libre</p>    
+                                <p class="text-[13px]">Área de Terreno</p>    
                                 <p class="text-base">{{ $product->area }} m²</p>
-                            </div>
-                        @endif
-
-                        @if (!empty($product->ocupada))
-                            <div class="flex flex-col gap-1 items-center min-w-[70px]">
-                                <img loading="lazy" src="{{ asset('images/svg/rs_ocupada.svg') }}"
-                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
-                                <p class="text-[13px]">Área Ocupada</p>    
-                                <p class="text-base">{{$product->ocupada}} m²</p>
                             </div>
                         @endif
 
@@ -615,6 +611,16 @@
                                 <p class="text-base">{{$product->construida}} m²</p>
                             </div>
                         @endif
+
+                        @if (!empty($product->ocupada))
+                            <div class="flex flex-col gap-1 items-center min-w-[70px]">
+                                <img loading="lazy" src="{{ asset('images/svg/rs_ocupada.svg') }}"
+                                    class="object-contain w-7 2xl:w-10 aspect-square" alt="Area icon" />
+                                <p class="text-[13px]">Área Libre</p>    
+                                <p class="text-base">{{$product->ocupada}} m²</p>
+                            </div>
+                        @endif
+                        
                         @if (!empty($product->medidas))
                             <div class="flex flex-col gap-1 items-center min-w-[70px]">
                                 <img loading="lazy" src="{{ asset('images/svg/rs_medidas.svg') }}"
@@ -625,6 +631,24 @@
                         @endif
                     </div>
                 </div>
+
+                @php
+                    use Illuminate\Support\Facades\File;
+                @endphp
+            
+                @if ($product->image_texture && File::exists(public_path($product->image_texture)))
+                    <div class="flex flex-col justify-center gap-4 pt-8 text-center rounded-2xl text-white">
+                        <div class="flex items-center">
+                            <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Descargar cotización</h2>
+                        </div>
+                        <div class="flex flex-row items-start w-full font-PlusJakartaSans_Regular text-base 2xl:text-xl">
+                            <a href="{{ asset($product->image_texture) }}" download>
+                                <img class="w-10" src="{{ asset('/images/img/pdf.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                @endif
+                
 
             </div>
 
@@ -772,6 +796,8 @@
     </div>
 
 @section('scripts_importados')
+
+
 <script>
     function copyEmail(email) {
         navigator.clipboard.writeText(email).then(function() {
@@ -1285,7 +1311,7 @@
             });
         })
     </script>
-
+    
 
 @stop
 

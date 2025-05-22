@@ -120,7 +120,7 @@
                                                 <img loading="lazy" src="{{ asset('images/img/wspico.png') }}" class="object-contain w-10 h-10" />
                                             </div>
                                         </a>
-                                        {{-- <a onclick="copyEmail('{{$persona->instagram}}'); return false;">
+                                        <a onclick="copyEmail('{{$persona->instagram}}'); return false;">
                                             <div
                                                 class="cursor-pointer bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] w-10 h-10 rounded-full flex flex-col items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
@@ -133,7 +133,7 @@
                                                         stroke="#141414" stroke-width="1.25" stroke-linecap="round" />
                                                 </svg>
                                             </div>
-                                        </a> --}}
+                                        </a>
                                     </div>
                                 </div>
                             @endforeach  
@@ -144,7 +144,55 @@
     </main>
 
 @section('scripts_importados')
-    
+<script>
+    function copyEmail(email) {
+            navigator.clipboard.writeText(email).then(function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Correo copiado',
+                    text: email,
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top-end'
+                });
+            }, function(err) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo copiar el correo',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                console.error('Error al copiar el correo: ', err);
+            });
+        }
+
+        function copyPhone(phone) {
+            navigator.clipboard.writeText(phone).then(function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Telefono copiado',
+                    text: phone,
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top-end'
+                });
+            }, function(err) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo copiar el telefono',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                console.error('Error al copiar el telefono: ', err);
+            });
+        }
+    </script>
     <script>
        
         function formatState(state) {

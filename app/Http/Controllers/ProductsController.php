@@ -411,10 +411,7 @@ class ProductsController extends Controller
         $producto = Products::find($request->id);
         $ruta = $producto->$field;
 
-        // dump($ruta);
-        //borrar imagen
         if (!empty($ruta) && file_exists($ruta)) {
-          // Borrar imagen
           unlink($ruta);
         }
       }
@@ -443,6 +440,50 @@ class ProductsController extends Controller
     }
   }
 
+  private function savePDF(Request $request, string $field)
+{
+    try {
+        // Si hay un ID, eliminamos el archivo anterior si existe
+        if (isset($request->id)) {
+            $producto = Products::find($request->id);
+            $ruta = $producto->$field;
+
+            if (!empty($ruta) && file_exists($ruta)) {
+                unlink($ruta);
+            }
+        }
+
+        // Si se subió un nuevo archivo
+        if ($request->hasFile($field)) {
+            $file = $request->file($field);
+            
+            // Validar que sea un PDF
+            if ($file->getClientOriginalExtension() !== 'pdf') {
+                throw new \Exception("El archivo debe ser un PDF");
+            }
+
+            $route = "storage/images/cotizaciones/{$request->categoria_id}/";
+            $nombreArchivo = Str::random(10) . '_' . $field . '.pdf';
+
+            // Crear directorio si no existe
+            if (!file_exists($route)) {
+                mkdir($route, 0777, true);
+            }
+
+            // Mover el archivo al directorio
+            $file->move($route, $nombreArchivo);
+
+            return $route . $nombreArchivo;
+        }
+
+        return null;
+    } catch (\Throwable $th) {
+        // Puedes loggear el error si lo deseas
+        \Log::error("Error al guardar PDF: " . $th->getMessage());
+        return null;
+    }
+}
+
   /**
    * Store a newly created resource in storage.
    */
@@ -460,12 +501,14 @@ class ProductsController extends Controller
       
       $request->validate([
         'producto' => 'required',
+        'imagen_ambiente' => 'mimes:pdf'
         //'precio' => 'min:0|required|numeric',
         // 'descuento' => 'lt:' . $request->input('precio'),
       ]);
 
       // Imagenes
       $data['descuento'] = $data['descuento'] ?? 0;
+      $data['preciomin'] = $data['preciomin'] ?? 0;
       $data['preciolimpieza'] = $data['preciolimpieza'] ?? 0;
       $data['precioservicio'] = $data['precioservicio'] ?? 0;
       
@@ -474,7 +517,7 @@ class ProductsController extends Controller
         $data['imagen'] = $this->saveImg($request, 'imagen');
       }
       if ($request->hasFile('imagen_ambiente')) {
-        $data['imagen_ambiente'] = $this->saveImg($request, 'imagen_ambiente');
+        $data['imagen_ambiente'] = $this->savePDF($request, 'imagen_ambiente');
       }
       if ($request->hasFile('image_texture')) {
         $data['image_texture'] = $this->saveImg($request, 'image_texture');
@@ -551,11 +594,11 @@ class ProductsController extends Controller
        $cleanedData['cuartos'] = $data['cuartos'];
        $cleanedData['banios'] = $data['banios'];
        $cleanedData['area'] = $data['area'];
+       $cleanedData['ocupada'] = $data['ocupada'];
+       $cleanedData['contruida'] = $data['contruida'];
+       $cleanedData['medidas'] = $data['medidas'];
        $cleanedData['pisos'] = $data['pisos'];
        $cleanedData['cochera'] = $data['cochera'];
-      //  $cleanedData['ocupada'] = $data['ocupada'];
-      //  $cleanedData['construida'] = $data['construida'];
-      //  $cleanedData['medidas'] = $data['medidas'];
        $cleanedData['movilidad'] = $data['movilidad'];
        $cleanedData['incluye'] = $data['incluye'];
        $cleanedData['no_incluye'] = $data['no_incluye'];
@@ -844,6 +887,39 @@ class ProductsController extends Controller
     $product = Products::find($request->id);
     $product->status = 0;
     $product->save();
+  }
+
+  public function borrarFichaTecnica(Request $request){
+    try {
+       
+        $obtenerproducto = Products::find($request->id);
+
+        if (!$obtenerproducto) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+
+      
+        $rutaCompleta = $obtenerproducto->imagen_ambiente;
+
+      
+        if (file_exists($rutaCompleta)) {
+            
+            if (unlink($rutaCompleta)) {
+               
+                $obtenerproducto->imagen_ambiente = "";
+                $obtenerproducto->update();
+                
+                return response()->json(['message' => 'Ficha Técnica eliminada con éxito']);
+            } else {
+                return response()->json(['message' => 'No se pudo eliminar el archivo físico'], 500);
+            }
+        } else {
+            return response()->json(['message' => 'El archivo no existe'], 404);
+        }
+
+    } catch (\Throwable $th) {
+        return response()->json(['message' => 'No se ha podido eliminar la Ficha Técnica', 'error' => $th->getMessage()], 400);
+    }
   }
 
   public function updateVisible(Request $request)

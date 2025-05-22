@@ -106,7 +106,7 @@
       @if($item->precio > 0)
         <div class="flex flex-col gap-1 text-white font-PlusJakartaSans_Regular">
             <span class="text-sm 2xl:text-lg">Precio</span>
-            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">$ {{ $item->precio }}</span>
+            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">S/. {{ $item->precio }}</span>
         </div>
       @endif
       <div class="flex flex-col">
