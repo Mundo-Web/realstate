@@ -113,7 +113,7 @@ class SaveItems implements ShouldQueue
           'twitter' => $item[24],
           'nombre' => $item[25],
           'cargo' => 'Agente Inmobiliario',
-          'facebook' => '+51'.$item[26],
+          'facebook' => '51'.$item[26],
           'instagram' => $item[27],
         ]);
     

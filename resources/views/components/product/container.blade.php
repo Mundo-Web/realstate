@@ -106,16 +106,24 @@
       @if($item->precio > 0)
         <div class="flex flex-col gap-1 text-white font-PlusJakartaSans_Regular">
             <span class="text-sm 2xl:text-lg">Precio</span>
-            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">S/. {{ $item->precio }}</span>
+            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">S/ {{ $item->precio }}</span>
         </div>
       @endif
-      <div class="flex flex-col">
-           <a href="{{route('producto', $item->id)}}" class="flex text-sm 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 2xl:px-6 py-3 leading-normal rounded-xl">
-             Ver propiedad
-           </a>
-       </div>
+      
+      @if($item->preciomin > 0)
+        <div class="flex flex-col gap-1 text-white font-PlusJakartaSans_Regular">
+            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">$ {{ $item->preciomin }}</span>
+        </div>
+      @endif
     </div>
+
     
+    <div class="w-full flex flex-row justify-center mt-2 2xl:mt-3">
+      <a href="{{route('producto', $item->id)}}" class="text-center w-full text-sm 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 2xl:px-6 py-3 leading-normal rounded-xl">
+        Ver propiedad
+      </a>
+    </div>
+   
 
   </div>
 

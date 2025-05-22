@@ -648,11 +648,9 @@
                         </div>
                     </div>
                 @endif
-                
-
             </div>
 
-            <div class="flex flex-col lg:sticky lg:top-0 justify-center rounded-2xl w-full lg:w-[500px] 2xl:min-w-[500px]">
+            <div class="flex flex-col lg:sticky lg:self-start lg:top-36 justify-center rounded-2xl w-full lg:w-[500px] 2xl:min-w-[500px]">
                 <section class="flex flex-col rounded-xl bg-[#262626]">
                     <div class="border-b border-b-[#C8A049] py-4 lg:py-6">
                         <h2 class="text-center font-PlusJakartaSans_Semibold text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Contacta al Asesor</h2>
@@ -715,14 +713,19 @@
                                 @endif
                           </div>
                         </div>
-
-                        <div class="w-full">
-                          <a class="w-full mt-4 border border-[#C8A049] flex flex-col justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent px-4 md:px-3 py-3 leading-normal rounded-xl">Datos del Asesor</a>
-                        </div>
+                        @if ($product->staff && $product->staff->facebook)
+                            <div class="w-full">
+                                <a href="https://api.whatsapp.com/send?phone={{ $product->staff->facebook }}" target="_blank" 
+                                    class="w-full mt-4 border border-[#C8A049] flex flex-col justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent px-4 md:px-3 py-3 leading-normal rounded-xl">
+                                    Contactar con Asesor
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </section>
                 <p class="font-PlusJakartaSans_Regular text-white text-xs mt-3">* Las fotos, precios y descripción de esta propiedad son referenciales</p>
             </div>
+
         </section>
     </main>
 

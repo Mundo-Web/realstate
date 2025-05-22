@@ -1175,8 +1175,8 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            var latitude = -12.05404779772475;
-            var longitude = -76.96939793901277;
+            var latitude = -12.213626389581592;
+            var longitude = -77.00477917199262;
 
             var location = [
                 ['center', latitude, longitude, 'Contenido del popup aquí<br>Puedes usar HTML' ],
@@ -1280,7 +1280,7 @@
             
 
             var map= new google.maps.Map(document.getElementById("map"),{
-                zoom:13,
+                zoom:14,
                 center: mylatlng,
                 styles: darkModeStyle
             });
