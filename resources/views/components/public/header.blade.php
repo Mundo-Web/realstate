@@ -241,6 +241,7 @@
                     </svg>
                   </a>
                 @endif
+
                 @if ($datosgenerales[0]->instagram)
                   <a target="_blank"  class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->instagram }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
@@ -268,29 +269,30 @@
                     </svg>
                   </a>
                 @endif
-                
-                @if ($datosgenerales[0]->linkedin)
-                  <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->linkedin }}">
-                    <div class="bg-black rounded-full p-3 absolute z-10"></div>
-                    <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <path d="M18.6 16L14.4 13.6V18.4L18.6 16Z" fill="url(#paint0_linear_4_531)"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16ZM22.2 10.7C22.9 10.9 23.4 11.4 23.6 12.1C24 13.4 24 16 24 16C24 16 24 18.6 23.7 19.9C23.5 20.6 23 21.1 22.3 21.3C21 21.6 16 21.6 16 21.6C16 21.6 10.9 21.6 9.7 21.3C9 21.1 8.5 20.6 8.3 19.9C8 18.6 8 16 8 16C8 16 8 13.4 8.2 12.1C8.4 11.4 8.90001 10.9 9.60001 10.7C10.9 10.4 15.9 10.4 15.9 10.4C15.9 10.4 21 10.4 22.2 10.7Z" fill="url(#paint1_linear_4_531)"/>
-                        <defs>
-                        <linearGradient id="paint0_linear_4_531" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#C8A049"/>
-                        <stop offset="0.55422" stop-color="#E9D151"/>
-                        <stop offset="0.935" stop-color="#BE913E"/>
-                        </linearGradient>
-                        <linearGradient id="paint1_linear_4_531" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#C8A049"/>
-                        <stop offset="0.55422" stop-color="#E9D151"/>
-                        <stop offset="0.935" stop-color="#BE913E"/>
-                        </linearGradient>
-                        </defs>
-                    </svg>
-                  </a>
-                @endif
 
+                @if ($datosgenerales[0]->youtube)
+                    <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->youtube }}">
+                        <div class="bg-black rounded-full p-3 absolute z-10"></div>
+                            <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M18.6 16L14.4 13.6V18.4L18.6 16Z" fill="url(#paint0_linear_4_531)"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16ZM22.2 10.7C22.9 10.9 23.4 11.4 23.6 12.1C24 13.4 24 16 24 16C24 16 24 18.6 23.7 19.9C23.5 20.6 23 21.1 22.3 21.3C21 21.6 16 21.6 16 21.6C16 21.6 10.9 21.6 9.7 21.3C9 21.1 8.5 20.6 8.3 19.9C8 18.6 8 16 8 16C8 16 8 13.4 8.2 12.1C8.4 11.4 8.90001 10.9 9.60001 10.7C10.9 10.4 15.9 10.4 15.9 10.4C15.9 10.4 21 10.4 22.2 10.7Z" fill="url(#paint1_linear_4_531)"/>
+                            <defs>
+                            <linearGradient id="paint0_linear_4_531" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#C8A049"/>
+                            <stop offset="0.55422" stop-color="#E9D151"/>
+                            <stop offset="0.935" stop-color="#BE913E"/>
+                            </linearGradient>
+                            <linearGradient id="paint1_linear_4_531" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#C8A049"/>
+                            <stop offset="0.55422" stop-color="#E9D151"/>
+                            <stop offset="0.935" stop-color="#BE913E"/>
+                            </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                @endif
+                
+                
                 @if ($datosgenerales[0]->tiktok)
                   <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->tiktok }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
@@ -310,18 +312,34 @@
                 @if ($datosgenerales[0]->twitter)
                   <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->twitter }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
-                    <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16ZM22.1 11.5C22.8 11.4 23.4 11.3 24 11C23.6 11.7 23 12.3 22.3 12.7C22.5 17.4 19.1 22.5 13 22.5C11.2 22.5 9.5 21.9 8 21C9.7 21.2 11.5 20.7 12.7 19.8C11.2 19.8 10 18.8 9.6 17.5C10.1 17.6 10.6 17.5 11.1 17.4C9.6 17 8.5 15.6 8.5 14.1C9 14.3 9.5 14.5 10 14.5C8.6 13.5 8.1 11.6 9 10.1C10.7 12.1 13.1 13.4 15.8 13.5C15.3 11.5 16.9 9.5 19 9.5C19.9 9.5 20.8 9.9 21.4 10.5C22.2 10.3 22.9 10.1 23.5 9.7C23.3 10.5 22.8 11.1 22.1 11.5Z" fill="url(#paint0_linear_4_533)"/>
-                        <defs>
-                        <linearGradient id="paint0_linear_4_533" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#C8A049"/>
-                        <stop offset="0.55422" stop-color="#E9D151"/>
-                        <stop offset="0.935" stop-color="#BE913E"/>
-                        </linearGradient>
-                        </defs>
-                    </svg>
+                        <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16ZM22.1 11.5C22.8 11.4 23.4 11.3 24 11C23.6 11.7 23 12.3 22.3 12.7C22.5 17.4 19.1 22.5 13 22.5C11.2 22.5 9.5 21.9 8 21C9.7 21.2 11.5 20.7 12.7 19.8C11.2 19.8 10 18.8 9.6 17.5C10.1 17.6 10.6 17.5 11.1 17.4C9.6 17 8.5 15.6 8.5 14.1C9 14.3 9.5 14.5 10 14.5C8.6 13.5 8.1 11.6 9 10.1C10.7 12.1 13.1 13.4 15.8 13.5C15.3 11.5 16.9 9.5 19 9.5C19.9 9.5 20.8 9.9 21.4 10.5C22.2 10.3 22.9 10.1 23.5 9.7C23.3 10.5 22.8 11.1 22.1 11.5Z" fill="url(#paint0_linear_4_533)"/>
+                            <defs>
+                            <linearGradient id="paint0_linear_4_533" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#C8A049"/>
+                            <stop offset="0.55422" stop-color="#E9D151"/>
+                            <stop offset="0.935" stop-color="#BE913E"/>
+                            </linearGradient>
+                            </defs>
+                        </svg>
                   </a>
                 @endif
+
+                {{-- @if ($datosgenerales[0]->linkedin)
+                    <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->linkedin }}">
+                        <div class="bg-black rounded-full p-3 absolute z-10"></div>
+                        <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16ZM22.1 11.5C22.8 11.4 23.4 11.3 24 11C23.6 11.7 23 12.3 22.3 12.7C22.5 17.4 19.1 22.5 13 22.5C11.2 22.5 9.5 21.9 8 21C9.7 21.2 11.5 20.7 12.7 19.8C11.2 19.8 10 18.8 9.6 17.5C10.1 17.6 10.6 17.5 11.1 17.4C9.6 17 8.5 15.6 8.5 14.1C9 14.3 9.5 14.5 10 14.5C8.6 13.5 8.1 11.6 9 10.1C10.7 12.1 13.1 13.4 15.8 13.5C15.3 11.5 16.9 9.5 19 9.5C19.9 9.5 20.8 9.9 21.4 10.5C22.2 10.3 22.9 10.1 23.5 9.7C23.3 10.5 22.8 11.1 22.1 11.5Z" fill="url(#paint0_linear_4_533)"/>
+                            <defs>
+                            <linearGradient id="paint0_linear_4_533" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#C8A049"/>
+                            <stop offset="0.55422" stop-color="#E9D151"/>
+                            <stop offset="0.935" stop-color="#BE913E"/>
+                            </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                    @endif --}}
             </div>
 
             <div class="md:flex flex-wrap gap-6 items-center font-PlusJakartaSans_Regular text-sm hidden">
