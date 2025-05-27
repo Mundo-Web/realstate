@@ -158,6 +158,22 @@
                                         @endforeach
                                     </select>
                                 </div>
+
+                                <div class="flex flex-col gap-1 location">
+                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione valores en soles (S/.)</label>
+                                    <div class="grid grid-cols-2 gap-2 mt-3 font-PlusJakartaSans_Regular">
+                                        <div class="relative">
+                                            <input type="text" name="minprice" id="minprice" placeholder=" " 
+                                                class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#1A1A1A]">
+                                            <label for="minprice" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#1A1A1A] peer-[:not(:placeholder-shown)]:bg-[#1A1A1A] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Precio Minimo</label>
+                                        </div>
+                                        <div class="relative">
+                                            <input type="text" name="maxprice" id="maxprice" placeholder=" " 
+                                                class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#1A1A1A]">
+                                            <label for="maxprice" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#1A1A1A] peer-[:not(:placeholder-shown)]:bg-[#1A1A1A] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Precio Maximo</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 <div class="flex flex-col gap-3 pt-2">
                                     <a id="linkExplirarAlquileres" class="cursor-pointer w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
@@ -316,6 +332,8 @@
                 const tipoBusqueda = $('#tipoOperacion').val();
                 const tipoPropiedad = $('#type').val();
                 const ubicacion = $('#ubicacion').val();
+                const maxprice = $('#maxprice').val();
+                const minprice = $('#minprice').val();
                 
                 if (!tipoBusqueda && !tipoPropiedad && !ubicacion) {
                     alert("Por favor, selecciona al menos un filtro para realizar la búsqueda.");
@@ -339,7 +357,9 @@
                       _token: $('input[name="_token"]').val(),
                       tipo: tipoBusqueda, 
                       propiedad: tipoPropiedad,
-                      ubicacion: ubicacion
+                      ubicacion: ubicacion,
+                      montominimo: minprice,
+                      montomaximo: maxprice
                   },
                   success: function (response) {
                       // Cerrar el SweetAlert de carga

@@ -277,8 +277,8 @@ class IndexController extends Controller
       $tipo = $request->input('tipo') ?? '';
       $propiedad = $request->input('propiedad') ?? '';
       $ubicacion = $request->input('ubicacion') ?? '';
-      // $montominimo = $request->input('montominimo') ?? '';
-      // $montomaximo = $request->input('montomaximo') ?? '';
+      $montominimo = $request->input('montominimo') ?? '';
+      $montomaximo = $request->input('montomaximo') ?? '';
       
       $query = Products::where('status', 1)
       ->where('visible', 1)
@@ -297,13 +297,13 @@ class IndexController extends Controller
           $query->where('distrito_id', $ubicacion);
       }
   
-      // if (!empty($montominimo) && !empty($montomaximo)) {
-      //     $query->whereBetween('precio', [$montominimo, $montomaximo]);
-      // } elseif (!empty($montominimo)) {
-      //     $query->where('precio', '>=', $montominimo);
-      // } elseif (!empty($montomaximo)) {
-      //     $query->where('precio', '<=', $montomaximo);
-      // }
+      if (!empty($montominimo) && !empty($montomaximo)) {
+          $query->whereBetween('precio', [$montominimo, $montomaximo]);
+      } elseif (!empty($montominimo)) {
+          $query->where('precio', '>=', $montominimo);
+      } elseif (!empty($montomaximo)) {
+          $query->where('precio', '<=', $montomaximo);
+      }
   
       $products = $query->orderBy('id', 'desc')->get();
     

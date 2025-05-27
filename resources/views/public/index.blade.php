@@ -231,7 +231,7 @@
                                 </div>
 
                                 <div class="flex flex-col gap-1 location">
-                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione valores</label>
+                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione valores en soles (S/.)</label>
                                     <div class="grid grid-cols-2 gap-2 mt-3 font-PlusJakartaSans_Regular">
                                         <div class="relative">
                                             <input type="text" name="minprice" id="minprice" placeholder=" " 
