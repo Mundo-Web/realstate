@@ -1463,7 +1463,6 @@ class IndexController extends Controller
       </body>
     </html>
       ';
-      $mail->addBCC($general->email, 'Atencion al cliente' );
       $mail->isHTML(true);
       $mail->send();
     } catch (\Throwable $th) {
