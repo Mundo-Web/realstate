@@ -441,48 +441,66 @@ class ProductsController extends Controller
   }
 
   private function savePDF(Request $request, string $field)
-{
-    try {
-        // Si hay un ID, eliminamos el archivo anterior si existe
-        if (isset($request->id)) {
-            $producto = Products::find($request->id);
-            $ruta = $producto->$field;
+  {
+      try {
+          // Si hay un ID, eliminamos el archivo anterior si existe
+          if (isset($request->id)) {
+              $producto = Products::find($request->id);
+              $ruta = $producto->$field;
 
-            if (!empty($ruta) && file_exists($ruta)) {
-                unlink($ruta);
-            }
-        }
+              if (!empty($ruta) && file_exists($ruta)) {
+                  unlink($ruta);
+              }
+          }
 
-        // Si se subió un nuevo archivo
-        if ($request->hasFile($field)) {
-            $file = $request->file($field);
-            
-            // Validar que sea un PDF
-            if ($file->getClientOriginalExtension() !== 'pdf') {
-                throw new \Exception("El archivo debe ser un PDF");
-            }
+          // Si se subió un nuevo archivo
+          if ($request->hasFile($field)) {
+              $file = $request->file($field);
+              
+              // Validar que sea un PDF
+              if ($file->getClientOriginalExtension() !== 'pdf') {
+                  throw new \Exception("El archivo debe ser un PDF");
+              }
 
-            $route = "storage/images/cotizaciones/";
-            $nombreArchivo = Str::random(10) . '_' . '.pdf';
+              $route = "storage/images/cotizaciones/";
+              $nombreArchivo = Str::random(10) . '_' . '.pdf';
 
-            // Crear directorio si no existe
-            if (!file_exists($route)) {
-                mkdir($route, 0777, true);
-            }
+              // Crear directorio si no existe
+              if (!file_exists($route)) {
+                  mkdir($route, 0777, true);
+              }
 
-            // Mover el archivo al directorio
-            $file->move($route, $nombreArchivo);
+              // Mover el archivo al directorio
+              $file->move($route, $nombreArchivo);
 
-            return $route . $nombreArchivo;
-        }
+              return $route . $nombreArchivo;
+          }
 
-        return null;
-    } catch (\Throwable $th) {
-        // Puedes loggear el error si lo deseas
-        \Log::error("Error al guardar PDF: " . $th->getMessage());
-        return null;
-    }
-}
+          return null;
+      } catch (\Throwable $th) {
+          // Puedes loggear el error si lo deseas
+          \Log::error("Error al guardar PDF: " . $th->getMessage());
+          return null;
+      }
+  }
+
+  private function getYTVideoId($url)
+  {
+      $patterns = [
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/', // URL estándar
+          '/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/', // URL corta
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]+)/', // URL embebida
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)(?:&.*)?/', // URL estándar con parámetros
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/', // URL de Shorts
+      ];
+      
+      foreach ($patterns as $pattern) {
+          if (preg_match($pattern, $url, $matches)) {
+              return $matches[1];
+          }
+      }
+      return null;
+  }
 
   /**
    * Store a newly created resource in storage.
@@ -514,6 +532,7 @@ class ProductsController extends Controller
       $data['preciomin'] = $data['preciomin'] ?? 0;
       $data['preciolimpieza'] = $data['preciolimpieza'] ?? 0;
       $data['precioservicio'] = $data['precioservicio'] ?? 0;
+      $data['calendar_url'] = $this->getYTVideoId($request->calendar_url) ?? '';
       
 
       if ($request->hasFile('imagen')) {
@@ -613,6 +632,7 @@ class ProductsController extends Controller
        $cleanedData['sku'] = $data['sku'];
        $cleanedData['latitud'] = $data['latitud'];
        $cleanedData['longitud'] = $data['longitud'];
+       $cleanedData['calendar_url'] = $data['calendar_url'];
         
        $slug = strtolower(str_replace(' ', '-', $request->producto . '-' . $request->color));
 

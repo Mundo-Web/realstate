@@ -43,7 +43,7 @@
     </div> 
     
     @if ($item->cuartos || $item->banios || $item->area)
-      <div class="flex flex-wrap gap-2  mt-2  text-sm">
+      <div class="flex flex-wrap gap-1 mt-2 text-sm">
           @if ($item->cuartos)
             <div class="flex flex-row items-center gap-2 rounded-3xl border border-[#262626] px-3 py-1 font-PlusJakartaSans_Regular text-white">
               <svg class="w-4" xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
@@ -102,17 +102,23 @@
 
     <div class="border my-1 border-[#262626] w-full"></div>
 
-    <div class="flex flex-wrap justify-between items-end w-full gap-3">
+    <div class="flex flex-wrap justify-between items-end w-full gap-1">
       @if($item->precio > 0)
+      @php
+          $precio_formateado = number_format($item->precio, 0, '.', ',');
+      @endphp
         <div class="flex flex-col gap-1 text-white font-PlusJakartaSans_Regular">
             <span class="text-sm 2xl:text-lg">Precio</span>
-            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">S/ {{ $item->precio }}</span>
+            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">S/ {{ $precio_formateado }}</span>
         </div>
       @endif
       
       @if($item->preciomin > 0)
+        @php
+            $precio_formateadodolar = number_format($item->preciomin, 0, '.', ',');
+        @endphp
         <div class="flex flex-col gap-1 text-white font-PlusJakartaSans_Regular">
-            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">$ {{ $item->preciomin }}</span>
+            <span class="text-base md:text-lg 2xl:text-xl font-PlusJakartaSans_Bold">$ {{ $precio_formateadodolar }}</span>
         </div>
       @endif
     </div>

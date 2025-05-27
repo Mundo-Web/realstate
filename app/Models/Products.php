@@ -73,6 +73,7 @@ class Products extends Model
     'ocupada',
     'construida',
     'medidas',
+    'endescuento',
   ];
   
   public function events()

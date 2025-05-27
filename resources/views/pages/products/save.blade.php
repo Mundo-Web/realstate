@@ -425,7 +425,8 @@
                     <span class="block ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Es alquiler?</span>
                   </label>
                 </div>
-                <div class="md:col-span-5 flex justify-between gap-4">
+                <div class="md:col-span-5 flex flex-col gap-2">
+                  
                   <div class="w-full">
                     <label for="precio">Precio 
                       {{-- <span class="text-red-500 font-bold">*</span> --}}
@@ -439,9 +440,21 @@
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="precio">
                     </div>
-
                   </div>
                   
+                  <div class="w-full">
+                    <label for="preciomin">Precio en dolares</label>
+                    <div class="relative mb-2  mt-2">
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="text-lg text-gray-500 dark:text-gray-400 fas fa-money-bill"></i>
+                      </div>
+                      <input type="number" id="preciomin" name="preciomin" value="{{ $product->preciomin }}"
+                        step="0.1"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="preciomin">
+                    </div>
+                  </div>
+
                   <div class="w-full hidden">
                     <label for="descuento">Precio con descuento</label>
                     <div class="relative mb-2  mt-2">
@@ -455,18 +468,6 @@
                     </div>
                   </div>
 
-                  <div class="w-full">
-                    <label for="preciomin">Precio en dolares</label>
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="text-lg text-gray-500 dark:text-gray-400 fas fa-money-bill"></i>
-                      </div>
-                      <input type="number" id="preciomin" name="preciomin" value="{{ $product->preciomin }}"
-                        step="0.1"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="preciomin">
-                    </div>
-                  </div>
                 </div>
 
                 <div class="md:col-span-5 justify-between gap-4 hidden">
@@ -906,19 +907,19 @@
                     @enderror
                 </div>
 
-                {{-- <div class="md:col-span-5 mt-2">
-                  <label for="airbnb_url">Ical Calendario Airbnb</label>
+                <div class="md:col-span-5 mt-2">
+                  <label for="calendar_url">Link de video (Youtube)</label>
                   <div class="relative mb-2">
                       <div
                           class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                           <i class="fa-solid fa-calendar-days"></i>
                       </div>
-                      <input type="text" id="airbnb_url" name="airbnb_url"
-                          value="{{ $product->airbnb_url }}"
+                      <input type="text" id="calendar_url" name="calendar_url"
+                          value="{{ $product->calendar_url }}"
                           class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="Ical Calendario Airbnb">
+                          placeholder="Ingrese url">
                   </div>
-                </div> --}}
+                </div>
 
                 {{-- <div class="md:col-span-">
                   <label for="subcategory_id">Subcategoria</label>

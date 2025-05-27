@@ -174,96 +174,96 @@
 
     <main>
 
-        <section class="sm:px-[5%] md:py-8 lg:py-14 bg-[#141414]">
-            <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-cover bg-center bg-no-repeat sm:rounded-3xl overflow-hidden"
-                style="background-image: url({{ asset('images/img/rs_portada.png') }})">
-                <div class="flex flex-col gap-5 xl:gap-8 min-h-[700px] h-full w-full md:w-4/5 lg:w-3/5 bg-[#141414] bg-opacity-70 sm:rounded-3xl py-8 md:py-12 px-4 md:px-6 lg:px-10 2xl:px-14">
-                    
-                    <div class="max-w-lg 2xl:max-w-2xl flex flex-col gap-5">
-                        <h2 class="font-PlusJakartaSans_Medium text-white text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">Encuentra tu
-                            nuevo <span class="text-[#C8A049]">hogar</span> ideal</h2>
-                        <p class="hidden md:flex font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Desde la
-                            exploración hasta la celebración de tu nuevo hogar o local, nuestra tecnología hace el proceso
-                            más claro y accesible.</p>
-                    </div>
+    <section class="sm:px-[5%] md:py-8 lg:py-14 bg-[#141414]">
+        <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-cover bg-center bg-no-repeat sm:rounded-3xl overflow-hidden"
+            style="background-image: url({{ asset('images/img/rs_portada.png') }})">
+            <div class="flex flex-col gap-5 xl:gap-8 min-h-[700px] h-full w-full md:w-4/5 lg:w-3/5 bg-[#141414] bg-opacity-70 sm:rounded-3xl py-8 md:py-12 px-4 md:px-6 lg:px-10 2xl:px-14">
+                
+                <div class="max-w-lg 2xl:max-w-2xl flex flex-col gap-5">
+                    <h2 class="font-PlusJakartaSans_Medium text-white text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">Encuentra tu
+                        nuevo <span class="text-[#C8A049]">hogar</span> ideal</h2>
+                    <p class="hidden md:flex font-PlusJakartaSans_Regular text-white text-base md:text-lg 2xl:text-xl">Desde la
+                        exploración hasta la celebración de tu nuevo hogar o local, nuestra tecnología hace el proceso
+                        más claro y accesible.</p>
+                </div>
 
-                    <div class="w-full max-w-xl 2xl:max-w-2xl mx-auto md:mx-0">
-                        <div class="bg-[#1A1A1A] rounded-xl overflow-hidden ">
-                            
-                            <div class="grid grid-cols-2 text-center text-base xl:text-lg 2xl:text-xl font-PlusJakartaSans_Medium">
-                                <a class="py-4 px-6 bg-[#1A1A1A] border-b border-b-[#C8A049] tab active" data-tab="venta">
-                                    <p class="bg-gradient-to-r  from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Venta</p>
-                                </a>
-                                <a class="py-4 px-6 bg-[#1A1A1A] text-white" data-tab="alquiler">
-                                    <p class="bg-gradient-to-r  from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Alquiler</p>
-                                </a>
+                <div class="w-full max-w-xl 2xl:max-w-2xl mx-auto md:mx-0">
+                    <div class="bg-[#1A1A1A] rounded-xl overflow-hidden ">
+                        
+                        <div class="grid grid-cols-2 text-center text-base xl:text-lg 2xl:text-xl font-PlusJakartaSans_Medium">
+                            <a class="py-4 px-6 bg-[#1A1A1A] border-b border-b-[#C8A049] tab active" data-tab="venta">
+                                <p class="bg-gradient-to-r  from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Venta</p>
+                            </a>
+                            <a class="py-4 px-6 bg-[#1A1A1A] text-white" data-tab="alquiler">
+                                <p class="bg-gradient-to-r  from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">Alquiler</p>
+                            </a>
+                        </div>
+
+                        
+                        <div class="p-4 lg:p-6 space-y-6">
+                            <div class="space-y-2">
+                                <h3 class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
+                                    ¿Listo para empezar?
+                                </h3>
+                                <p class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">Comparte tus preferencias y déjanos orientarte hacia el lugar ideal para ti</p>
                             </div>
 
-                           
-                            <div class="p-4 lg:p-6 space-y-6">
-                                <div class="space-y-2">
-                                    <h3 class="text-xl md:text-2xl 2xl:text-3xl  font-PlusJakartaSans_Semibold tracking-normal leading-tight text-white">
-                                        ¿Listo para empezar?
-                                    </h3>
-                                    <p class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">Comparte tus preferencias y déjanos orientarte hacia el lugar ideal para ti</p>
+                            <form id="formbusqueda" class="space-y-4">
+                                <input type="hidden" id="tipoOperacion" name="tipoOperacion" value="venta">
+                                
+                                <div class="flex flex-col gap-1 typedepart">
+                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione el tipo de propiedad</label>
+                                    <select class="customselect w-full focus:ring-0" name="type" id="type">
+                                        @foreach ($categoriasAll as $cat)
+                                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
-                                <form id="formbusqueda" class="space-y-4">
-                                    <input type="hidden" id="tipoOperacion" name="tipoOperacion" value="venta">
-                                    
-                                    <div class="flex flex-col gap-1 typedepart">
-                                        <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione el tipo de propiedad</label>
-                                        <select class="customselect w-full focus:ring-0" name="type" id="type">
-                                            @foreach ($categoriasAll as $cat)
-                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <div class="flex flex-col gap-1 location">
+                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Ubicación</label>
+                                    <select class="customselect w-full focus:ring-0" name="ubicacion" id="ubicacion">
+                                        <option value="1">Seleccione ubicación</option>
+                                        @foreach($distritosParaFiltro as $distrito)
+                                            <option value="{{ $distrito['id'] }}">{{ $distrito['text'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                                    <div class="flex flex-col gap-1 location">
-                                        <label class="text-white text-sm font-PlusJakartaSans_Regular">Ubicación</label>
-                                        <select class="customselect w-full focus:ring-0" name="ubicacion" id="ubicacion">
-                                            <option value="1">Seleccione ubicación</option>
-                                            @foreach($distritosParaFiltro as $distrito)
-                                                <option value="{{ $distrito['id'] }}">{{ $distrito['text'] }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="flex flex-col gap-1 location">
-                                        <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione valores</label>
-                                        <div class="grid grid-cols-2 gap-2 mt-3 font-PlusJakartaSans_Regular">
-                                            <div class="relative">
-                                                <input type="text" name="minprice" id="minprice" placeholder=" " 
-                                                    class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#1A1A1A]">
-                                                <label for="minprice" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#1A1A1A] peer-[:not(:placeholder-shown)]:bg-[#1A1A1A] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Precio Minimo</label>
-                                            </div>
-                                            <div class="relative">
-                                                <input type="text" name="maxprice" id="maxprice" placeholder=" " 
-                                                    class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#1A1A1A]">
-                                                <label for="maxprice" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#1A1A1A] peer-[:not(:placeholder-shown)]:bg-[#1A1A1A] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Precio Maximo</label>
-                                            </div>
+                                <div class="flex flex-col gap-1 location">
+                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione valores</label>
+                                    <div class="grid grid-cols-2 gap-2 mt-3 font-PlusJakartaSans_Regular">
+                                        <div class="relative">
+                                            <input type="text" name="minprice" id="minprice" placeholder=" " 
+                                                class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#1A1A1A]">
+                                            <label for="minprice" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#1A1A1A] peer-[:not(:placeholder-shown)]:bg-[#1A1A1A] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Precio Minimo</label>
+                                        </div>
+                                        <div class="relative">
+                                            <input type="text" name="maxprice" id="maxprice" placeholder=" " 
+                                                class="peer border-[#262626] focus:border-[#262626] focus:ring-0 font-aceh w-full py-3 px-3 lg:px-4 rounded-lg text-base 2xl:text-xl text-white bg-[#1A1A1A]">
+                                            <label for="maxprice" class="text-white absolute left-3 top-3 text-sm peer-focus:-top-3 peer-[:not(:placeholder-shown)]:-top-3 transition-all peer-focus:text-sm peer-[:not(:placeholder-shown)]:text-sm peer-focus:bg-[#1A1A1A] peer-[:not(:placeholder-shown)]:bg-[#1A1A1A] peer-focus:px-1 peer-[:not(:placeholder-shown)]:px-1 2xl:text-lg peer-focus:2xl:text-base peer-[:not(:placeholder-shown)]:2xl:text-base">Precio Maximo</label>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="flex flex-col gap-3 pt-2">
-                                        <a id="linkExplirarAlquileres" type="submit" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
-                                            Buscar propiedad
-                                        </a>
-                                        {{-- <button type="button" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] bg-clip-text text-transparent  px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
-                                            Buscar propiedad alrededor mío
-                                        </button> --}}
-                                    </div>
-                                </form>
-                            </div>
+                                <div class="flex flex-col gap-3 pt-2">
+                                    <a id="linkExplirarAlquileres" type="submit" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
+                                        Buscar propiedad
+                                    </a>
+                                    {{-- <button type="button" class="w-full flex flex-row items-center justify-center text-base 2xl:text-lg font-PlusJakartaSans_Medium text-center bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] bg-clip-text text-transparent  px-4 md:px-6 py-3.5 leading-normal rounded-xl border border-[#BE913E]">
+                                        Buscar propiedad alrededor mío
+                                    </button> --}}
+                                </div>
+                            </form>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </section>
 
-        @if ($ultimosProductos->count() > 0)
+            </div>
+        </div>
+    </section>
+
+    @if ($ultimosProductos->count() > 0)
         <section class="w-full px-[5%]   py-8 lg:py-16 bg-[#141414]" style="overflow-x: visible">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-10">
 

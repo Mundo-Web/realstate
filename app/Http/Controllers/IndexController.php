@@ -85,7 +85,7 @@ class IndexController extends Controller
           ->where('products.visible', '=', 1)
           ->where('products.destacar', '=', 1)
           ->orderBy('products.id', 'desc')
-          ->take(12)
+          ->take(20)
           ->get();
 
     $productosDescuentos = Products::select('products.*')
@@ -94,9 +94,9 @@ class IndexController extends Controller
           ->where('categories.visible', 1)
           ->where('products.status', '=', 1)
           ->where('products.visible', '=', 1)
-          ->where('products.descuento', '>', 0)
+          ->where('products.endescuento', '=', 1)
           ->orderBy('products.id', 'desc')
-          ->take(12)
+          ->take(20)
           ->get();
     $blogs = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('id', 'desc')->take(3)->get();
     $banners = Banners::where('status',  1)->where('visible',  1)->get()->toArray();

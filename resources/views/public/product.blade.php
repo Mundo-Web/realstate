@@ -305,7 +305,7 @@
                             
                         @foreach ($product->galeria as $image)
                             <div class="swiper-slide">
-                                <img class="w-full h-full rounded-2xl xl:rounded-3xl max-h-[450px] 2xl:max-h-[600px] object-cover" src="{{asset($image->imagen)}}" />
+                                <img class="mx-auto h-full rounded-2xl xl:rounded-3xl max-h-[450px] 2xl:max-h-[600px] object-cover" src="{{asset($image->imagen)}}" />
                             </div>
                         @endforeach
                             <div class="swiper-slide">
@@ -319,7 +319,7 @@
                        
                       @foreach ($product->galeria as $image)
                         <div class="swiper-slide">
-                            <img class="cursor-pointer rounded-[6px] sm:rounded-xl w-full h-full max-h-[80px] object-cover" src="{{asset($image->imagen)}}" />
+                            <img class="cursor-pointer rounded-[6px] sm:rounded-xl w-full h-12 lg:h-20 object-cover" src="{{asset($image->imagen)}}" />
                         </div>
                       @endforeach
                         <div class="cursor-pointer swiper-slide">
@@ -356,10 +356,33 @@
                   slidesPerView: 7,
                   freeMode: true,
                   watchSlidesProgress: true,
+                  breakpoints: {
+                        320: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                        },
+                        640: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                        },
+                        768: {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                        },
+                        1024: {
+                        slidesPerView: 6,
+                        spaceBetween: 10,
+                        },
+                        1280: {
+                        slidesPerView: 7,
+                        spaceBetween: 10,
+                        },
+                    }
                 });
                 var swiper2 = new Swiper(".principal", {
                   loop: true,
                   spaceBetween: 10,
+                  autoHeight: true,
                   navigation: {
                     nextEl: ".swiper-principal-next",
                     prevEl: ".swiper-principal-prev",
@@ -373,44 +396,6 @@
                   },
                 });
             </script>
-
-            {{-- <div class="w-1/3 galeriatotal ">
-                @if ($product->imagen_2)
-                    <img id="collage1_previewer" loading="lazy" src="{{ asset($product->imagen_2) }}"
-                        class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 1" />
-                @else
-                    <img id="collage1_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                        class="object-cover w-full rounded-xl aspect-[0.7]" />
-                @endif
-            </div> --}}
-
-            {{-- <div class="flex flex-col  w-1/3 gap-1 lg:gap-3 galeriatotal ">
-                @if ($product->imagen_3)
-                    <img id="collage2_previewer" loading="lazy" src="{{ asset($product->imagen_3) }}"
-                        class="cursor-pointer object-cover flex-1 w-full rounded-xl aspect-[1.45]" alt="Gallery image 2" />
-                @else
-                    <img id="collage2_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                        class="object-cover flex-1 w-full rounded-xl aspect-[1.45]" />
-                @endif
-
-                @if ($product->imagen_4)
-                    <img id="collage3_previewer" loading="lazy" src="{{ asset($product->imagen_4) }}"
-                        class="cursor-pointer object-cover flex-1 w-full rounded-xl aspect-[1.45]" alt="Gallery image 3" />
-                @else
-                    <img id="collage3_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                        class="object-cover flex-1 w-full rounded-xl aspect-[1.45]" />
-                @endif
-            </div> --}}
-
-            {{-- <div class="w-1/3 galeriatotal">
-                @if ($product->image_texture)
-                    <img id="collage4_previewer" loading="lazy" src="{{ asset($product->image_texture) }}"
-                        class="cursor-pointer object-cover w-full rounded-xl aspect-[0.7]" alt="Gallery image 4" />
-                @else
-                    <img id="collage4_previewer" src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                        class="object-cover w-full rounded-xl aspect-[0.7]" />
-                @endif
-            </div> --}}
         </section>
 
         <section class="flex flex-col lg:flex-row gap-10 xl:gap-16 justify-between items-start px-[5%] mt-8 lg:mt-16">
@@ -458,7 +443,16 @@
 
                             <div class="flex flex-col md:flex-row gap-3 md:gap-6 md:items-center">
                               <div>
-                                  <h2 class="font-PlusJakartaSans_Medium text-lg lg:text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">S/. {{$product->precio}} - USD {{$product->preciomin}}</h2>
+                                  <h2 class="font-PlusJakartaSans_Medium text-lg lg:text-xl 2xl:text-2xl bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent">
+                                    @isset($product->precio)
+                                        S/. {{ number_format($product->precio, 0, '.', ',') }}
+                                    @endisset
+                                   
+                                    -
+                                   
+                                    @isset($product->preciomin) 
+                                        USD {{number_format($product->preciomin, 0, '.', ',')}}</h2>
+                                    @endisset
                               </div>
                               @if ($product->sku)
                                   <div
@@ -541,8 +535,8 @@
                             <div class="flex items-center">
                                 <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Acerca de esta propiedad</h2>
                             </div>
-                            <div class="w-full font-PlusJakartaSans_Light font-light flex flex-col gap-3 text-white text-base lg:text-lg 2xl:text-xl !leading-loose">
-                                {!! $product->description !!}
+                            <div class="!whitespace-pre-line w-full font-PlusJakartaSans_Light font-light flex flex-col gap-3 text-white text-base lg:text-lg 2xl:text-xl !leading-loose">
+                                {!!$product->description !!}
                             </div>
                         </div>
                     @endif
@@ -645,6 +639,21 @@
                             <a href="{{ asset($product->imagen_ambiente) }}" download>
                                 <img class="w-10" src="{{ asset('/images/img/pdf.png') }}" />
                             </a>
+                        </div>
+                    </div>
+                @endif
+
+
+                @if ($product->calendar_url)
+                    <div class="flex flex-col justify-center gap-4 pt-8 text-center rounded-2xl text-white">
+                        <div class="flex items-center">
+                            <h2 class="text-2xl 2xl:text-3xl font-PlusJakartaSans_Medium">Video</h2>
+                        </div>
+                        <div class="w-full mt-2" data-aos="fade-up" data-aos-offset="150">
+                            <iframe width="100%" height="500px" src="https://www.youtube.com/embed/{{ $product->calendar_url }}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                         </div>
                     </div>
                 @endif

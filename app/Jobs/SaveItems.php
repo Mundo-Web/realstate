@@ -35,6 +35,24 @@ class SaveItems implements ShouldQueue
     $this->image_route_pattern = $image_route_pattern;
   }
 
+  private function getYTVideoId($url)
+  {
+      $patterns = [
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/', // URL estándar
+          '/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/', // URL corta
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]+)/', // URL embebida
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)(?:&.*)?/', // URL estándar con parámetros
+          '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/', // URL de Shorts
+      ];
+      
+      foreach ($patterns as $pattern) {
+          if (preg_match($pattern, $url, $matches)) {
+              return $matches[1];
+          }
+      }
+      return null;
+  }
+
   public function handle()
   {
 
@@ -150,6 +168,14 @@ class SaveItems implements ShouldQueue
           $departamento_id = null;
         }
 
+        $urlid = $this->getYTVideoId($item[28]);
+
+        if ($urlid) {
+          $idfinal = $urlid;
+        } else {
+          $idfinal = null;
+        }
+
         $productJpa = Products::updateOrCreate([
           'sku' => $item[0],
         ], [
@@ -177,6 +203,7 @@ class SaveItems implements ShouldQueue
           'medidas' => $item[20],
           'latitud' => $item[21],
           'longitud' => $item[22],
+          'calendar_url' => $idfinal,
           'staff_id' => $staffJpa->id,
           'incluye' => $htmlIncluye,
           'imagen_ambiente' => $path2cot . $item[1] .'.pdf',
