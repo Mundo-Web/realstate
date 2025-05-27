@@ -227,7 +227,7 @@
 
             <div class="hidden md:flex flex-row gap-2 text-[#ccc]">
                 @if ($datosgenerales[0]->facebook)
-                  <a class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->facebook }}">
+                  <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->facebook }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
                     <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16ZM16 8C20.4 8 24 11.6 24 16C24 20 21.1 23.4 17.1 24V18.3H19L19.4 16H17.2V14.5C17.2 13.9 17.5 13.3 18.5 13.3H19.5V11.3C19.5 11.3 18.6 11.1 17.7 11.1C15.9 11.1 14.7 12.2 14.7 14.2V16H12.7V18.3H14.7V23.9C10.9 23.3 8 20 8 16C8 11.6 11.6 8 16 8Z" fill="url(#paint0_linear_4_530)"/>
@@ -242,7 +242,7 @@
                   </a>
                 @endif
                 @if ($datosgenerales[0]->instagram)
-                  <a class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->instagram }}">
+                  <a target="_blank"  class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->instagram }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
                     <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path d="M16 18.8C14.5 18.8 13.2 17.6 13.2 16C13.2 14.5 14.4 13.2 16 13.2C17.5 13.2 18.8 14.4 18.8 16C18.8 17.5 17.5 18.8 16 18.8Z" fill="url(#paint0_linear_4_532)"/>
@@ -270,7 +270,7 @@
                 @endif
                 
                 @if ($datosgenerales[0]->linkedin)
-                  <a class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->linkedin }}">
+                  <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->linkedin }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
                     <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path d="M18.6 16L14.4 13.6V18.4L18.6 16Z" fill="url(#paint0_linear_4_531)"/>
@@ -292,7 +292,7 @@
                 @endif
 
                 @if ($datosgenerales[0]->tiktok)
-                  <a class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->tiktok }}">
+                  <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->tiktok }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
                     <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0C7.16345 0 0 7.16344 0 16C0 24.8366 7.16345 32 16 32C24.8365 32 32 24.8366 32 16C32 7.16344 24.8365 0 16 0ZM19.1182 8C19.1182 8.23775 19.1404 8.4719 19.1813 8.69851C19.3781 9.74606 19.998 10.645 20.8592 11.2059C21.4605 11.5997 22.1732 11.8263 22.9415 11.8263L22.9413 12.4393V14.5753C21.516 14.5753 20.1946 14.1184 19.1182 13.3457V18.9366C19.1182 21.7265 16.8466 24 14.0591 24C12.9827 24 11.9805 23.6581 11.1602 23.0824C9.85367 22.1648 9 20.6491 9 18.9366C9 16.143 11.2679 13.8732 14.0554 13.8769C14.2892 13.8769 14.5157 13.8955 14.7384 13.9252V14.5753L14.7302 14.5792L14.7383 14.579V16.7337C14.5231 16.6668 14.2929 16.6259 14.0554 16.6259C12.7823 16.6259 11.7467 17.6624 11.7467 18.9366C11.7467 19.8245 12.2515 20.5934 12.9864 20.9835C12.9933 20.9929 13.0002 21.0023 13.0072 21.0116L13.0195 21.0278C13.0111 21.0115 13.0013 20.9955 12.9901 20.9798C13.313 21.1507 13.6768 21.2473 14.0628 21.2473C15.3062 21.2473 16.3233 20.2554 16.3678 19.0221L16.3715 8H19.1182Z" fill="url(#paint0_linear_4_534)"/>
@@ -308,7 +308,7 @@
                 @endif
 
                 @if ($datosgenerales[0]->twitter)
-                  <a class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->twitter }}">
+                  <a target="_blank" class="relative flex flex-row justify-center items-center" href="{{ $datosgenerales[0]->twitter }}">
                     <div class="bg-black rounded-full p-3 absolute z-10"></div>
                     <svg class="z-20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16ZM22.1 11.5C22.8 11.4 23.4 11.3 24 11C23.6 11.7 23 12.3 22.3 12.7C22.5 17.4 19.1 22.5 13 22.5C11.2 22.5 9.5 21.9 8 21C9.7 21.2 11.5 20.7 12.7 19.8C11.2 19.8 10 18.8 9.6 17.5C10.1 17.6 10.6 17.5 11.1 17.4C9.6 17 8.5 15.6 8.5 14.1C9 14.3 9.5 14.5 10 14.5C8.6 13.5 8.1 11.6 9 10.1C10.7 12.1 13.1 13.4 15.8 13.5C15.3 11.5 16.9 9.5 19 9.5C19.9 9.5 20.8 9.9 21.4 10.5C22.2 10.3 22.9 10.1 23.5 9.7C23.3 10.5 22.8 11.1 22.1 11.5Z" fill="url(#paint0_linear_4_533)"/>
