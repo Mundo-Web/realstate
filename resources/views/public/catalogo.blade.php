@@ -160,7 +160,23 @@
                                 </div>
 
                                 <div class="flex flex-col gap-1 location">
-                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione valores en soles (S/.)</label>
+                                    <div x-data="{ monedaDolar: false }" class="flex flex-row justify-between gap-3">
+                                        <label class="text-white text-sm font-PlusJakartaSans_Regular">
+                                          Seleccione valores en 
+                                          <span class="ml-1" x-text="monedaDolar ? '( $ )' : '( S/. )'"></span>
+                                        </label>
+                                        <input 
+                                          type="checkbox" 
+                                          x-model="monedaDolar"
+                                          class="pr-2 relative w-[3.25rem] h-7 p-px bg-[#1A1A1A] border-[#BE913E] text-[#BE913E] !outline-[#1A1A1A] focus:!outline-[#1A1A1A]
+                                                 rounded-full cursor-pointer transition-colors ease-in-out duration-200 !ring-[#1A1A1A]  focus:!ring-[#1A1A1A]  focus:ring-offset-[#1A1A1A]
+                                                 checked:bg-none checked:text-[#BE913E] checked:border-[#BE913E]
+                                                 before:inline-block before:size-6 before:bg-white checked:before:bg-white before:translate-x-0 
+                                                 checked:before:translate-x-full before:rounded-full before:shadow 
+                                                 before:transform  before:transition before:ease-in-out before:duration-200"
+                                          id="swichtmoneda"
+                                        >
+                                      </div>
                                     <div class="grid grid-cols-2 gap-2 mt-3 font-PlusJakartaSans_Regular">
                                         <div class="relative">
                                             <input type="text" name="minprice" id="minprice" placeholder=" " 
@@ -334,10 +350,17 @@
                 const ubicacion = $('#ubicacion').val();
                 const maxprice = $('#maxprice').val();
                 const minprice = $('#minprice').val();
-                
+                const monedaDolar = document.getElementById('swichtmoneda').checked;
+                var moneda = '';
                 if (!tipoBusqueda && !tipoPropiedad && !ubicacion) {
                     alert("Por favor, selecciona al menos un filtro para realizar la búsqueda.");
                     return;
+                }
+
+                if (monedaDolar == true) {
+                    moneda='dolar'; 
+                } else {
+                    moneda='sol';
                 }
 
                 Swal.fire({
@@ -359,13 +382,12 @@
                       propiedad: tipoPropiedad,
                       ubicacion: ubicacion,
                       montominimo: minprice,
-                      montomaximo: maxprice
+                      montomaximo: maxprice,
+                      moneda_dolar: moneda,
+                    
                   },
                   success: function (response) {
-                      // Cerrar el SweetAlert de carga
                       Swal.close();
-                      
-                      
                     //   Swal.fire({
                     //       title: 'Búsqueda realizada',
                     //       text: 'Se han encontrado ' + response.data.length + ' departamentos',
@@ -385,35 +407,6 @@
 
                     $('#productosf').html(response.html);
   
-                    //   let htmlContent = '';
-                    //   const noImageUrl = '/images/img/noimagen.jpg';
-                      
-                    //   response.data.forEach(function(item) {
-                    //       htmlContent += `
-                    //       <div class="flex flex-col relative w-full bg-white" data-aos="zoom-in-left">
-                    //           <div class="bg-white product_container basis-4/5 flex flex-col justify-center relative border">
-                    //               <div>
-                    //                   <div class="relative flex justify-center items-center h-max">
-                    //                       <img 
-                    //                           src="${item.imagen ? item.imagen : 'images/img/noimagen.jpg'}"
-                    //                           alt="${item.producto}"
-                    //                           onerror="this.src='${noImageUrl}';"
-                    //                           class="transition ease-out duration-300 transform w-full aspect-square object-cover inset-0"
-                    //                       />
-                    //                   </div>
-                    //               </div>
-                    //           </div>
-                              
-                    //           <a href="/producto/${item.id}" class="px-1 py-2 flex flex-col gap-3">
-                    //               <h2 class="block text-lg text-left overflow-hidden font-Homie_Bold text-[#002677]" 
-                    //                   style="display: -webkit-box; -webkit-line-clamp: 2; text-overflow: ellipsis; -webkit-box-orient: vertical; height: 51px;">
-                    //                   ${item.producto}
-                    //               </h2>
-                    //           </a>
-                    //       </div>`;
-                    //   });
-  
-                    // $('#productosf').html(htmlContent);
                   },
                   error: function (xhr, status, error) {
                       Swal.close();
@@ -428,6 +421,18 @@
         });
     });
   </script>
+  <script>
+    const switchMoneda = document.getElementById('swichtmoneda');
+    const monedaIcon = document.getElementById('monedaicon');
+  
+    switchMoneda.addEventListener('change', function() {
+      if (this.checked) {
+        monedaIcon.textContent = '( $ )'; // Dólares si está activado
+      } else {
+        monedaIcon.textContent = '( S/. )'; // Soles si está desactivado
+      }
+    });
+</script>
 @stop
 
 @stop

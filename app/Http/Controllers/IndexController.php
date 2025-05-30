@@ -168,7 +168,8 @@ class IndexController extends Controller
     $ubicacion = $request->input('ubicacion') ?? '';
     $montominimo = $request->input('montominimo') ?? '';
     $montomaximo = $request->input('montomaximo') ?? '';
-   
+    $moneda = $request->input('moneda') ?? 'sol';
+    
     $client = new Client();
     $consultaapi = Products::where('status', 1)->where('visible', 1)->get();
 
@@ -189,12 +190,24 @@ class IndexController extends Controller
         $query->where('distrito_id', $ubicacion);
     }
 
-    if (!empty($montominimo) && !empty($montomaximo)) {
-        $query->whereBetween('precio', [$montominimo, $montomaximo]);
-    } elseif (!empty($montominimo)) {
-        $query->where('precio', '>=', $montominimo);
-    } elseif (!empty($montomaximo)) {
-        $query->where('precio', '<=', $montomaximo);
+    if ($moneda === 'dolar') {
+      // Usar el campo preciomin (dólares)
+        if (!empty($montominimo) && !empty($montomaximo)) {
+            $query->whereBetween('preciomin', [$montominimo, $montomaximo]);
+        } elseif (!empty($montominimo)) {
+            $query->where('preciomin', '>=', $montominimo);
+        } elseif (!empty($montomaximo)) {
+            $query->where('preciomin', '<=', $montomaximo);
+        }
+    } else {
+        // Usar el campo precio (soles)
+        if (!empty($montominimo) && !empty($montomaximo)) {
+            $query->whereBetween('precio', [$montominimo, $montomaximo]);
+        } elseif (!empty($montominimo)) {
+            $query->where('precio', '>=', $montominimo);
+        } elseif (!empty($montomaximo)) {
+            $query->where('precio', '<=', $montomaximo);
+        }
     }
 
     
@@ -274,36 +287,48 @@ class IndexController extends Controller
 
   public function obtenerDepartamentos(Request $request){
       
-      $tipo = $request->input('tipo') ?? '';
-      $propiedad = $request->input('propiedad') ?? '';
-      $ubicacion = $request->input('ubicacion') ?? '';
-      $montominimo = $request->input('montominimo') ?? '';
-      $montomaximo = $request->input('montomaximo') ?? '';
-      
-      $query = Products::where('status', 1)
-      ->where('visible', 1)
-      ->with('distrito');
+    $tipo = $request->input('tipo') ?? '';
+    $propiedad = $request->input('propiedad') ?? '';
+    $ubicacion = $request->input('ubicacion') ?? '';
+    $montominimo = $request->input('montominimo') ?? '';
+    $montomaximo = $request->input('montomaximo') ?? '';
+    $moneda = $request->input('moneda_dolar') ?? 'sol'; // false = soles, true = dólares
+    
+    $query = Products::where('status', 1)
+        ->where('visible', 1)
+        ->with('distrito');
 
-      // Verifica si se proporcionó el lugar y la cantidad
-      if ($tipo == 'alquiler') {
+    // Filtros comunes
+    if ($tipo == 'alquiler') {
         $query->where('recomendar', 1);
-      } 
-  
-      if (!empty($propiedad)) {
+    }
+    if (!empty($propiedad)) {
         $query->where('categoria_id', $propiedad);
-      }
-  
-      if (!empty($ubicacion) && $ubicacion != '1') {
-          $query->where('distrito_id', $ubicacion);
-      }
-  
-      if (!empty($montominimo) && !empty($montomaximo)) {
-          $query->whereBetween('precio', [$montominimo, $montomaximo]);
-      } elseif (!empty($montominimo)) {
-          $query->where('precio', '>=', $montominimo);
-      } elseif (!empty($montomaximo)) {
-          $query->where('precio', '<=', $montomaximo);
-      }
+    }
+    if (!empty($ubicacion) && $ubicacion != '1') {
+        $query->where('distrito_id', $ubicacion);
+    }
+
+    // Lógica corregida para moneda:
+    if ($moneda === 'dolar') {
+      // Usar el campo preciomin (dólares)
+        if (!empty($montominimo) && !empty($montomaximo)) {
+            $query->whereBetween('preciomin', [$montominimo, $montomaximo]);
+        } elseif (!empty($montominimo)) {
+            $query->where('preciomin', '>=', $montominimo);
+        } elseif (!empty($montomaximo)) {
+            $query->where('preciomin', '<=', $montomaximo);
+        }
+    } else {
+        // Usar el campo precio (soles)
+        if (!empty($montominimo) && !empty($montomaximo)) {
+            $query->whereBetween('precio', [$montominimo, $montomaximo]);
+        } elseif (!empty($montominimo)) {
+            $query->where('precio', '>=', $montominimo);
+        } elseif (!empty($montomaximo)) {
+            $query->where('precio', '<=', $montomaximo);
+        }
+    }
   
       $products = $query->orderBy('id', 'desc')->get();
     

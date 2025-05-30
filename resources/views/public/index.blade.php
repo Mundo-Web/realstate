@@ -231,7 +231,23 @@
                                 </div>
 
                                 <div class="flex flex-col gap-1 location">
-                                    <label class="text-white text-sm font-PlusJakartaSans_Regular">Seleccione valores en soles (S/.)</label>
+                                    <div x-data="{ monedaDolar: false }" class="flex flex-row justify-between gap-3">
+                                        <label class="text-white text-sm font-PlusJakartaSans_Regular">
+                                          Seleccione valores en 
+                                          <span class="ml-1" x-text="monedaDolar ? '( $ )' : '( S/. )'"></span>
+                                        </label>
+                                        <input 
+                                          type="checkbox" 
+                                          x-model="monedaDolar"
+                                          class="pr-2 relative w-[3.25rem] h-7 p-px bg-[#1A1A1A] border-[#BE913E] text-[#BE913E] !outline-[#1A1A1A] focus:!outline-[#1A1A1A]
+                                                 rounded-full cursor-pointer transition-colors ease-in-out duration-200 !ring-[#1A1A1A]  focus:!ring-[#1A1A1A]  focus:ring-offset-[#1A1A1A]
+                                                 checked:bg-none checked:text-[#BE913E] checked:border-[#BE913E]
+                                                 before:inline-block before:size-6 before:bg-white checked:before:bg-white before:translate-x-0 
+                                                 checked:before:translate-x-full before:rounded-full before:shadow 
+                                                 before:transform  before:transition before:ease-in-out before:duration-200"
+                                          id="swichtmoneda"
+                                        >
+                                      </div>
                                     <div class="grid grid-cols-2 gap-2 mt-3 font-PlusJakartaSans_Regular">
                                         <div class="relative">
                                             <input type="text" name="minprice" id="minprice" placeholder=" " 
@@ -1143,7 +1159,7 @@
                 const ubicacion = $('#ubicacion').val();
                 const montominimo = $('#minprice').val();
                 const montomaximo = $('#maxprice').val();
-                
+                const monedaDolar = document.getElementById('swichtmoneda').checked;
 
                 // Validación (opcional)
                 if (!tipoBusqueda && !tipoPropiedad && !ubicacion && !montominimo && !montomaximo) {
@@ -1167,6 +1183,11 @@
                 }
                 if (montomaximo) {
                     params.append('montomaximo', montomaximo);
+                }
+                if (monedaDolar) {
+                    params.append('moneda', 'dolar'); // Enviamos 'dolar' si está activado
+                } else {
+                    params.append('moneda', 'sol'); // Enviamos 'sol' si está desactivado
                 }
 
                 window.location.href = `/catalogo?${params.toString()}`;
@@ -1365,6 +1386,18 @@
                 });
             });
         });   
+    </script>
+    <script>
+        const switchMoneda = document.getElementById('swichtmoneda');
+        const monedaIcon = document.getElementById('monedaicon');
+      
+        switchMoneda.addEventListener('change', function() {
+          if (this.checked) {
+            monedaIcon.textContent = '( $ )'; // Dólares si está activado
+          } else {
+            monedaIcon.textContent = '( S/. )'; // Soles si está desactivado
+          }
+        });
     </script>
 @stop
 
