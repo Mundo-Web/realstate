@@ -372,7 +372,7 @@
                     <div class="w-full lg:w-1/2 flex flex-col items-center justify-center">
                         <img class="h-full w-full py-[5%] lg:py-[10%] object-contain"
                             src="{{ asset($textoshome->url_image2section) }}"
-                            onerror="this.src='{{ asset('images/img/portada_vt4.png') }}';" />
+                            onerror="this.src='{{ asset('images/img/imagenmedio.jpg') }}';" />
                     </div>
                 </div>
             </section>
