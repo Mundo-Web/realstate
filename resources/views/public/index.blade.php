@@ -353,7 +353,7 @@
                                             {!! preg_replace('/\*(.*?)\*/', '<span class="text-[#C8A049]">$1</span>', $beneficios->titulo) !!}
                                         </h2>
                                         <p class="font-PlusJakartaSans_Regular text-white text-sm md:text-base 2xl:text-lg">
-                                            {{ $beneficios->descripcionshort }}
+                                            {{ $beneficios->descripcion }}
                                         </p>
                                     </div>
                                 </div>
