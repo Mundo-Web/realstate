@@ -74,7 +74,7 @@
 
                 <div class="flex flex-col gap-3 md:gap-5 items-start max-w-3xl 2xl:max-w-4xl w-full">
                     
-                    <div class="grid grid-cols-1 gap-4 xl:gap-6 2xl:gap-8 p-4 xl:p-6 2xl:p-8 z-20 bg-[#141414] rounded-xl min-w-[390px] w-full">
+                    <div class="grid grid-cols-1 gap-4 xl:gap-6 2xl:gap-8 p-4 xl:p-6 2xl:p-8 z-20 bg-[#141414] rounded-xl sm:min-w-[390px] w-full">
                         
                         <h2 class="font-PlusJakartaSans_Semibold text-white text-3xl lg:text-4xl 2xl:text-5xl leading-tight">
                             Ponte en <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> contacto </span> con nuestro equipo ahora

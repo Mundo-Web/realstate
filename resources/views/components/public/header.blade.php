@@ -506,7 +506,7 @@
     </div>    
     <div class="flex justify-end relative">
         <div class="fixed bottom-[36px] z-[10] right-[15px] md:right-[25px]">
-            <a href="https://api.whatsapp.com/send?phone={{ $datosgenerales[0]->whatsapp }}&text={{ $datosgenerales[0]->mensaje_whatsapp }}"
+            <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $datosgenerales[0]->whatsapp }}&text={{ $datosgenerales[0]->mensaje_whatsapp }}"
                 class="">
                 <img src="{{ asset('images/img/WhatsApp.png') }}" alt="whatsapp" class="w-20" />
             </a>
