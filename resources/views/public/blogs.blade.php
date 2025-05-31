@@ -15,7 +15,7 @@
 
   <section class="flex flex-col md:flex-row md:gap-10 w-full px-[5%] xl:px-[8%] font-PlusJakartaSans_Regular py-8 lg:py-16 bg-cover" style="background-image: url({{ asset('images/img/rs_beneficios.png') }})">
     
-    <div class="w-full md:w-3/12 gap-5">
+    {{-- <div class="w-full md:w-3/12 gap-5">
       <h3 class="font-PlusJakartaSans_Semibold text-lg bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent ">Buscar post</h3>
       <div class="relative w-full lg:w-[100%] my-5">
         <input id="buscarblog" type="text" placeholder="Buscar..."
@@ -45,12 +45,12 @@
           @endforeach
         </div>
       </div>
-    </div>
+    </div> --}}
 
 
-
-    <div class="w-full md:basis-9/12">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10">
+    {{-- md:basis-9/12 --}}
+    <div class="w-full ">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10">
         @foreach ($posts as $post)
           <x-blog.container-post :post="$post" />
         @endforeach
