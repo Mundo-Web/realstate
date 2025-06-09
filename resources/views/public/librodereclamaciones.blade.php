@@ -184,10 +184,10 @@
                         class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl text-[#6C7275]" />
                 </div> --}}
 
-        <div class="flex flex-row col-span-4 gap-2 ">
+        {{-- <div class="flex flex-row col-span-4 gap-2 ">
           {!! NoCaptcha::renderJs() !!}
           {!! NoCaptcha::display() !!}
-        </div>
+        </div> --}}
 
         <div class="flex flex-row col-span-2 gap-2 ">
           <input type="submit" value="Enviar a libro de reclamaciones" id="btnAjax"
