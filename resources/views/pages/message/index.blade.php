@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         
-        <div class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
+        <div class="col-span-full xl:col-span-8 bg-white   shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
                 <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Mis Mensajes</h2>
             </header>
@@ -23,7 +23,7 @@
 
                             @foreach($mensajes as $item)
                                 <tr>
-                                    <td class="dark:bg-slate-800">
+                                    <td class=" ">
                                         @if($item->is_read == "0")
                                             <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope"></i></span><span class="font-bold dark:text-white">{{$item->full_name}}</span></a>
                                         @else
@@ -31,9 +31,9 @@
                                         @endif
                                         
                                     </td>
-                                    <td class="dark:bg-slate-800">{{$item->email}}</td>
+                                    <td class=" ">{{$item->email}}</td>
                                     <td>{{$item->phone}}</td>
-                                    <td class="flex flex-row items-center justify-center dark:bg-slate-800">
+                                    <td class="flex flex-row items-center justify-center  ">
                                         <button method="POST" onclick="borrarmensaje({{ $item->id }})"
                                           class="bg-red-600 p-2 rounded text-white"><i class="fa-regular fa-trash-can"></i></button>
                                         <!--a href="" class="bg-yellow-400 p-2 rounded text-white mr-6"><i class="fa-regular fa-pen-to-square"></i></a-->
