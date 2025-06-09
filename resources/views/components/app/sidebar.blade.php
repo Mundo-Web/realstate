@@ -76,12 +76,12 @@
         <x-menu.item id="datosgenerales" href="{{ route('datosgenerales.edit', 1) }}" icon="fas fa-address-card">
           Datos Generales
         </x-menu.item>
-        <x-menu.item id="homeview" href="{{ route('homeview.edit', 1) }}" icon="fas fa-address-card">
+        {{-- <x-menu.item id="homeview" href="{{ route('homeview.edit', 1) }}" icon="fas fa-address-card">
           Textos - Home
-        </x-menu.item>
-        <x-menu.item id="sobrenosotros" href="{{ route('nosotrosview.edit', 1) }}" icon="fas fa-address-card">
+        </x-menu.item> --}}
+        {{-- <x-menu.item id="sobrenosotros" href="{{ route('nosotrosview.edit', 1) }}" icon="fas fa-address-card">
           Textos - Nosotros
-        </x-menu.item>
+        </x-menu.item> --}}
         {{-- <x-menu.item id="faqs" href="{{ route('faqs.index') }}" icon="fas fa-address-card">
           Preguntas Frecuentes
         </x-menu.item> --}}
