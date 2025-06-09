@@ -496,7 +496,7 @@
         </section>
 
 
-        <section class="flex flex-col justify-center items-center px-[5%]   py-10 w-full" style="background-image: url({{ asset('images/img/texturasuscribirse.png') }})">
+        <section class="flex flex-col justify-center items-center px-[5%] bg-cover  py-10 w-full" style="background-image: url({{ asset('images/img/texturasuscribirse.png') }})">
             <div class="flex flex-col max-w-xl">
       
                 <div class="flex flex-col w-full text-center gap-5 text-[#006258]">
