@@ -1396,7 +1396,7 @@ class IndexController extends Controller
                     $appUrl .
                     '" target="_blank" style="text-align:center" ><img src="' .
                     $appUrl .
-                    '/mail/logo.png" alt="hpi" /></a>
+                    '/mail/logo.png"/></a>
                 </th>
               </tr>
             </thead>

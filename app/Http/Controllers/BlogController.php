@@ -124,7 +124,7 @@ class BlogController extends Controller
                 background-repeat: no-repeat, no-repeat;
                 background-position: center bottom , center bottom;;
                 background-size: fit , fit;
-                background-color: #f9f9f9;
+                background-color: #000000;
               "
             >
               <thead>
@@ -138,7 +138,7 @@ class BlogController extends Controller
                       margin: 40px;
                     "
                   >
-                    <img src="' . $appUrl . '/images/Group1.png" alt="Boost_Peru"  style="
+                    <img src="' . $appUrl . '/mail/logo.png"  style="
                     margin: auto;
                   "/>
                   </th>
@@ -191,7 +191,7 @@ class BlogController extends Controller
                      Acaba de ser publicado 
                       <span ></span>
                     </p>
-                    <img src="'. $appUrl .'/'. $post->url_image . $post->name_image.'" alt="Boost_Peru"  style="
+                    <img src="'. $appUrl .'/'. $post->url_image . $post->name_image.'"  style="
                     margin: auto; width: 500px; height: 300px; object-fit: cover; border-radius: 10px; margin-top: 20px; margin-bottom: 20px;
                   "/>
                   </td>
@@ -224,8 +224,8 @@ class BlogController extends Controller
                       href="' . $appUrl .'post/'.$post->id. '"
                       style="
                         text-decoration: none;
-                        background-color: #006bf6;
-                        color: white;
+                        background-color: #C8A049;
+                        color: black;
                         padding: 10px 16px;
                         display: inline-flex;
                         justify-content: center;

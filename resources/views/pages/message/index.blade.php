@@ -23,7 +23,7 @@
 
                             @foreach($mensajes as $item)
                                 <tr>
-                                    <td class=" ">
+                                    <td class="dark:text-gray-800">
                                         @if($item->is_read == "0")
                                             <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope"></i></span><span class="font-bold dark:text-white">{{$item->full_name}}</span></a>
                                         @else
@@ -31,7 +31,7 @@
                                         @endif
                                         
                                     </td>
-                                    <td class=" ">{{$item->email}}</td>
+                                    <td class=" dark:text-gray-800">{{$item->email}}</td>
                                     <td>{{$item->phone}}</td>
                                     <td class="flex flex-row items-center justify-center  ">
                                         <button method="POST" onclick="borrarmensaje({{ $item->id }})"
