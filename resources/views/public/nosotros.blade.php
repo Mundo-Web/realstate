@@ -60,7 +60,7 @@
                     <div class="flex flex-col relative gap-3 w-full items-start">
                         <h2
                             class="font-PlusJakartaSans_Medium text-white text-3xl md:text-4xl md:text-[44px] leading-tight 2xl:text-5xl">
-                            Revisa nuestros <span class="text-[#C8A049]">valores</span> </h2>
+                            Clientes <span class="text-[#C8A049]">satisfechos</span> </h2>
                         {{-- <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
                             facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec. Donec vehicula purus
                             at diam facilisis.</p> --}}
