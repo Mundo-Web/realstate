@@ -32,7 +32,7 @@
             <a href="{{route('contacto')}}">Contacto</a>
         </div> --}}
 
-        <div class="flex flex-col text-sm font-PlusJakartaSans_Regular text-white gap-1.5">
+        <div class="flex flex-col text-sm  font-PlusJakartaSans_Regular text-white gap-1.5">
             <h3 class="text-lg 2xl:text-xl text-white font-PlusJakartaSans_Semibold pb-3">Ubícanos</h3>
             <p>{{ $datosgenerales->address }} {{ $datosgenerales->inside }}</p>
             <p> {{ $datosgenerales->city }} - {{ $datosgenerales->country }}</p>
@@ -176,7 +176,7 @@
     <div id="modalPoliticasDev" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
-            <h1 class="font-FixelText_Bold text-center text-2xl">Politicas de Datos</h1>
+            <h1 class="font- text-center text-2xl">Politicas de Datos y Privacidad</h1>
 
             <p class="font-Inter_Regular  prose grid grid-cols-1 ">{!! $politicas->content ?? '' !!}</p>
 
@@ -219,7 +219,7 @@
         })
 
         $(document).on('click', '#linkPoliticas', function() {
-            $('#modalPoliticasDev').modal({
+            $('#modallinkPoliticasDatos').modal({
                 show: true,
                 fadeDuration: 400,
 
@@ -228,7 +228,7 @@
         })
 
         $(document).on('click', '#linkPoliticas2', function() {
-            $('#modalPoliticasDev').modal({
+            $('modallinkPoliticasDatos').modal({
                 show: true,
                 fadeDuration: 400,
 
@@ -237,7 +237,7 @@
         })
 
         $(document).on('click', '#linkPoliticasDatos', function() {
-            $('#modallinkPoliticasDatos').modal({
+            $('#modalPoliticasDev').modal({
                 show: true,
                 fadeDuration: 400,
 
@@ -246,7 +246,7 @@
         })
 
         $(document).on('click', '#linkPoliticasDatos2', function() {
-            $('#modallinkPoliticasDatos').modal({
+            $('##modalPoliticasDev').modal({
                 show: true,
                 fadeDuration: 400,
 
