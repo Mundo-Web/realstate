@@ -594,7 +594,7 @@
 
                   </div>
                   <div class="w-full">
-                    <label for="movilidad">Movilidad</label>
+                    <label for="movilidad">Almacenes</label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="text-lg text-gray-500 dark:text-gray-400 fa-solid fa-bus-simple"></i>
@@ -625,7 +625,7 @@
                     </div>
                     <div class="relative mb-2  mt-2">
                       <label for="mobiliado" class="absolute inset-y-0 left-0 top-1 flex items-center pl-5 pointer-events-none">
-                         Marca si tiene mobiliado
+                         Marca si esta amoblado
                       </label>
                       <input type="checkbox" id="mobiliado" name="mobiliado"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
