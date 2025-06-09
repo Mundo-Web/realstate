@@ -209,6 +209,15 @@
 
             })
         })
+
+        $(document).on('click', '#linkTerminos2', function() {
+            $('#modalTerminosCondiciones').modal({
+                show: true,
+                fadeDuration: 400,
+
+            })
+        })
+
         $(document).on('click', '#linkPoliticas', function() {
             $('#modalPoliticasDev').modal({
                 show: true,
@@ -217,7 +226,26 @@
 
             })
         })
+
+        $(document).on('click', '#linkPoliticas2', function() {
+            $('#modalPoliticasDev').modal({
+                show: true,
+                fadeDuration: 400,
+
+
+            })
+        })
+
         $(document).on('click', '#linkPoliticasDatos', function() {
+            $('#modallinkPoliticasDatos').modal({
+                show: true,
+                fadeDuration: 400,
+
+
+            })
+        })
+
+        $(document).on('click', '#linkPoliticasDatos2', function() {
             $('#modallinkPoliticasDatos').modal({
                 show: true,
                 fadeDuration: 400,
