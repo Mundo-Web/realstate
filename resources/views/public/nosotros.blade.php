@@ -60,7 +60,7 @@
                     <div class="flex flex-col relative gap-3 w-full items-start">
                         <h2
                             class="font-PlusJakartaSans_Medium text-white text-3xl md:text-4xl md:text-[44px] leading-tight 2xl:text-5xl">
-                            Clientes <span class="text-[#C8A049]">satisfechos</span> </h2>
+                            Revisa nuestros <span class="text-[#C8A049]">valores</span> </h2>
                         {{-- <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
                             facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec. Donec vehicula purus
                             at diam facilisis.</p> --}}
@@ -101,7 +101,7 @@
                     class="flex flex-col gap-3 md:gap-5 items-center justify-center text-center max-w-3xl 2xl:max-w-4xl mx-auto">
                     <h2
                         class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] lg:text-5xl 2xl:text-6xl leading-tight">
-                        Revisa nuestros  <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> valores </span> 
+                        Clientes  <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> satisfechos </span> 
                     </h2>
                     <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">
                         Nuestra historia es de continuo crecimiento y evolución. Comenzamos como un pequeño equipo con grandes sueños, decididos a crear una plataforma inmobiliaria que trascendiera lo común.
