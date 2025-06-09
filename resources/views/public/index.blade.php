@@ -483,9 +483,9 @@
             <div class="flex flex-col gap-5 lg:w-1/2">
                 <h2 class="font-PlusJakartaSans_Medium text-white text-3xl md:text-[40px] 2xl:text-5xl leading-tight">
                     Comience su <span class="text-[#C8A049]">aventura inmobiliaria</span> hoy mismo </h2>
-                <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
+                {{-- <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
                     facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec. Donec vehicula purus at
-                    diam facilisis.</p>
+                    diam facilisis.</p> --}}
             </div>
             <div class="flex flex-col lg:w-1/2 justify-center items-end">
                 <a href="/catalogo"

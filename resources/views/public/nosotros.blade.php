@@ -61,9 +61,9 @@
                         <h2
                             class="font-PlusJakartaSans_Medium text-white text-3xl md:text-4xl md:text-[44px] leading-tight 2xl:text-5xl">
                             Revisa nuestros <span class="text-[#C8A049]">valores</span> </h2>
-                        <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
+                        {{-- <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">Donec vehicula purus at diam
                             facilisis tempor. Donec lacinia felis nibh, vel consectetur leo tincidunt nec. Donec vehicula purus
-                            at diam facilisis.</p>
+                            at diam facilisis.</p> --}}
                         <div class="flex flex-col justify-start mt-3">
                             <a href="/catalogo"
                                 class="max-w-[250px] text-center text-sm 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 2xl:px-6 py-3 leading-normal rounded-xl">
