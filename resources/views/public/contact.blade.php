@@ -171,7 +171,9 @@
                             class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
                             Escríbenos para recibir atención personalizada y resolver tus dudas.
                         </p>
-                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">mo-realstate@mail.com</p>
+                        @if (!empty($general->email))
+                            <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">{{ $general->email }}</p>
+                        @endif
                     </div>
                 </article>
 
@@ -186,7 +188,9 @@
                             class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
                             Llámanos para obtener soporte inmediato y asistencia profesional.
                         </p>
-                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">(+51) 000-000-000</p>
+                        @if (!empty($general->cellphone))
+                            <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">{{ $general->cellphone }}</p>
+                        @endif
                     </div>
                 </article>
 
@@ -201,7 +205,30 @@
                             class="text-white text-sm 2xl:text-base 3xl:text-lg font-PlusJakartaSans_Regular tracking-normal">
                             Visítanos en nuestra oficina para conocer nuestras soluciones.
                         </p>
-                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">Av. Javier Prado 2156 San Isidro</p>
+                        <p class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent font-PlusJakartaSans_Medium">
+                            @php
+                                $locations = [];
+
+                                if (!empty($general->address)) {
+                                    $locations[] = $general->address;
+                                }
+
+                                if (!empty($general->inside)) {
+                                    $locations[] = $general->inside;
+                                }
+
+                                if (!empty($general->district)) {
+                                    $locations[] = $general->district;
+                                }
+
+                                if (!empty($general->country)) {
+                                    $locations[] = $general->country;
+                                }
+
+                                $locationsString = implode(', ', $locations);
+                            @endphp
+                            {{ $locationsString }}
+                        </p>
                     </div>
                 </article>
 
