@@ -104,7 +104,12 @@
                         Clientes  <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> satisfechos </span> 
                     </h2>
                     <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">
-                        Nuestra historia es de continuo crecimiento y evolución. Comenzamos como un pequeño equipo con grandes sueños, decididos a crear una plataforma inmobiliaria que trascendiera lo común.
+                        Cada cliente que confía en nosotros es parte de nuestra historia.
+                        En MP Real State, nos enfocamos en ofrecer un acompañamiento cercano, honesto y eficiente durante todo el proceso de compra o inversión inmobiliaria.
+
+                        Gracias a este compromiso, hoy contamos con una amplia comunidad de clientes satisfechos que lograron cumplir el sueño de tener su propiedad ideal o hacer crecer su inversión con seguridad y confianza.
+
+                        Su experiencia nos inspira a seguir dando lo mejor en cada proyecto.
                     </p>
                 </div>
 
