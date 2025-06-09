@@ -515,7 +515,7 @@
                             <div class="flex flex-col items-center min-w-[70px]">
                                 <img loading="lazy" src="{{ asset('images/svg/rs_estaciones.svg') }}"
                                     class="object-contain w-7 2xl:w-10 aspect-square" alt="Proximity icon" />
-                                <p class="mt-1.5">{{ $product->movilidad }} Estaciones</p>
+                                <p class="mt-1.5">{{ $product->movilidad }} Almacenes</p>
                             </div>
                         @endif
 
@@ -523,7 +523,7 @@
                             <div class="flex flex-col items-center min-w-[70px]">
                                 <img loading="lazy" src="{{ asset('images/svg/mobiliado.svg') }}"
                                     class="object-contain w-7 2xl:w-10 aspect-square" alt="Furnished icon" />
-                                <p class="mt-1.5">Mobiliado</p>
+                                <p class="mt-1.5">Amoblado</p>
                             </div>
                         @endif
                   </div>
