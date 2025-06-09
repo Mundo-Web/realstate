@@ -489,7 +489,7 @@
             </div>
             <div class="flex flex-col lg:w-1/2 justify-center items-end">
                 <a href="/catalogo"
-                    class="max-w-[200px] text-center text-sm 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 2xl:px-6 py-3 leading-normal rounded-xl">
+                    class="max-w-[300px] text-center text-sm 2xl:text-lg font-PlusJakartaSans_Medium tracking-wide bg-gradient-to-r from-[#C8A049] via-[#E9D151] via-55% to-[#BE913E] text-[#141414] px-4 2xl:px-6 py-3 leading-normal rounded-xl">
                     Explorar propiedades
                 </a>
             </div>
