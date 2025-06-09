@@ -177,10 +177,7 @@
         <!-- Modal body -->
         <div class="p-4 ">
             <h1 class="font- text-center text-2xl">Politicas de Datos y Privacidad</h1>
-
             <p class="font-Inter_Regular  prose grid grid-cols-1 ">{!! $politicas->content ?? '' !!}</p>
-
-
         </div>
     </div>
 
@@ -246,7 +243,7 @@
         })
 
         $(document).on('click', '#linkPoliticasDatos2', function() {
-            $('##modalPoliticasDev').modal({
+            $('#modalPoliticasDev').modal({
                 show: true,
                 fadeDuration: 400,
 
