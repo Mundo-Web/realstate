@@ -82,12 +82,16 @@ class AppServiceProvider extends ServiceProvider
         View::composer('components.app.sidebar', function ($view) {
             // Obtener los datos del footer
             $salesCount = Sale::where('status_id', 3)->count();
-            $mensajes = Message::where('is_read', '!=', 1)->where('status', '!=', 0)->count(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
+            $mensajes = Message::where('is_read', '!=', 1)->where('status', '!=', 0)->where('source' , '=', 'contacto')->count();
+            $mensajesabout = Message::where('is_read', '!=', 1)->where('status', '!=', 0)->where('source' , '=', 'trabajaconnosotros')->count();
+            $mensajessell = Message::where('is_read', '!=', 1)->where('status', '!=', 0)->where('source' , '=', 'vendeoalquila')->count();
             $reclamo =  LibroReclamaciones::where('is_read', '!=', 1)->where('status', '!=', 0)->count();
             // Pasar los datos a la vista
             $view
                 ->with('salesCount', $salesCount)
                 ->with('mensajes', $mensajes)
+                ->with('mensajesabout', $mensajesabout)
+                ->with('mensajessell', $mensajessell)
                 ->with('reclamo', $reclamo);
         });
 

@@ -17,6 +17,8 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\CampaignController;
 
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MessageAboutController;
+use App\Http\Controllers\MessageSellController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ContactController;
@@ -144,6 +146,15 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //messages
         Route::resource('/mensajes', MessageController::class);
         Route::post('/mensajes/borrar', [MessageController::class, 'borrar'])->name('mensajes.borrar');
+
+        Route::get('/mensajesabout', [MessageAboutController::class, 'index'])->name('mensajesabout.index');
+        Route::get('/mensajesabout/{id}', [MessageAboutController::class, 'show'])->name('mensajesabout.show');
+        Route::post('/mensajesabout/borrar', [MessageAboutController::class, 'borrar'])->name('mensajesabout.borrar');
+
+        Route::get('/mensajessell', [MessageSellController::class, 'index'])->name('mensajessell.index');
+        Route::get('/mensajessell/{id}', [MessageSellController::class, 'show'])->name('mensajessell.show');
+        Route::post('/mensajessell/borrar', [MessageSellController::class, 'borrar'])->name('mensajessell.borrar');
+
 
         //Libro de reclamaciones
         Route::resource('/reclamo', LibroReclamacionesController::class);

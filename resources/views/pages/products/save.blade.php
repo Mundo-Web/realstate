@@ -597,7 +597,7 @@
                     <label for="movilidad">Almacenes</label>
                     <div class="relative mb-2  mt-2">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="text-lg text-gray-500 dark:text-gray-400 fa-solid fa-bus-simple"></i>
+                        <i class="text-lg text-gray-500 dark:text-gray-400 fa-solid fa-box-archive"></i>
                       </div>
                       <input type="text" id="movilidad" name="movilidad" value="{{ $product->movilidad }}"
                         step="0.1"

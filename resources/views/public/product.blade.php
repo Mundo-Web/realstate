@@ -513,7 +513,7 @@
 
                         @if (!empty($product->movilidad))
                             <div class="flex flex-col items-center min-w-[70px]">
-                                <img loading="lazy" src="{{ asset('images/svg/rs_estaciones.svg') }}"
+                                <img loading="lazy" src="{{ asset('images/svg/shelves.svg') }}"
                                     class="object-contain w-7 2xl:w-10 aspect-square" alt="Proximity icon" />
                                 <p class="mt-1.5">{{ $product->movilidad }} Almacenes</p>
                             </div>

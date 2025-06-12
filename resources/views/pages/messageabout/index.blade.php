@@ -25,9 +25,9 @@
                                 <tr>
                                     <td class="dark:text-gray-800">
                                         @if($item->is_read == "0")
-                                            <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope"></i></span><span class="font-bold">{{$item->full_name}}</span></a>
+                                            <a href="{{ route('mensajesabout.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope"></i></span><span class="font-bold">{{$item->full_name}}</span></a>
                                         @else
-                                            <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope-open"></i></span><span>{{$item->full_name}}</span></a>
+                                            <a href="{{ route('mensajesabout.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope-open"></i></span><span>{{$item->full_name}}</span></a>
                                         @endif
                                         
                                     </td>
@@ -46,7 +46,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                {{-- <th>Teléfono</th> --}}
+                                <th>Teléfono</th>
                                 <th>Acciones</th>
                             </tr>
                         </tfoot>
@@ -117,7 +117,7 @@
         function borrarmensaje(id) {
       console.log(id)
       $.ajax({
-        url: '{{ route('mensajes.borrar') }}',
+        url: '{{ route('mensajesabout.borrar') }}',
         method: 'POST',
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -132,7 +132,7 @@
             icon: "success"
           });
 
-          window.location.href = '/admin/mensajes';
+          window.location.href = '/admin/mensajesabout';
         },
         error: function(error) {
           console.log(error)

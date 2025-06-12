@@ -16,7 +16,7 @@ class MessageController extends Controller
     public function index()
     {
         //
-        $mensajes = Message::where('status' , '=', 1 )->orderBy('created_at', 'DESC')->get();
+        $mensajes = Message::where('status' , '=', 1 )->where('source' , '=', 'contacto')->orderBy('created_at', 'DESC')->get();
         return view('pages.message.index', compact('mensajes'));
     
         
@@ -58,9 +58,7 @@ class MessageController extends Controller
     //public function show(Message $message)
     public function show($id)
     {
-        //
         $message = Message::findOrFail($id);
-
         $message->is_read = 1; 
         $message->save();
 

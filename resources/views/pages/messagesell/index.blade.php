@@ -25,9 +25,9 @@
                                 <tr>
                                     <td class="dark:text-gray-800">
                                         @if($item->is_read == "0")
-                                            <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope"></i></span><span class="font-bold">{{$item->full_name}}</span></a>
+                                            <a href="{{ route('mensajessell.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope"></i></span><span class="font-bold">{{$item->full_name}}</span></a>
                                         @else
-                                            <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope-open"></i></span><span>{{$item->full_name}}</span></a>
+                                            <a href="{{ route('mensajessell.show', $item->id) }}"><span class="mr-4"><i class="fa-regular fa-envelope-open"></i></span><span>{{$item->full_name}}</span></a>
                                         @endif
                                         
                                     </td>
@@ -46,7 +46,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                {{-- <th>Teléfono</th> --}}
+                                <th>Teléfono</th>
                                 <th>Acciones</th>
                             </tr>
                         </tfoot>
@@ -115,32 +115,32 @@
 
 
         function borrarmensaje(id) {
-      console.log(id)
-      $.ajax({
-        url: '{{ route('mensajes.borrar') }}',
-        method: 'POST',
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        data: {
-          id
-        },
-        success: function(success) {
-          Swal.fire({
-            title: "Exito",
-            text: 'Solicitud enviada con exito ',
-            icon: "success"
-          });
+            console.log(id)
+            $.ajax({
+                url: '{{ route('mensajessell.borrar') }}',
+                method: 'POST',
+                headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                data: {
+                id
+                },
+                success: function(success) {
+                Swal.fire({
+                    title: "Exito",
+                    text: 'Solicitud enviada con exito ',
+                    icon: "success"
+                });
 
-          window.location.href = '/admin/mensajes';
-        },
-        error: function(error) {
-          console.log(error)
-          Swal.fire({
-            title: "Ops !",
-            text: 'El mensaje no ha podido ser enviado, en breves momentos volvera a estar disponible',
-            icon: "warning"
-          });
+                window.location.href = '/admin/mensajessell';
+                },
+                error: function(error) {
+                console.log(error)
+                Swal.fire({
+                    title: "Ops !",
+                    text: 'El mensaje no ha podido ser eliminado, en breves momentos volvera a estar disponible',
+                    icon: "warning"
+                });
         }
 
       })

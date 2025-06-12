@@ -46,6 +46,22 @@
             </x-slot>
           @endif
         </x-menu.item>
+        <x-menu.item id="mensajesabout" href="{{ route('mensajesabout.index') }}" icon="fas fa-comments">
+          Trabaja c/ Nosotros
+          @if ($mensajesabout !== 0)
+            <x-slot name="tag">
+              {{ $mensajesabout }}
+            </x-slot>
+          @endif
+        </x-menu.item>
+        <x-menu.item id="mensajessell" href="{{ route('mensajessell.index') }}" icon="fas fa-comments">
+          Vende o alquila
+          @if ($mensajessell !== 0)
+            <x-slot name="tag">
+              {{ $mensajessell }}
+            </x-slot>
+          @endif
+        </x-menu.item>
         <x-menu.item id="reclamo" href="{{ route('reclamo.index') }}" icon="fas fa-comment-dots">
           Reclamaciones
           @if ($reclamo !== 0)
