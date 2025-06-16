@@ -80,7 +80,7 @@
                             Ponte en <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> contacto </span> con nuestro equipo ahora
                         </h2>
 
-                        <div id="form1" class=" rounded-2xl flex flex-col gap-4 formulariocontacto font-PlusJakartaSans_Regular">
+                        <div id="form1" class="rounded-2xl flex flex-col gap-4 formulariocontacto font-PlusJakartaSans_Regular">
                             <form class="flex flex-col gap-2 xl:gap-4" id="formContactos">
                               @csrf
 
