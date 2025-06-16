@@ -204,7 +204,7 @@
 
             <li>
                 <a href="/contacto"
-                    class="font-medium text-sm py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
+                    class="font-medium text-base py-2 px-3 block hover:opacity-75 transition-opacity duration-300">
                     <span class="underline-this">
                         <i class="fa-solid fa-circle-arrow-right  text-[#BE913E] inline-block w-3 h-3 mb-0.5 me-2"></i>
                         Contacto
