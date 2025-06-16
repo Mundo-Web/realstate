@@ -51,29 +51,28 @@ class LibroReclamacionesController extends Controller
     function storePublic(Request $request)
     {
         
-        $validatedData = $request->validate([
-            'fullname' => 'required|string',
-            'type_document' => 'required|string',
-            'number_document'=> 'required|string',
-            'cellphone'=> 'required|numeric',
-            'email'=> 'required|string',
-            'department'=> 'required|string',
-            'province'=> 'required|string',
-            'district'=> 'required|string',
-            'address'=> 'required|string',
-            'typeitem'=> 'required|string',
-            'amounttotal' => 'required|numeric',
-            // 'category_product_service'=> 'required|string',
-            'description'=> 'required|string',
-            'type_claim'=> 'required|string',
-            'date_incident'=> 'required|string',
-            'address_incident'=> 'required|string',
-            'detail_incident'=> 'required|string',
-            // 'g-recaptcha-response' => 'required|captcha',
-            
-        ]);
-        // [ 'g-recaptcha-response.required' => 'Por favor, completa el reCAPTCHA. Queremos asegurarnos de que no eres un robot.',
-        // 'g-recaptcha-response.captcha' => 'El reCAPTCHA no es válido. Inténtalo de nuevo.',]
+      $validatedData = $request->validate([
+        'fullname' => 'required|string',
+        'type_document' => 'required|string',
+        'number_document'=> 'required|string',
+        'cellphone'=> 'required|numeric',
+        'email'=> 'required|string',
+        'department'=> 'required|string',
+        'province'=> 'required|string',
+        'district'=> 'required|string',
+        'address'=> 'required|string',
+        'typeitem'=> 'required|string',
+        'amounttotal' => 'required|numeric',
+        // 'category_product_service'=> 'required|string',
+        'description'=> 'required|string',
+        'type_claim'=> 'required|string',
+        'date_incident'=> 'required|string',
+        'address_incident'=> 'required|string',
+        'detail_incident'=> 'required|string',
+        'g-recaptcha-response' => 'required|captcha',
+        
+        ], [ 'g-recaptcha-response.required' => 'Por favor, completa el reCAPTCHA. Queremos asegurarnos de que no eres un robot.',
+        'g-recaptcha-response.captcha' => 'El reCAPTCHA no es válido. Inténtalo de nuevo.',] );
 
         $libro = LibroReclamaciones::create($validatedData);
 
