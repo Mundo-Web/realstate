@@ -176,7 +176,7 @@
 
     <section class="sm:px-[5%] md:py-8 lg:py-14 bg-[#141414]">
         <div class="flex flex-col md:flex-row gap-10 lg:gap-20 relative bg-cover bg-center bg-no-repeat sm:rounded-3xl overflow-hidden"
-            style="background-image: url({{ asset('images/img/rs_portada.png') }})">
+            style="background-image: url({{ asset('images/img/rs_portada.webp') }})">
             <div class="flex flex-col gap-5 xl:gap-8 min-h-[700px] h-full w-full md:w-4/5 lg:w-3/5 bg-[#141414] bg-opacity-70 sm:rounded-3xl py-8 md:py-12 px-4 md:px-6 lg:px-10 2xl:px-14">
                 
                 <div class="max-w-lg 2xl:max-w-2xl flex flex-col gap-5">

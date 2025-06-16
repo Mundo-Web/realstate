@@ -46,7 +46,7 @@
 
             <div class="flex flex-row justify-center items-center">
                 <img src="{{ asset($nosotrostextos->url_image2section) }}"
-                    onerror="this.src='{{ asset('images/img/rs_portadanosotros.png') }}';"
+                    onerror="this.src='{{ asset('images/img/rs_portadanosotros.webp') }}';"
                     class="rounded-xl lg:rounded-3xl h-full lg:h-[550px] w-full object-contain" />
             </div>
         </section>
@@ -104,12 +104,8 @@
                         Clientes  <span class="bg-gradient-to-r from-[#C8A049] via-[#E9D151] to-[#BE913E] bg-clip-text text-transparent"> satisfechos </span> 
                     </h2>
                     <p class="font-PlusJakartaSans_Regular text-white text-base 2xl:text-xl">
-                        Cada cliente que confía en nosotros es parte de nuestra historia.
-                        En MP Real State, nos enfocamos en ofrecer un acompañamiento cercano, honesto y eficiente durante todo el proceso de compra o inversión inmobiliaria.
-
-                        Gracias a este compromiso, hoy contamos con una amplia comunidad de clientes satisfechos que lograron cumplir el sueño de tener su propiedad ideal o hacer crecer su inversión con seguridad y confianza.
-
-                        Su experiencia nos inspira a seguir dando lo mejor en cada proyecto.
+                        Más de 3,000 personas ya confiaron en MP Real State para vender o alquilar sus propiedades con éxito.
+                        Conoce sus testimonios y descubre por qué somos una de las inmobiliarias más recomendadas del país.
                     </p>
                 </div>
 
