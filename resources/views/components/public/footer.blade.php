@@ -42,9 +42,9 @@
 
         <div class="flex flex-col text-sm font-PlusJakartaSans_Regular text-white gap-1.5">
             <h3 class="text-lg 2xl:text-xl text-white font-PlusJakartaSans_Semibold pb-3">Aviso legal</h3>
-            <a id="linkPoliticas">Políticas de privacidad</a>
+            <a id="linkPoliticas">Políticas de Datos</a>
             <a id="linkTerminos">Términos y Condiciones</a>
-            <a id="linkPoliticasDatos">Politica de cambio</a>
+            <a id="linkPoliticasDatos">Politica de Cambio y Devolucion</a>
             <a href="{{ route('librodereclamaciones') }}">Libro de reclamaciones</a>
         </div>
 
@@ -168,7 +168,7 @@
     <div id="modalTerminosCondiciones" class="modal" style="max-width: 900px !important;width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
-            <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Terminos y condiciones</h1>
+            <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Términos y Condiciones</h1>
             <div class="font-PlusJakartaSans_Regular grid grid-cols-1">{!! $terminos->content ?? '' !!}</div>
         </div>
     </div>
@@ -176,7 +176,7 @@
     <div id="modalPoliticasDev" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
-            <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Politicas de Datos y Privacidad</h1>
+            <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Políticas de Cambio y Devolución</h1>
             <div class="font-PlusJakartaSans_Regular grid grid-cols-1 ">{!! $politicas->content ?? '' !!}</div>
         </div>
     </div>
@@ -184,7 +184,7 @@
     <div id="modallinkPoliticasDatos" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
-            <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Politicas de Cambio y Devolucion</h1>
+            <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Políticas de Datos</h1>
             <div class="font-PlusJakartaSans_Regular grid grid-cols-1">{!! $politicaDatos->content ?? '' !!}</div>
         </div>
     </div>

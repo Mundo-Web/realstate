@@ -92,7 +92,7 @@
             {
                 extend:    'csvHtml5',
                 text:      '<i class="fas fa-file-csv"></i> ',
-                titleAttr: 'Imprimir',
+                titleAttr: 'Exportar a CSV',
                 className: 'btn btn-info',
             },
             {
@@ -100,12 +100,6 @@
                 text:      '<i class="fa fa-print"></i> ',
                 titleAttr: 'Imprimir',
                 className: 'btn btn-info',
-            },
-            {
-                extend:    'copy',
-                text:      '<i class="fas fa-copy"></i> ',
-                titleAttr: 'Copiar',
-                className: 'btn btn-success',
             },
         ]
         });

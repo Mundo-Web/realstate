@@ -29,7 +29,7 @@
     <div class="space-y-8">
       <!-- Pages group -->
       <x-menu.group title="Sistema">
-        <x-menu.item id="dashboard" href="{{ route('dashboard') }}" icon="fas fa-home">Dashboard</x-menu.item>
+        {{-- <x-menu.item id="dashboard" href="{{ route('dashboard') }}" icon="fas fa-home">Dashboard</x-menu.item> --}}
         {{-- <x-menu.item id="pedidos" href="{{ route('pedidos.index') }}" icon="fa fa-solid fa-cart-shopping">
           Reservas
           @if ($salesCount !== 0)
@@ -103,14 +103,14 @@
         </x-menu.item> --}}
         <x-menu.item id="politicas-de-devolucion" href="{{ route('politicas-de-devolucion.edit', 1) }}"
           icon="fas fa-undo-alt">
-          Politicas de Devolucion
+          Politicas de Cambio y Devolucion
         </x-menu.item>
         <x-menu.item id="terminos-y-condiciones" href="{{ route('terminos-y-condiciones.edit', 1) }}"
           icon="fas fa-file-contract">
           Terminos y Condiciones
         </x-menu.item>
         <x-menu.item id="politica-datos" href="{{ route('politicadatos.detalle', 1) }}" icon="fas fa-file-contract">
-          Terminos Datos
+          Politicas de datos
         </x-menu.item>
         {{-- <x-menu.item id="servicios" href="{{ route('servicios.index') }}"
           icon="fas fa-wrench">Servicios</x-menu.item> --}}
