@@ -53,7 +53,7 @@
     }
 
     .jquery-modal.blocker.current {
-        z-index: 30;
+        z-index: 99;
     }
 </style>
 

@@ -1,6 +1,6 @@
 <style>
   .jquery-modal.blocker.current {
-    z-index: 30;
+    z-index: 999;
   }
 </style>
 <div id="cart-modal"

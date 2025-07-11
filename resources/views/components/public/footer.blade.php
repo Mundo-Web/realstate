@@ -21,7 +21,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 sm:gap-10 md:justify-center w-full px-[5%] xl:px-[8%] py-8 lg:py-16 ">
 
         <div class="flex flex-col text-white text-base justify-start items-start gap-5">
-            <img class="w-auto max-h-40 object-contain" src="{{ asset('images/svg/rs_logofooter.svg') }}" />
+            <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/logorealstate.png') }}" />
         </div>
 
         {{-- <div class="flex flex-col text-sm font-FixelText_Light text-white gap-2 pl-0 md:pl-[10%]">
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div id="modalTerminosCondiciones" class="modal" style="max-width: 900px !important;width: 100% !important;  ">
+    <div id="modalTerminosCondiciones" class="modal z-[9999]" style="max-width: 900px !important;width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
             <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Términos y Condiciones</h1>
@@ -110,7 +110,7 @@
         </div>
     </div>
 
-    <div id="modalPoliticasDev" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
+    <div id="modalPoliticasDev" class="modal z-[999999]" style="max-width: 900px !important; width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
             <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Políticas de Cambio y Devolución</h1>
@@ -118,7 +118,7 @@
         </div>
     </div>
 
-    <div id="modallinkPoliticasDatos" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
+    <div id="modallinkPoliticasDatos" class="modal z-[9999]" style="max-width: 900px !important; width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
             <h1 class="font-PlusJakartaSans_Bold text-center text-2xl">Políticas de Datos</h1>
