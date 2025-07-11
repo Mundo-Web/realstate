@@ -76,7 +76,7 @@
 
                 @if ($datosgenerales->tiktok)
                   <a href="{{ $datosgenerales->tiktok }}">
-                    <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/tiktok.png') }}" />
+                    <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/tik_tok.png') }}" />
                   </a>
                 @endif
 
