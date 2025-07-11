@@ -144,4 +144,28 @@ class StaffController extends Controller
         $staff->save();
         return response()->json(['message'=> 'registro actualizado']);
     }
+
+    public function borrar(Request $request)
+    {
+        $staff = Staff::find($request->id);
+
+        if (!$staff) {
+            return response()->json(['message' => 'Personal no encontrado.'], 404);
+        }
+
+        if ($staff->agente()->exists()) {
+            return response()->json([
+                'message' => 'No se puede eliminar este personal porque está asignado a uno o más departamentos. Porfavor modifique el personal en el departamento antes de eliminarlo.'
+            ], 422); 
+        }
+
+        if ($staff->youtube && file_exists($staff->youtube)) {
+            unlink($staff->youtube);
+        }
+
+        $staff->delete();
+
+        return response()->json(['message' => 'Personal eliminado correctamente.']);
+    }
+
 }

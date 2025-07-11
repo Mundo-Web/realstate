@@ -190,5 +190,49 @@
 
       })
     });
+
+
+    $(".btn_delete").on("click", function(e) {
+  e.preventDefault();
+
+  let id = $(this).attr('data-idService');
+
+  Swal.fire({
+    title: "¿Seguro que deseas eliminar?",
+    text: "Vas a eliminar un personal",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, borrar!",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      $.ajax({
+        url: '{{ route('staff.borrar') }}',
+        method: 'POST',
+        data: {
+          _token: $('input[name="_token"]').val(),
+          id: id,
+        }
+      }).done(function(res) {
+        Swal.fire({
+          title: res.message,
+          icon: "success"
+        }).then(() => location.reload());
+      }).fail(function(xhr) {
+        let mensaje = xhr.responseJSON?.message || "Error al eliminar";
+        Swal.fire({
+          title: mensaje,
+          icon: "error"
+        });
+      });
+    }
+  });
+});
+
+
+
   })
 </script>
