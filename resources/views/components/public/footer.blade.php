@@ -58,30 +58,30 @@
             <h3 class="text-lg 2xl:text-xl text-white font-PlusJakartaSans_Semibold pb-3">Nuestras redes</h3>
             <div class="flex flex-row gap-2 text-[#ccc]">
                 @if ($datosgenerales->facebook)
-                  <a href="{{ $datosgenerales->facebook }}">
+                  <a target="_blank" href="{{ $datosgenerales->facebook }}">
                     <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/fb.png') }}" />
                   </a>
                 @endif
                 @if ($datosgenerales->instagram)
-                  <a href="{{ $datosgenerales->instagram }}">
+                  <a target="_blank" href="{{ $datosgenerales->instagram }}">
                     <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/ig.png') }}" />
                   </a>
                 @endif
                 
                 @if ($datosgenerales->youtube)
-                  <a href="{{ $datosgenerales->youtube }}">
+                  <a target="_blank" href="{{ $datosgenerales->youtube }}">
                     <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/youtube.png') }}" />
                   </a>
                 @endif
 
                 @if ($datosgenerales->tiktok)
-                  <a href="{{ $datosgenerales->tiktok }}">
+                  <a target="_blank" href="{{ $datosgenerales->tiktok }}">
                     <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/tik_tok.png') }}" />
                   </a>
                 @endif
 
                 @if ($datosgenerales->twitter)
-                  <a href="{{ $datosgenerales->twitter }}">
+                  <a target="_blank" href="{{ $datosgenerales->twitter }}">
                     <img class="w-auto max-h-40 object-contain" src="{{ asset('images/img/twitter.png') }}" />
                   </a>
                 @endif
