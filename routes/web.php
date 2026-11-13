@@ -36,7 +36,6 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LibroReclamacionesController;
 use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\NosotrosViewController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PoliticaDatosController;
 use App\Http\Controllers\PolyticsConditionController;
 use App\Http\Controllers\PopupController;
@@ -52,6 +51,7 @@ use App\Http\Controllers\ValoresAtributosController;
 
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TermsAndConditionController;
+use App\Http\Controllers\AdminUserController;
 use App\Models\AboutUs;
 use App\Models\LibroReclamaciones;
 use App\Models\NosotrosView;
@@ -84,8 +84,6 @@ Route::get('/blog/{filtro}', [IndexController::class, 'blog'])->name('blog');
 Route::get('/post/{id}', [IndexController::class, 'detalleBlog'])->name('detalleBlog');
 /* Proceso de pago */
 Route::get('/carrito', [IndexController::class, 'carrito'])->name('carrito');
-Route::get('/pago', [IndexController::class, 'pago'])->name('pago');
-Route::post('/procesar/pago', [IndexController::class, 'procesarPago'])->name('procesar.pago');
 Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'])->name('agradecimiento');
 /* Catálogo y producto */
 Route::get('/producto/{id}', [IndexController::class, 'producto'])->name('producto');
@@ -307,4 +305,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'])->name('actualizarPerfil');
     Route::post('/micuenta/wishList', [IndexController::class, 'wishListAdd'])->name('wishlist.store');
 
+});
+
+/* Admin User Management - solo Root */
+Route::middleware(['auth', 'role:Root'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('users', AdminUserController::class)->except(['show']);
 });

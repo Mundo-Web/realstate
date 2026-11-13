@@ -29,6 +29,9 @@
     <div class="space-y-8">
       <!-- Pages group -->
       <x-menu.group title="Sistema">
+        @if(auth()->check() && auth()->user()->hasRole('Root'))
+        <x-menu.item id="admin-users" href="{{ route('admin.users.index') }}" icon="fas fa-users-cog">Gestión de Usuarios</x-menu.item>
+        @endif
         {{-- <x-menu.item id="dashboard" href="{{ route('dashboard') }}" icon="fas fa-home">Dashboard</x-menu.item> --}}
         {{-- <x-menu.item id="pedidos" href="{{ route('pedidos.index') }}" icon="fa fa-solid fa-cart-shopping">
           Reservas

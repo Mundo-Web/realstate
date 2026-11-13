@@ -44,7 +44,6 @@ use App\Models\Wishlist;
 use App\Models\Staff;
 use Attribute;
 use Carbon\Carbon;
-use Culqi\Culqi;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;

@@ -3,7 +3,6 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OfferController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
@@ -28,8 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/products/paginate', [ProductsController::class, 'paginate'])->name('products.paginate');
 Route::post('/ofertas/paginate', [ProductsController::class, 'paginateOffers'])->name('ofertas.paginate');
-
-Route::post('/payment/culqi', [PaymentController::class, 'culqi'])->name('payment.culqi');
 
 Route::get('/offers/{id}', [OfferController::class, 'get'])->name('offers.get');
 
