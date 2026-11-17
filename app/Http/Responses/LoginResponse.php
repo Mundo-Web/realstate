@@ -11,34 +11,23 @@ class LoginResponse implements LoginResponseContract
 
     public function toResponse($request)
     {
-        $role = Auth::user()->roles->pluck('name');
-        
-        
+        $roles = Auth::user()->roles->pluck('name')->all();
+
         if ($request->wantsJson()) {
             return response()->json(['two_factor' => false]);
         }
 
+        $isAdmin = in_array('Root', $roles) || in_array('Admin', $roles);
 
-
-
-
-
-
-
-
-
-
-
-        
-
-        switch ($role[0]) {
-            case 'Admin':
-                return redirect()->intended(config('fortify.home'));
-            case 'Customer':
-                return redirect()->intended(config('fortify.home_public'));
-            default:
-                return redirect()->intended(config('fortify.home_public'));
+        if ($isAdmin) {
+            return redirect()->intended(config('fortify.home'));
         }
+        
+        if (in_array('Customer', $roles)) {
+            return redirect()->intended(config('fortify.home_public'));
+        }
+
+        return redirect()->intended(config('fortify.home_public'));
     }
 
 }
