@@ -438,6 +438,7 @@
         cellTemplate: (container, {
           data
         }) => {
+          const disabled = !data.imagen ? 'disabled' : '';
           container.html(`<form method="POST" action="">
             @csrf
             <input type="checkbox" id="switch_visible"
@@ -448,7 +449,7 @@
                     before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
                     before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
               id='v_${data.id}' data-field='visible' data-idService='${data.id}'
-              data-titleService='${data.producto}' ${data.visible ? 'checked' : ''}>
+              data-titleService='${data.producto}' ${data.visible ? 'checked' : ''} ${disabled}>
             <label for="v_${data.id}"></label>
           </form>`)
         }

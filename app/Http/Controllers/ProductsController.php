@@ -967,6 +967,11 @@ class ProductsController extends Controller
       return response()->json(['message' => 'Producto no encontrado'], 404);
     }
 
+    // No permitir hacer visible un producto sin imagen
+    if ($field === 'visible' && $status == 1 && empty($product->imagen)) {
+      return response()->json(['message' => 'No se puede hacer visible un producto sin imagen'], 422);
+    }
+
     // Actualizar el campo dinámicamente
     $product->update([
       $field => $status
