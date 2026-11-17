@@ -83,9 +83,14 @@ class ProductsController extends Controller
         ->leftJoin('attributes AS a', 'apv.attribute_id', 'a.id')
         ->leftJoin('tags_xproducts AS txp', 'txp.producto_id', 'products.id')
         ->leftJoin('categories', 'categories.id', 'products.categoria_id') 
-        ->where('categories.visible', 1) 
-        ->where('categories.status', 1)   
-        ->where('products.status', 1);
+        ->where('products.status', 1)
+        ->where(function($q){
+            $q->whereNull('categories.id')
+              ->orWhere(function($qq){
+                  $qq->where('categories.visible', 1)
+                     ->where('categories.status', 1);
+              });
+        });
         
         if(Auth::check()){
           $user = Auth::user();
@@ -512,6 +517,7 @@ class ProductsController extends Controller
     
     $request->validate([
       'producto' => 'required',
+      'sku' => 'nullable|string|max:255',
       'imagen_ambiente' => 'mimes:pdf',
   ], [
       'producto.required' => 'El campo producto es obligatorio.',
@@ -606,6 +612,7 @@ class ProductsController extends Controller
       $cleanedData = Arr::where($data, function ($value, $key) {
         return !is_null($value);
       });
+      $cleanedData = Arr::except($cleanedData, ['id', '_token', '_method']);
       
       if (!isset($cleanedData['stock'])) {
          $cleanedData['stock'] = 0 ;
