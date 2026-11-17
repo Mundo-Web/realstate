@@ -41,6 +41,10 @@ class dxDataGrid
         } else {
             $selector = $dxFilter[0];
             if ($flat) $selector = \str_replace('.', '__', $dxFilter[0]);
+            // map frontend alias to actual DB column
+            if ($selector === 'distrito_description' || $selector === 'distrito.description' || $selector === 'distrito__description') {
+                $selector = 'districts.description';
+            }
             switch ($dxFilter[1]) {
                 case 'contains':
                     $builder->where($selector, 'like', "%{$dxFilter[2]}%");

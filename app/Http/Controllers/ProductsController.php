@@ -74,9 +74,11 @@ class ProductsController extends Controller
     $response =  new dxResponse();
     try {
       $instance = Products::select([
-        DB::raw('DISTINCT products.*')
+        DB::raw('DISTINCT products.*'),
+        'districts.description as distrito_description'
       ])
         ->with(['category', 'tags','distrito'])
+        ->leftJoin('districts', 'products.distrito_id', '=', 'districts.id')
         ->leftJoin('attribute_product_values AS apv', 'products.id', 'apv.product_id')
         ->leftJoin('attributes AS a', 'apv.attribute_id', 'a.id')
         ->leftJoin('tags_xproducts AS txp', 'txp.producto_id', 'products.id')

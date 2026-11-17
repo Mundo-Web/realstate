@@ -301,7 +301,11 @@
     //   visible: true
     // },
     searchPanel: {
-      visible: true
+      visible: true,
+      placeholder: 'Buscar propiedad...',
+      width: 300,
+      searchMode: 'contains',
+      searchVisibleColumnsOnly: true
     },
     // headerFilter: {
     //   visible: true,
@@ -312,6 +316,7 @@
     // height: 'calc(100vh - 185px)',
     rowAlternationEnabled: true,
     showBorders: true,
+    noDataText: 'No se encontró la propiedad',
     paging: {
       pageSize: 10,
     },
@@ -335,8 +340,10 @@
         width: '60%'
       },
       {
-        dataField: 'distrito.description',
-        caption: 'DISTRITO'
+        dataField: 'distrito_description',
+        caption: 'DISTRITO',
+        allowSearching: true,
+        allowSorting: false
       },
       {
         dataField: 'precio',
@@ -361,6 +368,7 @@
       {
         dataField: 'endescuento',
         caption: 'EN DESCUENTO',
+        allowSearching: false,
         cellTemplate: (container, {
           data
         }) => {
@@ -382,6 +390,7 @@
       {
         dataField: 'destacar',
         caption: 'DESTACAR',
+        allowSearching: false,
         cellTemplate: (container, {
           data
         }) => {
@@ -403,6 +412,7 @@
       {
         dataField: 'recomendar',
         caption: '¿ES ALQUILER?',
+        allowSearching: false,
         cellTemplate: (container, {
           data
         }) => {
@@ -424,6 +434,7 @@
       {
         dataField: 'visible',
         caption: 'VISIBLE',
+        allowSearching: false,
         cellTemplate: (container, {
           data
         }) => {
